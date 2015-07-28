@@ -27,7 +27,7 @@
             addOption: function () {
                 this.field.options.push({
                     value: '',
-                    text: 'sdfgsdgd'
+                    text: ''
                 });
             }
         },
@@ -57,9 +57,11 @@
 
             selectoption: {
 
-                template: '<li class="uk-nestable-item uk-flex uk-flex-middle" data-value="{{ selectoption.value }}">\n    <div class="uk-flex-item-1">\n        <input type="text" class="uk-form-width-large uk-form-blank" v-model="selectoption.value"/><br/>\n        <input type="text" class="uk-form-width-large" v-model="selectoption.text"/>\n    </div>\n    <div>\n        <a class="uk-icon uk-icon-arrows-alt uk-icon-hover uk-nestable-handle"></a>\n    </div>\n</li>   \n',
+                template: '<li class="uk-nestable-item uk-flex uk-flex-middle" data-value="{{ selectoption.value }}">\n    <div class="uk-flex-item-1">\n        <small class="uk-text-muted">{{ selectoption.value }}</small><br/>\n        <input type="text" class="uk-form-width-large" v-model="selectoption.text"/>\n    </div>\n    <div>\n        <a class="uk-icon uk-icon-arrows-alt uk-icon-hover uk-nestable-handle"></a>\n    </div>\n</li>   \n',
 
                 props: ['selectoption'],
+
+                inherit: true,
 
                 watch: {
                     "selectoption.text": function(value) {
