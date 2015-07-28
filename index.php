@@ -53,7 +53,7 @@ return [
             'icon' => 'extensions/userprofile/extension.svg',
             'url' => '@userprofile/admin',
             // 'access' => 'userprofile: manage hellos',
-            'active' => '@userprofile/*'
+            'active' => '@userprofile(/*)'
         ],
 
         'userprofile: fields' => [
