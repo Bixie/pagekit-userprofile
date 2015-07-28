@@ -1,5 +1,5 @@
 {
-    "name": "userprofile",
+    "name": "pagekit/userprofile",
     "type": "pagekit-extension",
     "version": "0.1.0",
     "title": "Userprofile",
@@ -13,6 +13,6 @@
         }
     ],
     "extra": {
-        "image": "extension.svg"
+        "image": "image.svg"
     }
 }

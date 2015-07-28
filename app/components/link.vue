@@ -31,12 +31,10 @@
                 this.link = '@hello/name?name=' + name;
             }
 
-        },
-
-        template: __vue_template__
+        }
 
     };
 
-    window.Links.component('hello', module.exports);
+    window.Links.components['userprofile'] = module.exports;
 
 </script>

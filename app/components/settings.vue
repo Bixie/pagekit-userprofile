@@ -46,12 +46,10 @@
                 });
             }
 
-        },
-
-        template: __vue_template__
+        }
 
     };
 
-    window.Extensions.component('settings-userprofile', module.exports);
+    window.Extensions.components['settings-userprofile'] = module.exports;
 
 </script>

@@ -36,7 +36,13 @@ return [
         '/api/userprofile/field' => [
             'name' => '@site/api/field',
             'controller' => 'Pagekit\\Userprofile\\Controller\\FieldController'
-        ]
+        ],
+        '/user/registration' => [
+            'name' => '@user/registration',
+            'controller' => [
+                'Pagekit\\User\\Controller\\RegistrationController',
+            ]
+        ],
 
     ],
 
@@ -50,7 +56,7 @@ return [
 
         'userprofile' => [
             'label' => 'Userprofile',
-            'icon' => 'extensions/userprofile/extension.svg',
+            'icon' => 'extensions/userprofile/image.svg',
             'url' => '@userprofile/admin',
             // 'access' => 'userprofile: manage hellos',
             'active' => '@userprofile(/*)'

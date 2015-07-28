@@ -17,13 +17,11 @@
         section: {
             label: 'Settings',
             priority: 0,
-            active: 'hello$'
-        },
-
-        template: __vue_template__
+            active: 'userprofile$'
+        }
 
     };
 
-    window.Site.component('hello', module.exports);
+    window.Site.components['userprofile'] = module.exports;
 
 </script>
