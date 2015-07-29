@@ -1,7 +1,7 @@
 <?php return array(
 	//fieldtypes
 	'text' => 'Textfield',
-	'select' => 'Pulldown',
+	'pulldown' => 'Pulldown',
 	//general
 	'Userprofile' => 'Userprofile'
 );

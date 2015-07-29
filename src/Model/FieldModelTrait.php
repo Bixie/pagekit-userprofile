@@ -8,6 +8,13 @@ trait FieldModelTrait
 {
     use ModelTrait;
 
+    public static function getProfileFields () {
+        $query = self::query();
+
+        return array_values($query->get());
+
+    }
+
     /**
      * @Saving
      */

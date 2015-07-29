@@ -24,6 +24,26 @@ class SiteController
     }
 
     /**
+     * @Route("/profile")
+     * @Route("/profile/{username}", username="username")
+     */
+    public function profileAction($username = '') {
+        $userprofile = App::module('userprofile');
+
+        return [
+            '$view' => [
+                'title' => __('User profile'),
+                'name' => 'userprofile:views/profile.php'
+            ],
+            '$data' => [
+                'config' => App::module('userprofile')->config('default'),
+                'types' => $userprofile->getTypes()
+            ]
+        ];
+
+    }
+
+    /**
      * @Route("/greet")
      * @Route("/greet/{name}", name="name")
      */

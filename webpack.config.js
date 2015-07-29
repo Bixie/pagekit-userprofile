@@ -5,8 +5,9 @@ module.exports = [
             "settings": "./app/components/settings.vue",
             "site": "./app/components/site.vue",
             "link": "./app/components/link.vue",
-            "field-edit": "./app/views/edit.js",
-            "fields": "./app/views/fields.js"
+            "userprofile": "./app/views/profile.js",
+            "field-edit": "./app/views/admin/edit.js",
+            "fields": "./app/views/admin/fields.js"
         },
         output: {
             filename: "./app/bundle/[name].js",

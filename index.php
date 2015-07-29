@@ -1,5 +1,7 @@
 <?php
 
+use Pagekit\Userprofile\Event\UserListener;
+
 return [
 
     'name' => 'userprofile',
@@ -19,7 +21,7 @@ return [
         'userprofile' => [
             'name' => '@userprofile',
             'label' => 'Userprofile',
-            'controller' => 'Pagekit\\Userprofile\\Controller\\SiteController',
+            'controller' => 'Pagekit\\Userprofile\\Controller\\ProfileController',
             'protected' => true
         ]
 
@@ -36,13 +38,7 @@ return [
         '/api/userprofile/field' => [
             'name' => '@site/api/field',
             'controller' => 'Pagekit\\Userprofile\\Controller\\FieldController'
-        ],
-        '/user/registration' => [
-            'name' => '@user/registration',
-            'controller' => [
-                'Pagekit\\User\\Controller\\RegistrationController',
-            ]
-        ],
+        ]
 
     ],
 
@@ -89,6 +85,10 @@ return [
     ],
 
     'events' => [
+
+		'boot' => function($event, $app) {
+			$app->subscribe(new UserListener);
+		},
 
         'enable.userprofile' => function () use ($app) {
             // run all migrations that are newer than the current version

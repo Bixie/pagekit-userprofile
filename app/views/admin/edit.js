@@ -15,8 +15,8 @@ module.exports = Vue.extend({
 
             var type = this.$get('type.id'), field = this.$options.components[type];
 
-            if (field && (type && type.match(field.options.field.type))) {
-                return field.options.field.hasOptions;
+            if (field && (type && type.match(field.options.fieldOptions.type))) {
+                return field.options.fieldOptions.hasOptions;
             }
 
             return false;
@@ -54,11 +54,11 @@ module.exports = Vue.extend({
 
     components: {
 
-        text: require('../fields/text.vue'),
-        select: require('../fields/select.vue'),
-        fieldbasic: require('../components/field-basic.vue'),
-        fieldoptions: require('../components/field-options.vue'),
-        appearance: require('../components/appearance.vue')
+        text: require('../../fields/text.vue'),
+        pulldown: require('../../fields/pulldown.vue'),
+        fieldbasic: require('../../components/field-basic.vue'),
+        fieldoptions: require('../../components/field-options.vue'),
+        appearance: require('../../components/appearance.vue')
 
     }
 

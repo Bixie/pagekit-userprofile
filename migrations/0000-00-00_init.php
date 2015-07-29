@@ -17,6 +17,18 @@ return [
                 $table->setPrimaryKey(['id']);
             });
         }
+
+        if ($util->tableExists('@userprofile_values') === false) {
+            $util->createTable('@userprofile_values', function($table) {
+                $table->addColumn('id', 'integer', ['unsigned' => true, 'length' => 10, 'autoincrement' => true]);
+                $table->addColumn('user_id', 'integer', ['unsigned' => true, 'length' => 10]);
+                $table->addColumn('field_id', 'integer', ['unsigned' => true, 'length' => 10]);
+                $table->addColumn('multiple', 'smallint');
+                $table->addColumn('value', 'json_array', ['notnull' => false]);
+                $table->setPrimaryKey(['id']);
+                $table->addIndex(['user_id'], 'USERPROFILE_VALUES_USERID');
+            });
+        }
     },
 
     'down' => function() use ($app) {
