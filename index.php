@@ -40,7 +40,7 @@ return [
             'controller' => 'Pagekit\\Userprofile\\Controller\\FieldController'
         ]
 
-    ],
+	],
 
     'resources' => [
 
@@ -52,7 +52,7 @@ return [
 
         'userprofile' => [
             'label' => 'Userprofile',
-            'icon' => 'extensions/userprofile/image.svg',
+            'icon' => 'extensions/userprofile/assets/images/image.svg',
             'url' => '@userprofile/admin',
             // 'access' => 'userprofile: manage hellos',
             'active' => '@userprofile(/*)'
