@@ -1,7 +1,7 @@
 <template>
 
     <div class="uk-form-row">
-        <label for="{{ fieldid }}" class="uk-form-label">{{ field.label | trans }}</label>
+        <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ field.label | trans }}</label>
         <div class="uk-form-controls">
             <input type="text" class="uk-form-width-large"
                    v-attr="name: fieldid, id: fieldid"
