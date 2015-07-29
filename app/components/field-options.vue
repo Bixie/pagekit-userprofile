@@ -6,11 +6,9 @@
             <span class="uk-form-label">{{ 'Options' | trans }}</span>
             <div class="uk-form-controls uk-form-controls-text">
                 <ul class="uk-nestable uk-margin-remove" v-el="optionsNestable" v-show="field.options.length">
-                    <template v-repeat="option: field.options">
-                        <selectoption selectoption="{{@ option }}"></selectoption>
-                    </template>
+                    <selectoption v-repeat="selectoption: field.options"></selectoption>
                 </ul>
-                <button type="button" class="uk-button uk-button-primary uk-button-small uk-margin" v-on="click: addOption">{{ 'Add option' | trans}}</button>
+                <button type="button" class="uk-button uk-button-primary uk-button-small uk-margin" v-on="click: addFieldoption">{{ 'Add option' | trans}}</button>
             </div>
         </div>
 
@@ -24,11 +22,15 @@
         props: ['field'],
 
         methods: {
-            addOption: function () {
+            addFieldoption: function () {
                 this.field.options.push({
                     value: '',
                     text: ''
                 });
+            },
+            deleteFieldoption: function (idx) {
+                console.log(idx);
+                this.field.options.$remove(idx);
             }
         },
 
@@ -57,9 +59,7 @@
 
             selectoption: {
 
-                template: '<li class="uk-nestable-item uk-flex uk-flex-middle" data-value="{{ selectoption.value }}">\n    <div class="uk-flex-item-1">\n        <small class="uk-text-muted">{{ selectoption.value }}</small><br/>\n        <input type="text" class="uk-form-width-large" v-model="selectoption.text"/>\n    </div>\n    <div>\n        <a class="uk-icon uk-icon-arrows-alt uk-icon-hover uk-nestable-handle"></a>\n    </div>\n</li>   \n',
-
-                props: ['selectoption'],
+                template: '<li class="uk-nestable-item" data-value="{{ selectoption.value }}">\n    <div class="uk-nestable-panel uk-visible-hover uk-form uk-flex uk-flex-middle">\n        <div class="uk-flex-item-1">\n            <div class="uk-form-row">\n                <small class="uk-form-label uk-text-muted uk-text-truncate" style="text-transform: none">{{ selectoption.value }}</small>\n                <div class="uk-form-controls">\n                    <input type="text" class="uk-form-width-large" v-model="selectoption.text"/></div>\n\n            </div>\n        </div>\n        <div class="">\n            <ul class="uk-subnav pk-subnav-icon">\n                <li><a class="pk-icon-delete pk-icon-hover uk-invisible" v-on="click: deleteFieldoption($index)"></a></li>\n                <li><a class="pk-icon-move pk-icon-hover uk-invisible uk-nestable-handle"></a></li>\n            </ul>\n        </div>\n    </div>\n</li>   \n',
 
                 inherit: true,
 
