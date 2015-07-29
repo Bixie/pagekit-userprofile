@@ -4,6 +4,7 @@ namespace Pagekit\Userprofile\Controller;
 
 use Pagekit\Application as App;
 use Pagekit\Userprofile\Model\Field;
+use Pagekit\Userprofile\Model\Profilevalue;
 
 class FieldApiController {
 
@@ -54,6 +55,10 @@ class FieldApiController {
 	 */
 	public function deleteAction ($id) {
 		if ($field = Field::find($id)) {
+
+			foreach (Profilevalue::where(['field_id = :id'], [':id' => $id])->get() as $profilevalue) {
+				$profilevalue->delete();
+			}
 
 			$field->delete();
 		}
