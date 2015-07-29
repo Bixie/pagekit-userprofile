@@ -25,12 +25,25 @@
             addFieldoption: function () {
                 this.field.options.push({
                     value: '',
-                    text: ''
+                    text: '',
+                    invalid: false
                 });
             },
             deleteFieldoption: function (idx) {
                 console.log(idx);
                 this.field.options.$remove(idx);
+            },
+            checkDuplicates: function () {
+                var current, dups = [];
+                _.sortBy(this.field.options, 'value').forEach(function (option) {
+                    if (current && current === option.value) {
+                        dups.push(option.value);
+                    }
+                    current = option.value;
+                });
+                this.field.options.forEach(function (option) {
+                    option.invalid = dups.indexOf(option.value) > -1 ? 'Duplicate value' : false;
+                });
             }
         },
 
@@ -59,13 +72,14 @@
 
             selectoption: {
 
-                template: '<li class="uk-nestable-item" data-value="{{ selectoption.value }}">\n    <div class="uk-nestable-panel uk-visible-hover uk-form uk-flex uk-flex-middle">\n        <div class="uk-flex-item-1">\n            <div class="uk-form-row">\n                <small class="uk-form-label uk-text-muted uk-text-truncate" style="text-transform: none">{{ selectoption.value }}</small>\n                <div class="uk-form-controls">\n                    <input type="text" class="uk-form-width-large" v-model="selectoption.text"/></div>\n\n            </div>\n        </div>\n        <div class="">\n            <ul class="uk-subnav pk-subnav-icon">\n                <li><a class="pk-icon-delete pk-icon-hover uk-invisible" v-on="click: deleteFieldoption($index)"></a></li>\n                <li><a class="pk-icon-move pk-icon-hover uk-invisible uk-nestable-handle"></a></li>\n            </ul>\n        </div>\n    </div>\n</li>   \n',
+                template: '<li class="uk-nestable-item" data-value="{{ selectoption.value }}">\n    <div class="uk-nestable-panel uk-visible-hover uk-form uk-flex uk-flex-middle">\n        <div class="uk-flex-item-1">\n            <div class="uk-form-row">\n                <small class="uk-form-label uk-text-muted uk-text-truncate" style="text-transform: none" v-class="uk-text-danger: selectoption.invalid">{{ selectoption.value }}</small>\n                <div class="uk-form-controls">\n                    <input type="text" class="uk-form-width-large" v-model="selectoption.text"/></div>\n                <p class="uk-form-help-block uk-text-danger" v-show="selectoption.invalid">{{ selectoption.invalid | trans }}</p>\n\n            </div>\n        </div>\n        <div class="">\n            <ul class="uk-subnav pk-subnav-icon">\n                <li><a class="pk-icon-delete pk-icon-hover uk-invisible" v-on="click: deleteFieldoption($index)"></a></li>\n                <li><a class="pk-icon-move pk-icon-hover uk-invisible uk-nestable-handle"></a></li>\n            </ul>\n        </div>\n    </div>\n</li>   \n',
 
                 inherit: true,
 
                 watch: {
                     "selectoption.text": function(value) {
                         this.selectoption.value = _.escape(_.snakeCase(value));
+                        this.checkDuplicates();
                     }
 
                 }
