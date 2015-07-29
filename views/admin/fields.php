@@ -9,17 +9,7 @@
 
 			<div class="uk-margin-left" v-show="selected.length">
 				<ul class="uk-subnav pk-subnav-icon">
-					<li><a class="pk-icon-check pk-icon-hover" title="{{ 'Publish' | trans }}" data-uk-tooltip="{delay: 500}" v-on="click: status(1)"></a></li>
-					<li><a class="pk-icon-block pk-icon-hover" title="{{ 'Unpublish' | trans }}" data-uk-tooltip="{delay: 500}" v-on="click: status(0)"></a></li>
-					<li v-show="showMove" data-uk-dropdown="{ mode: 'click' }">
-						<a class="pk-icon-move pk-icon-hover" title="{{ 'Move' | trans }}" data-uk-tooltip="{delay: 500}" v-on="click: $event.preventDefault()"></a>
-						<div class="uk-dropdown uk-dropdown-small">
-							<ul class="uk-nav uk-nav-dropdown">
-								<li v-repeat="menus | trash"><a v-on="click: moveNodes(id)">{{ label }}</a></li>
-							</ul>
-						</div>
-					</li>
-					<li v-show="showDelete"><a class="pk-icon-delete pk-icon-hover" title="{{ 'Delete' | trans }}" data-uk-tooltip="{delay: 500}" v-on="click: removeNodes" v-confirm="'Delete item?'"></a></li>
+					<li><a class="pk-icon-delete pk-icon-hover" title="{{ 'Delete' | trans }}" data-uk-tooltip="{delay: 500}" v-on="click: removeFields" v-confirm="'Delete field?' | trans"></a></li>
 				</ul>
 			</div>
 

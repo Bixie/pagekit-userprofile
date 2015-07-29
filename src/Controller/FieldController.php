@@ -3,91 +3,50 @@
 namespace Pagekit\Userprofile\Controller;
 
 use Pagekit\Application as App;
-use Pagekit\Config\Config;
-use Pagekit\Kernel\Exception\ConflictException;
+use Pagekit\Kernel\Exception\NotFoundException;
 use Pagekit\Userprofile\Model\Field;
+use Pagekit\User\Model\Role;
 
 /**
  * @Access("site: manage site")
  */
-class FieldController
-{
-    /**
-     * @var Config
-     */
-    protected $config;
+class FieldController {
 
-    public function __construct()
-    {
-        $this->config = App::config('userprofile');
-    }
+	/**
+	 * @Route("/edit")
+	 * @Request({"id"})
+	 * @Access("site: manage site", admin=true)
+	 */
+	public function editAction ($id = '') {
+		$userprofile = App::module('userprofile');
 
-    /**
-     * @Route("/", methods="GET")
-     */
-    public function indexAction()
-    {
-        $query = Field::query();
+		if (is_numeric($id)) {
+			$field = Field::find($id);
+		} else {
+			$field = Field::create();
+			$field->setType($id);
+		}
 
-        return array_values($query->get());
-    }
+		if (!$field) {
+			throw new NotFoundException(__('Field not found.'));
+		}
 
-    /**
-     * @Route("/", methods="POST")
-     * @Route("/{id}", methods="POST", requirements={"id"="\d+"})
-     * @Request({"field": "array", "id": "int"}, csrf=true)
-     */
-    public function saveAction($data, $id = 0)
-    {
-        if (!$field = Field::find($id)) {
-            $field = Field::create();
-            unset($data['id']);
-        }
+		if (!$type = $userprofile->getType($field->getType())) {
+			throw new NotFoundException(__('Type not found.'));
+		}
 
-        $field->save($data);
+		return [
+			'$view' => [
+				'title' => __('Field'),
+				'name' => 'userprofile:views/admin/edit.php'
+			],
+			'$data' => [
+				'field' => $field,
+				'type' => $type,
+				'roles' => array_values(Role::findAll())
 
-        return ['message' => 'success', 'field' => $field];
-    }
+			]
+		];
+	}
 
-   /**
-     * @Route("/updateOrder", methods="POST")
-     * @Request({"fields": "array"}, csrf=true)
-     */
-    public function updateOrderAction($fields = [])
-    {
-        foreach ($fields as $data) {
-            if ($field = Field::find($data['id'])) {
-
-                $field->setPriority($data['order']);
-
-                $field->save();
-            }
-        }
-
-        return ['message' => 'success'];
-    }
-
-    /**
-     * @Route("/{id}", methods="DELETE")
-     * @Request({"id"}, csrf=true)
-     */
-    public function deleteAction($id)
-    {
-        App::config('system/site')->remove('menus.'.$id);
-        Field::where(['menu = :id'], [':id' => $id])->update(['menu' => 'trash', 'status' => 0]);
-
-        return ['message' => 'success'];
-    }
-
-    protected function slugify($slug)
-    {
-        $slug = preg_replace('/\xE3\x80\x80/', ' ', $slug);
-        $slug = str_replace('-', ' ', $slug);
-        $slug = preg_replace('#[:\#\*"@+=;!><&\.%()\]\/\'\\\\|\[]#', "\x20", $slug);
-        $slug = str_replace('?', '', $slug);
-        $slug = trim(mb_strtolower($slug, 'UTF-8'));
-        $slug = preg_replace('#\x20+#', '-', $slug);
-
-        return $slug;
-    }
 }

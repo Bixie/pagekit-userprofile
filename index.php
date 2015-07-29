@@ -32,12 +32,13 @@ return [
         '/userprofile' => [
             'name' => '@userprofile/admin',
             'controller' => [
-                'Pagekit\\Userprofile\\Controller\\UserprofileController'
+                'Pagekit\\Userprofile\\Controller\\UserprofileController',
+                'Pagekit\\Userprofile\\Controller\\FieldController'
             ]
         ],
         '/api/userprofile/field' => [
             'name' => '@site/api/field',
-            'controller' => 'Pagekit\\Userprofile\\Controller\\FieldController'
+            'controller' => 'Pagekit\\Userprofile\\Controller\\FieldApiController'
         ]
 
 	],

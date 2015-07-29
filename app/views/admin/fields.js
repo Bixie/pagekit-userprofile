@@ -65,7 +65,16 @@ module.exports = {
 
         getType: function (field) {
             return _.find(this.types, 'id', field.type);
+        },
+
+        removeFields: function () {
+
+            this.Fields.delete({id: 'bulk'}, {ids: this.selected}, function () {
+                this.load();
+                UIkit.notify('Fields(s) deleted.');
+            });
         }
+
 
 
     },

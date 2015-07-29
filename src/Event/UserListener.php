@@ -16,6 +16,12 @@ class UserListener implements EventSubscriberInterface {
 		$this->request = $request;
 	}
 
+	public function onUserAdminProfile ($event, $view) {
+
+//		$event->setResult('hoi!');
+		return ;
+	}
+
 	public function onUserChange ($event, User $user) {
 		/** @var \Pagekit\Userprofile\Model\Profilevalue $profilevalue */
 		foreach ($this->request->request->get('profilevalues') as $data) {
@@ -49,6 +55,7 @@ class UserListener implements EventSubscriberInterface {
 	public function subscribe () {
 		return [
 			'request' => 'onRequest',
+			'view.system/user:views/admin/user-edit' => 'onUserAdminProfile',
 			'model.user.saved' => 'onUserChange',
 			'model.user.deleted' => 'onUserDeleted'
 		];
