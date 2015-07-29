@@ -12,14 +12,11 @@ module.exports = Vue.extend({
     computed: {
 
         hasOptions: function () {
+            return this.getFieldOptions().hasOptions;
+        },
 
-            var type = this.$get('type.id'), field = this.$options.components[type];
-
-            if (field && (type && type.match(field.options.fieldOptions.type))) {
-                return field.options.fieldOptions.hasOptions;
-            }
-
-            return false;
+        hasPlaceholder: function () {
+            return this.getFieldOptions().hasPlaceholder;
         }
 
 
@@ -48,6 +45,16 @@ module.exports = Vue.extend({
             }, function (data) {
                 UIkit.notify(data, 'danger');
             });
+        },
+
+        getFieldOptions: function (type) {
+            var field;
+            type = type || this.$get('type.id');
+            field = this.$options.components[type];
+            if (field && (type && type.match(field.options.fieldOptions.type))) {
+                return field.options.fieldOptions;
+            }
+            return {};
         }
 
     },

@@ -3,7 +3,7 @@
     <div class="uk-form-row">
         <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ field.label | trans }}</label>
         <div class="uk-form-controls">
-            <input type="text" class="uk-form-width-large"
+            <input type="text" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
                    v-attr="name: fieldid, id: fieldid"
                    v-model="profilevalue.value"
                    v-valid="required: {{ fieldRequired }}" />
@@ -20,6 +20,7 @@
 
         fieldOptions: {
             type: 'text',
+            hasPlaceholder: true,
             hasOptions: false
         },
 

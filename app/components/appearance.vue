@@ -8,6 +8,7 @@
                 <label><input type="checkbox" value="hide-label" v-model="field.data.hide_label"> {{ 'Hide Label' | trans }}</label>
             </div>
         </div>
+
         <div class="uk-form-row">
             <label for="form-class" class="uk-form-label">{{ 'Class' | trans }}</label>
             <div class="uk-form-controls">
@@ -29,6 +30,8 @@
 <script>
 
     module.exports = {
+
+        inherit: true,
 
         props: ['field']
 

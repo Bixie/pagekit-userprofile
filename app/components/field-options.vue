@@ -30,8 +30,8 @@
                 });
             },
             deleteFieldoption: function (idx) {
-                console.log(idx);
                 this.field.options.$remove(idx);
+                this.checkDuplicates();
             },
             checkDuplicates: function () {
                 var current, dups = [];

@@ -8,6 +8,14 @@
                 <input id="form-label" class="uk-form-width-large" type="text" v-model="field.label">
             </div>
         </div>
+
+        <div class="uk-form-row" v-show="hasPlaceholder">
+            <label for="form-placeholder" class="uk-form-label">{{ 'Placeholder' | trans }}</label>
+            <div class="uk-form-controls">
+                <input id="form-placeholder" class="uk-form-width-large" type="text" v-model="field.data.placeholder">
+            </div>
+        </div>
+
         <div class="uk-form-row">
             <span class="uk-form-label">{{ 'Field required' | trans }}</span>
             <div class="uk-form-controls uk-form-controls-text">
@@ -22,6 +30,8 @@
 <script>
 
     module.exports = {
+
+        inherit: true,
 
         props: ['field']
 
