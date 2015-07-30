@@ -27,6 +27,8 @@
 
         props: ['profilevalue'],
 
+        mixins: [profilefieldMixin],
+
         data: function () {
             return {
                 fieldid: _.uniqueId('field_')
@@ -35,9 +37,7 @@
 
         ready: function () {
             this.$set('profilevalue', this.getProfilevalue(this.field.options[0].value));
-        },
-
-        mixins: [profilefieldMixin],
+        }
 
     };
 

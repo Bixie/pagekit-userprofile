@@ -6,7 +6,7 @@
             <input type="text" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
                    v-attr="name: fieldid, id: fieldid"
                    v-model="profilevalue.value"
-                   v-valid="required: {{ fieldRequired }}" />
+                   v-valid="required: fieldRequired" />
             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError | trans }}</p>
         </div>
     </div>
@@ -28,6 +28,8 @@
 
         props: ['profilevalue'],
 
+        mixins: [profilefieldMixin],
+
         data: function () {
             return {
                 fieldid: _.uniqueId('profilefield_')
@@ -36,9 +38,7 @@
 
         ready: function () {
             this.$set('profilevalue', this.getProfilevalue(''));
-        },
-
-        mixins: [profilefieldMixin]
+        }
 
     };
 

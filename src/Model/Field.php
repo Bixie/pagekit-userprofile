@@ -96,7 +96,7 @@ class Field implements \JsonSerializable
 	 * @return mixed
 	 */
 	public function getOptions () {
-		return array_values($this->options ? : []);
+		return $this->options ? : [];
 	}
 
 	/**
