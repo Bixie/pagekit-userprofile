@@ -9,7 +9,8 @@
 
 			<div class="uk-margin-left" v-show="selected.length">
 				<ul class="uk-subnav pk-subnav-icon">
-					<li><a class="pk-icon-delete pk-icon-hover" title="{{ 'Delete' | trans }}" data-uk-tooltip="{delay: 500}" v-on="click: removeFields" v-confirm="'Delete field?' | trans"></a></li>
+					<li><a class="pk-icon-delete pk-icon-hover" title="{{ 'Delete' | trans }}" data-uk-tooltip="{delay: 500}" v-on="click: removeFields"
+						   v-confirm="'Delete field? All values will be deleted from the userprofiles.' | trans"></a></li>
 				</ul>
 			</div>
 

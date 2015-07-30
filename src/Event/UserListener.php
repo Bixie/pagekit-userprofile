@@ -44,8 +44,10 @@ class UserListener implements EventSubscriberInterface {
 		}
 	}
 
-	public function onUserDeleted () {
-		//todo delte profilevalues
+	public function onUserDeleted ($event, User $user) {
+		foreach (Profilevalue::where(['user_id = :id'], [':id' => $user->getId()])->get() as $profilevalue) {
+			$profilevalue->delete();
+		}
 	}
 
 
