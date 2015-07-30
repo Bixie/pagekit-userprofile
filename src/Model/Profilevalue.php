@@ -58,7 +58,7 @@ class Profilevalue implements \JsonSerializable
 	 */
 	public function jsonSerialize()
 	{
-		$field = $this->toJson();
+		$field = $this->toArray();
 		//$val = $this->getValueWrong(); //only returns first el of array as str form multiple???
 		$field['value'] = $this->getValue();
 

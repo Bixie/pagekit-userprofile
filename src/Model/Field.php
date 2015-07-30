@@ -47,7 +47,7 @@ class Field implements \JsonSerializable
 	 */
 	public function jsonSerialize()
 	{
-		$field = $this->toJson();
+		$field = $this->toArray();
 
 		$field['options'] = $this->getOptions();
 
