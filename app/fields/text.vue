@@ -1,6 +1,6 @@
 <template>
 
-    <div class="uk-form-row">
+    <div class="uk-form-row {{field.data.classSfx}}">
         <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ field.label | trans }}</label>
         <div class="uk-form-controls">
             <input type="text" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"

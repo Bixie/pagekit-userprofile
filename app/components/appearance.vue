@@ -17,9 +17,9 @@
         </div>
 
         <div class="uk-form-row">
-            <label for="form-class" class="uk-form-label">{{ 'Class' | trans }}</label>
+            <label for="form-class" class="uk-form-label">{{ 'Class suffix' | trans }}</label>
             <div class="uk-form-controls">
-                <input id="form-class" class="uk-form-width-large" type="text" v-model="field.data.class">
+                <input id="form-class" class="uk-form-width-large" type="text" v-model="field.data.classSfx">
             </div>
         </div>
 
