@@ -31,7 +31,7 @@ class FieldController {
 			throw new NotFoundException(__('Field not found.'));
 		}
 
-		if (!$type = $userprofile->getType($field->getType())) {
+		if (!$type = $userprofile->getType($field->type)) {
 			throw new NotFoundException(__('Type not found.'));
 		}
 
