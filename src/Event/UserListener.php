@@ -34,9 +34,9 @@ class UserListener implements EventSubscriberInterface {
 
 				$profilevalue = Profilevalue::create();
 			}
-			$profilevalue->setFieldId($data['field_id']);
-			$profilevalue->setUserId($data['user_id']);
-			$profilevalue->setMultiple($data['multiple']);
+			$profilevalue->field_id = $data['field_id'];
+			$profilevalue->user_id = $user->id;
+			$profilevalue->multiple = $data['multiple'];
 			$profilevalue->setValue($data['value']);
 
 			$profilevalue->save();

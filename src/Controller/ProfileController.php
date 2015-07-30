@@ -35,5 +35,35 @@ class ProfileController
             ]
         ];
     }
+	/**
+	 * @Route("/registration")
+	 */
+	public function registrationAction () {
 
+		$user = App::user();
+		$userprofile = App::module('userprofile');
+
+		if ($user->isAuthenticated()) {
+			return App::redirect('@userprofile');
+		}
+
+		return [
+			'$view' => [
+				'title' => __('User registration'),
+				'name' => 'userprofile:views/registration.php'
+			],
+			'$data' => [
+				'config' => $userprofile->config('default'),
+				'fields' => Field::getProfileFields(),
+				'profilevalues' => [],
+				'user' => [
+					'id' => null,
+					'username' => '',
+					'name' => '',
+					'email' => ''
+				]
+			]
+		];
+
+	}
 }

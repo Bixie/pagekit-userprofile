@@ -47,7 +47,7 @@
         },
 
         ready: function () {
-            this.$set('profilevalue', this.getProfilevalue(this.field.options[0].value));
+            this.$set('profilevalue', this.getProfilevalue(this.field.data.multiple ? [] : this.field.options[0].value));
         }
 
     };
