@@ -9,7 +9,7 @@
             </div>
         </div>
 
-        <div class="uk-form-row" v-show="hasPlaceholder">
+        <div class="uk-form-row" v-show="fieldOption('placeholder')">
             <label for="form-placeholder" class="uk-form-label">{{ 'Placeholder' | trans }}</label>
             <div class="uk-form-controls">
                 <input id="form-placeholder" class="uk-form-width-large" type="text" v-model="field.data.placeholder">

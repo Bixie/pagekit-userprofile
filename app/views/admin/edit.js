@@ -9,20 +9,11 @@ module.exports = Vue.extend({
         this.tab = UIkit.tab(this.$$.tab, {connect: this.$$.content});
     },
 
-    computed: {
-
-        hasOptions: function () {
-            return this.getFieldOptions().hasOptions;
-        },
-
-        hasPlaceholder: function () {
-            return this.getFieldOptions().hasPlaceholder;
-        }
-
-
-    },
-
     methods: {
+
+        fieldOption: function (name) {
+            return this.getFieldOptions().dataFields.indexOf(name) > -1;
+        },
 
         save: function (e) {
 

@@ -22,8 +22,7 @@
 
         fieldOptions: {
             type: 'pulldown',
-            hasPlaceholder: false,
-            hasOptions: true
+            dataFields: ['options']
         },
 
         inherit: true,

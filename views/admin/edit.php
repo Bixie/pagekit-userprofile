@@ -25,7 +25,7 @@
 	<div class="uk-switcher uk-margin" v-el="content">
 		<div>
 			<fieldbasic field="{{@ field }}"></fieldbasic>
-			<fieldoptions v-show="hasOptions" field="{{@ field }}"></fieldoptions>
+			<fieldoptions v-show="fieldOption('options')" field="{{@ field }}"></fieldoptions>
 		</div>
 		<div>
 			<appearance field="{{@ field }}"></appearance>
