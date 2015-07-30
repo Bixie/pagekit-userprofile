@@ -27,10 +27,10 @@ class ProfileController
                 'fields' => Field::getProfileFields(),
                 'profilevalues' => Profilevalue::getUserProfilevalues($user),
                 'user' => [
-                    'id' => $user->getId(),
-                    'username' => $user->getUsername(),
-                    'name' => $user->getName(),
-                    'email' => $user->getEmail()
+                    'id' => $user->id,
+                    'username' => $user->username,
+                    'name' => $user->name,
+                    'email' => $user->email
                 ]
             ]
         ];

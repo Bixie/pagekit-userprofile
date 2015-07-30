@@ -45,7 +45,7 @@ class UserListener implements EventSubscriberInterface {
 	}
 
 	public function onUserDeleted ($event, User $user) {
-		foreach (Profilevalue::where(['user_id = :id'], [':id' => $user->getId()])->get() as $profilevalue) {
+		foreach (Profilevalue::where(['user_id = :id'], [':id' => $user->id])->get() as $profilevalue) {
 			$profilevalue->delete();
 		}
 	}

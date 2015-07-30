@@ -20,7 +20,7 @@ trait FieldModelTrait
      */
     public static function saving($event, Field $field)
     {
-        if (!$field->getId()) {
+        if (!$field->id) {
             $field->setPriority(self::getConnection()->fetchColumn('SELECT MAX(priority) + 1 FROM @userprofile_fields'));
         }
     }

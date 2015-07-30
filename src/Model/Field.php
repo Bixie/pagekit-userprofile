@@ -12,84 +12,19 @@ class Field implements \JsonSerializable
     use DataTrait, FieldModelTrait;
 
     /** @Column(type="integer") @Id */
-    protected $id;
+    public $id;
 
     /** @Column(type="integer") */
-    protected $priority = 0;
+    public $priority = 0;
 
     /** @Column(type="string") */
-    protected $type;
+    public $type;
 
     /** @Column(type="string") */
-    protected $label;
+    public $label;
 
 	/** @Column(type="json_array") */
     protected $options;
-
-    /** @Column(type="json_array") */
-    protected $data;
-
-	/**
-	 * @return integer
-	 */
-	public function getId () {
-		return $this->id;
-	}
-
-	/**
-	 * @param integer $id
-	 */
-	public function setId ($id) {
-		$this->id = $id;
-	}
-
-	/**
-	 * {@inheritdoc}
-	 * @return mixed
-	 */
-	public function getPriority () {
-		return $this->priority;
-	}
-
-	/**
-	 * {@inheritdoc}
-	 * @param mixed $priority
-	 */
-	public function setPriority ($priority) {
-		$this->priority = $priority;
-	}
-
-	/**
-	 * {@inheritdoc}
-	 * @return string
-	 */
-	public function getType () {
-		return $this->type;
-	}
-
-	/**
-	 * {@inheritdoc}
-	 * @param string $type
-	 */
-	public function setType ($type) {
-		$this->type = $type;
-	}
-
-	/**
-	 * {@inheritdoc}
-	 * @return string
-	 */
-	public function getLabel () {
-		return $this->label;
-	}
-
-	/**
-	 * {@inheritdoc}
-	 * @param string $label
-	 */
-	public function setLabel ($label) {
-		$this->label = $label;
-	}
 
 	/**
 	 * {@inheritdoc}
