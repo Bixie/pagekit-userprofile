@@ -1,7 +1,10 @@
 module.exports = Vue.extend({
 
     data: function () {
-        var defaults = {field: {data: {}}};
+        var defaults = {field: {data: {
+            classSfx: '',
+            required: false
+        }}};
         _.forEach(this.getFieldOptions(window.$data.type.id).dataFields, function (defaultValue, name) {
             defaults.field.data[name] = defaultValue;
         });
