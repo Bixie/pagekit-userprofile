@@ -1,7 +1,11 @@
 module.exports = Vue.extend({
 
     data: function () {
-        return _.merge({}, window.$data);
+        var defaults = {field: {data: {}}};
+        _.forEach(this.getFieldOptions(window.$data.type.id).dataFields, function (defaultValue, name) {
+            defaults.field.data[name] = defaultValue;
+        });
+        return _.merge(defaults, window.$data);
     },
 
     ready: function () {
@@ -9,10 +13,18 @@ module.exports = Vue.extend({
         this.tab = UIkit.tab(this.$$.tab, {connect: this.$$.content});
     },
 
+    computed: {
+
+        hasOptions: function () {
+            return this.getFieldOptions().hasOptions;
+        }
+
+    },
+
     methods: {
 
         fieldOption: function (name) {
-            return this.getFieldOptions().dataFields.indexOf(name) > -1;
+            return this.getFieldOptions().dataFields[name] !== undefined;
         },
 
         save: function (e) {

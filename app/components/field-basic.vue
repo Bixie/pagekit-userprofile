@@ -22,6 +22,13 @@
                 <label><input type="checkbox" value="required" v-model="field.data.required"> {{ 'Required' | trans }}</label>
             </div>
         </div>
+
+        <div class="uk-form-row" v-show="fieldOption('multiple')">
+            <span class="uk-form-label">{{ 'Multiple values' | trans }}</span>
+            <div class="uk-form-controls uk-form-controls-text">
+                <label><input type="checkbox" value="multiple" v-model="field.data.multiple"> {{ 'Multiple' | trans }}</label>
+            </div>
+        </div>
         <input type="hidden" v-model="field.priority"/>
     </div>
 

@@ -20,7 +20,7 @@
 
         fieldOptions: {
             type: 'text',
-            dataFields: ['placeholder']
+            dataFields: {'placeholder': ''}
         },
 
         inherit: true,

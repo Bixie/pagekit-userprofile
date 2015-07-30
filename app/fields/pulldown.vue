@@ -3,7 +3,7 @@
     <div class="uk-form-row">
         <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ field.label | trans }}</label>
         <div class="uk-form-controls">
-            <select class="uk-form-width-large"
+            <select class="uk-form-width-large" size="{{ field.data.size || 1}}"
                     options="field.options"
                     v-attr="name: fieldid, id: fieldid"
                     v-model="profilevalue.value"
@@ -22,7 +22,8 @@
 
         fieldOptions: {
             type: 'pulldown',
-            dataFields: ['options']
+            hasOptions: true,
+            dataFields: {'size': 1, 'multiple': false}
         },
 
         inherit: true,
