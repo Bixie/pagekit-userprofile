@@ -24,7 +24,7 @@ class Profilevalue implements \JsonSerializable
 	protected $multiple = 0;
 
 	/** @Column(type="simple_array") */
-    protected $value = [];
+    protected $value = '';
 
 	/**
 	 * @return integer
@@ -94,6 +94,17 @@ class Profilevalue implements \JsonSerializable
 	 * @return mixed
 	 */
 	public function getValue () {
+		if ($this->multiple) {
+			return $this->value;
+		} else {
+			return $this->value ? $this->value[0] : '';
+		}
+	}
+
+	/**
+	 * weekend quiz.... why is this tournary not the same as function above????
+	 */
+	public function getValueWrong () {
 		return $this->multiple ? $this->value : $this->value ? $this->value[0] : '';
 	}
 
@@ -111,7 +122,7 @@ class Profilevalue implements \JsonSerializable
 	public function jsonSerialize()
 	{
 		$field = $this->toJson();
-
+		//$val = $this->getValueWrong(); //only returns first el of array as str form multiple???
 		$field['value'] = $this->getValue();
 
 		return $field;
