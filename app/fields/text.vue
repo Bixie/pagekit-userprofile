@@ -7,7 +7,7 @@
                    v-attr="name: fieldid, id: fieldid"
                    v-model="profilevalue.value"
                    v-valid="required: fieldRequired" />
-            <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError | trans }}</p>
+            <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError || 'Please enter a value' | trans }}</p>
         </div>
     </div>
 
