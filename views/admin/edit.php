@@ -1,4 +1,4 @@
-<?php $view->script('field-edit', 'userprofile:app/bundle/field-edit.js', ['vue', 'uikit-nestable']); ?>
+<?php $view->script('field-edit', 'userprofile:app/bundle/field-edit.js', ['vue', 'userprofile-profilefields', 'uikit-nestable']); ?>
 
 <form id="field-edit" class="uk-form" name="form" v-on="submit: save" v-cloak>
 

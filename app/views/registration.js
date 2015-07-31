@@ -23,10 +23,6 @@ module.exports = {
     },
 
     components: {
-
-        text: require('../fields/text.vue'),
-        pulldown: require('../fields/pulldown.vue')
-
     },
 
     computed: {}

@@ -1,4 +1,4 @@
-<?php $view->script('userprofile-registration', 'userprofile:app/bundle/registration.js', ['vue', 'uikit-form-password']) ?>
+<?php $view->script('userprofile-registration', 'userprofile:app/bundle/registration.js', ['vue', 'userprofile-profilefields', 'uikit-form-password']) ?>
 
 <form id="userprofile-registration" class="uk-article uk-form uk-form-stacked" name="form" v-on="valid: save">
 	<div class="uk-grid">
@@ -15,7 +15,7 @@
 						   v-model="user.username" v-valid="required">
 
 					<p class="uk-form-help-block uk-text-danger"
-					   v-show="form.username.invalid"><?= __('Username cannot be blank.') ?></p>
+					   v-show="form.username.invalid">{{ 'Username cannot be blank.' | trans}}</p>
 				</div>
 			</div>
 
@@ -59,7 +59,7 @@
 				</div>
 			</div>
 
-			<component v-repeat="field: fields | orderBy 'priority'" is="{{ field.type }}"></component>
+			<profilefields fields="{{@ fields}}"></profilefields>
 
 
 			<div class="uk-form-row">

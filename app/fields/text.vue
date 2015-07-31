@@ -45,4 +45,6 @@
 
     };
 
+    window.Profilefields.components['text'] = module.exports;
+
 </script>

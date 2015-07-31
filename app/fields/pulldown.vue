@@ -54,4 +54,6 @@
 
     };
 
+    window.Profilefields.components['pulldown'] = module.exports;
+
 </script>

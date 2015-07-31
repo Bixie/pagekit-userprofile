@@ -58,21 +58,15 @@ module.exports = Vue.extend({
         },
 
         getFieldOptions: function (type) {
-            var field;
+            var field, profileFieldoptions = window.Profilefields.getFieldoptions();
             type = type || this.$get('type.id');
-            field = this.$options.components[type];
-            if (field && (type && type.match(field.options.fieldOptions.type))) {
-                return field.options.fieldOptions;
-            }
-            return {};
+            return profileFieldoptions[type];
         }
 
     },
 
     components: {
 
-        text: require('../../fields/text.vue'),
-        pulldown: require('../../fields/pulldown.vue'),
         fieldbasic: require('../../components/field-basic.vue'),
         fieldoptions: require('../../components/field-options.vue'),
         appearance: require('../../components/appearance.vue')

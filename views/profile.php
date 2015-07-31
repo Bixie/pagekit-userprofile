@@ -1,4 +1,4 @@
-<?php $view->script('userprofile', 'userprofile:app/bundle/userprofile.js', ['vue', 'uikit-form-password']) ?>
+<?php $view->script('userprofile', 'userprofile:app/bundle/userprofile.js', ['vue', 'userprofile-profilefields', 'uikit-form-password']) ?>
 
 <form id="userprofile-profile" class="uk-article uk-form uk-form-stacked" name="form" v-on="valid: save">
 	<div class="uk-grid">
@@ -64,8 +64,7 @@
 				</div>
 			</div>
 
-			<component v-repeat="field: fields | orderBy 'priority'" is="{{ field.type }}"></component>
-
+			<profilefields fields="{{@ fields}}"></profilefields>
 
 			<div class="uk-form-row">
 				<button class="uk-button uk-button-primary" type="submit">{{ 'Save' | trans }}</button>
