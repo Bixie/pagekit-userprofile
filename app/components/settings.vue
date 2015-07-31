@@ -19,7 +19,7 @@
             <span class="uk-form-label">{{ 'Redirect' | trans }}</span>
 
             <div class="uk-form-controls uk-form-controls-text">
-                <label><input type="checkbox" value="override_registration" v-model="field.data.override_registration">
+                <label><input type="checkbox" value="override_registration" v-model="package.config.override_registration">
                     {{ 'Redirect Pagekit registration page' | trans }}</label>
             </div>
         </div>
