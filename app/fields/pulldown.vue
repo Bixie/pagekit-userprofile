@@ -26,8 +26,7 @@
 </template>
 
 <script>
-    var profilefieldMixin = require('../mixins/profilefield.js'),
-            fieldid;
+    var profilefieldMixin = require('../mixins/profilefield.js');
 
     module.exports = {
 
