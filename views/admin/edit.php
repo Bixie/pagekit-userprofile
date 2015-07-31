@@ -32,6 +32,7 @@
 		</div>
 		<div>
 			<appearance field="{{@ field }}"></appearance>
+			<profilefields edit-field="{{@ field.type }}"></profilefields>
 		</div>
 	</div>
 

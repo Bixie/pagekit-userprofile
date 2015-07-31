@@ -1,13 +1,13 @@
 <template>
 
     <div class="uk-form-row {{field.data.classSfx}}">
-        <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ field.label | trans
+        <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
             }}</label>
 
         <div class="uk-form-controls">
             <input type="text" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
                    v-attr="name: fieldid, id: fieldid"
-                   v-model="profilevalue.value"
+                   v-model="dataObject.value"
                    v-valid="required: fieldRequired"/>
 
             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
@@ -38,7 +38,7 @@
         },
 
         created: function () {
-            this.$set('profilevalue', this.getProfilevalue(''));
+            this.$set('dataObject', this.getDataObject(this.field.data.value || ''));
         }
 
     };

@@ -1,13 +1,12 @@
 <template>
 
     <div class="uk-form-row {{field.data.classSfx}}">
-        <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ field.label | trans
-            }}</label>
+        <span class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</span>
 
         <div class="uk-form-controls uk-form-controls-text">
             <p v-repeat="option: field.options" class="uk-form-controls-condensed">
                 <label><input type="checkbox" value="{{ option.value }}"
-                              v-checkbox="profilevalue.value"> {{ option.text }}</label>
+                              v-checkbox="dataObject.value"> {{ option.text }}</label>
             </p>
             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
                 'Please select a value' | trans }}</p>
@@ -38,10 +37,10 @@
         },
 
         created: function () {
-            this.$set('profilevalue', this.getProfilevalue([]));
-            this.$on('save', function (field) {
-                field.data.required = false; //todo
-                field.data.multiple = true;
+            this.$set('dataObject', this.getDataObject(this.field.data.value || []));
+            this.$on('save', function (data) {
+                data.field.data.required = false; //todo
+                data.field.data.multiple = true;
             });
         }
 

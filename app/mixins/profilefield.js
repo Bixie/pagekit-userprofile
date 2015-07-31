@@ -1,6 +1,15 @@
 module.exports = {
 
+    props: ['isAdmin'],
+
     methods: {
+        getDataObject: function (defaultValue) {
+            if (this.isAdmin) {
+                this.field.data.value = this.field.data.value || defaultValue;
+                return this.field.data;
+            }
+            return this.getProfilevalue(defaultValue);
+        },
         getProfilevalue: function (defaultValue) {
             var index = _.findIndex(this.profilevalues, 'field_id', this.field.id),
                 defaultProfilevalue = {
@@ -38,6 +47,9 @@ module.exports = {
     computed: {
         fieldRequired: function () {
             return this.field.data.required ? true : false;
+        },
+        fieldLabel: function () {
+            return this.isAdmin ? 'Default value' : this.field.label;
         }
     }
 
