@@ -16,10 +16,11 @@
         </div>
 
         <div class="uk-form-row">
-            <label for="form-default" class="uk-form-label">{{ 'Default name' | trans }}</label>
+            <span class="uk-form-label">{{ 'Redirect' | trans }}</span>
 
-            <div class="uk-form-controls">
-                <input id="form-default" class="uk-form-width-large" type="text" v-model="package.config.default">
+            <div class="uk-form-controls uk-form-controls-text">
+                <label><input type="checkbox" value="override_registration" v-model="field.data.override_registration">
+                    {{ 'Redirect Pagekit registration page' | trans }}</label>
             </div>
         </div>
 
@@ -39,7 +40,7 @@
 
             save: function () {
                 this.$http.post('admin/system/settings/config', {
-                    name: this.package.name,
+                    name: this.package.name.replace('pagekit/', ''),
                     config: this.package.config
                 }, function () {
                     UIkit.notify(this.$trans('Settings saved.'), '');
