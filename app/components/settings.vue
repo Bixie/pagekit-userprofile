@@ -17,6 +17,7 @@
 
         <div class="uk-form-row">
             <label for="form-default" class="uk-form-label">{{ 'Default name' | trans }}</label>
+
             <div class="uk-form-controls">
                 <input id="form-default" class="uk-form-width-large" type="text" v-model="package.config.default">
             </div>
@@ -37,11 +38,14 @@
         methods: {
 
             save: function () {
-                this.$http.post('admin/system/settings/config', { name: this.package.name, config: this.package.config }, function () {
+                this.$http.post('admin/system/settings/config', {
+                    name: this.package.name,
+                    config: this.package.config
+                }, function () {
                     UIkit.notify(this.$trans('Settings saved.'), '');
                 }).error(function (data) {
                     UIkit.notify(data, 'danger');
-                }).always(function() {
+                }).always(function () {
                     this.$parent.close();
                 });
             }

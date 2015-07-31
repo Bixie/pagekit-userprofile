@@ -11,7 +11,7 @@ class FieldApiController {
 	/**
 	 * @Route("/", methods="GET")
 	 */
-	public function indexAction() {
+	public function indexAction () {
 		$query = Field::query();
 		return array_values($query->get());
 	}

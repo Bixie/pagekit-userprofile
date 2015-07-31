@@ -3,16 +3,20 @@
 namespace Pagekit\Userprofile\Model;
 
 use Pagekit\Database\ORM\ModelTrait;
+use Pagekit\User\Model\User;
 
-trait ProfilevalueModelTrait
-{
-    use ModelTrait;
+trait ProfilevalueModelTrait {
+	use ModelTrait;
 
-    public static function getUserProfilevalues ($user) {
-        $query = self::where(['user_id' => $user->id]);
+	/**
+	 * @param \Pagekit\User\Model\User $user
+	 * @return array
+	 */
+	public static function getUserProfilevalues (User $user) {
+		$query = self::where(['user_id' => $user->id]);
 
-        return array_values($query->get());
+		return array_values($query->get());
 
-    }
+	}
 
 }

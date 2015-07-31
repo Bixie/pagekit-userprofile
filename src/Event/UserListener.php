@@ -19,7 +19,7 @@ class UserListener implements EventSubscriberInterface {
 	public function onUserAdminProfile ($event, $view) {
 
 //		$event->setResult('hoi!');
-		return ;
+		return;
 	}
 
 	public function onUserChange ($event, User $user) {

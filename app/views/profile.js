@@ -26,9 +26,7 @@ module.exports = {
 
     },
 
-    computed: {
-    }
-
+    computed: {}
 
 };
 

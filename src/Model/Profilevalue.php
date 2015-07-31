@@ -5,12 +5,11 @@ namespace Pagekit\Userprofile\Model;
 /**
  * @Entity(tableClass="@userprofile_values")
  */
-class Profilevalue implements \JsonSerializable
-{
-    use ProfilevalueModelTrait;
+class Profilevalue implements \JsonSerializable {
+	use ProfilevalueModelTrait;
 
-    /** @Column(type="integer") @Id */
-    public $id = 0;
+	/** @Column(type="integer") @Id */
+	public $id = 0;
 
 	/** @Column(type="integer") */
 	public $user_id = 0;
@@ -22,7 +21,8 @@ class Profilevalue implements \JsonSerializable
 	public $multiple = 0;
 
 	/** @Column(type="simple_array") */
-    protected $value = '';
+	//todo I want this protected, but PropertyTrait won't let me
+	public $value = '';
 
 	/**
 	 * {@inheritdoc}
@@ -54,8 +54,7 @@ class Profilevalue implements \JsonSerializable
 	/**
 	 * {@inheritdoc}
 	 */
-	public function jsonSerialize()
-	{
+	public function jsonSerialize () {
 		$field = $this->toArray();
 		//$val = $this->getValueWrong(); //only returns first el of array as str form multiple???
 		$field['value'] = $this->getValue();

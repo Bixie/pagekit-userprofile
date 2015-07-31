@@ -1,10 +1,14 @@
 module.exports = Vue.extend({
 
     data: function () {
-        var defaults = {field: {data: {
-            classSfx: '',
-            required: false
-        }}};
+        var defaults = {
+            field: {
+                data: {
+                    classSfx: '',
+                    required: false
+                }
+            }
+        };
         _.forEach(this.getFieldOptions(window.$data.type.id).dataFields, function (defaultValue, name) {
             defaults.field.data[name] = defaultValue;
         });
@@ -74,7 +78,6 @@ module.exports = Vue.extend({
         appearance: require('../../components/appearance.vue')
 
     }
-
 
 });
 

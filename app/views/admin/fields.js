@@ -1,4 +1,3 @@
-
 module.exports = {
 
     data: function () {
@@ -15,7 +14,6 @@ module.exports = {
         this.Fields = this.$resource('api/userprofile/field/:id');
         this.load();
     },
-
 
     methods: {
 
@@ -52,7 +50,7 @@ module.exports = {
             return this.selected.indexOf(field.id.toString()) !== -1 && (!children || !this.tree[field.id] || this.isSelected(this.tree[field.id], true));
         },
 
-        toggleSelect: function(field) {
+        toggleSelect: function (field) {
 
             var index = this.selected.indexOf(field.id.toString());
 
@@ -75,8 +73,6 @@ module.exports = {
             });
         }
 
-
-
     },
 
     components: {
@@ -87,7 +83,7 @@ module.exports = {
             template: '#field',
 
             computed: {
-                type: function() {
+                type: function () {
                     return this.getType(this.field);
                 }
 
@@ -132,7 +128,6 @@ module.exports = {
     }
 
 };
-
 
 $(function () {
 

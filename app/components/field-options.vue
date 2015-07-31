@@ -4,11 +4,14 @@
 
         <div class="uk-form-row">
             <span class="uk-form-label">{{ 'Options' | trans }}</span>
+
             <div class="uk-form-controls uk-form-controls-text">
                 <ul class="uk-nestable uk-margin-remove" v-el="optionsNestable" v-show="field.options.length">
                     <selectoption v-repeat="selectoption: field.options"></selectoption>
                 </ul>
-                <button type="button" class="uk-button uk-button-primary uk-button-small uk-margin" v-on="click: addFieldoption">{{ 'Add option' | trans}}</button>
+                <button type="button" class="uk-button uk-button-primary uk-button-small uk-margin"
+                        v-on="click: addFieldoption">{{ 'Add option' | trans}}
+                </button>
             </div>
         </div>
 
@@ -80,13 +83,17 @@
                 methods: {
                     safeValue: function (checkDups) {
                         this.selectoption.value = _.escape(_.snakeCase(this.selectoption.value));
-                        if (checkDups) this.checkDuplicates();
+                        if (checkDups) {
+                            this.checkDuplicates();
+                        }
                     }
                 },
 
                 watch: {
-                    "selectoption.text": function(value) {
-                        if (this.selectoption.attachValue) this.selectoption.value = _.escape(_.snakeCase(value));
+                    "selectoption.text": function (value) {
+                        if (this.selectoption.attachValue) {
+                            this.selectoption.value = _.escape(_.snakeCase(value));
+                        }
                         this.checkDuplicates();
                     }
 
@@ -94,6 +101,6 @@
             }
 
         }
-   };
+    };
 
 </script>

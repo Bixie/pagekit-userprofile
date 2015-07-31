@@ -1,13 +1,17 @@
 <template>
 
     <div class="uk-form-row {{field.data.classSfx}}">
-        <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ field.label | trans }}</label>
+        <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ field.label | trans
+            }}</label>
+
         <div class="uk-form-controls">
             <input type="text" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
                    v-attr="name: fieldid, id: fieldid"
                    v-model="profilevalue.value"
-                   v-valid="required: fieldRequired" />
-            <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError || 'Please enter a value' | trans }}</p>
+                   v-valid="required: fieldRequired"/>
+
+            <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
+                'Please enter a value' | trans }}</p>
         </div>
     </div>
 

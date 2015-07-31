@@ -9,8 +9,10 @@
 
 			<div class="uk-margin-left" v-show="selected.length">
 				<ul class="uk-subnav pk-subnav-icon">
-					<li><a class="pk-icon-delete pk-icon-hover" title="{{ 'Delete' | trans }}" data-uk-tooltip="{delay: 500}" v-on="click: removeFields"
-						   v-confirm="'Delete field? All values will be deleted from the userprofiles.' | trans"></a></li>
+					<li><a class="pk-icon-delete pk-icon-hover" title="{{ 'Delete' | trans }}"
+						   data-uk-tooltip="{delay: 500}" v-on="click: removeFields"
+						   v-confirm="'Delete field? All values will be deleted from the userprofiles.' | trans"></a>
+					</li>
 				</ul>
 			</div>
 
@@ -18,10 +20,13 @@
 		<div class="uk-position-relative" data-uk-margin>
 
 			<div data-uk-dropdown="{ mode: 'click' }">
-				<a class="uk-button uk-button-primary" v-on="click: $event.preventDefault()">{{ 'Add Field' | trans }}</a>
+				<a class="uk-button uk-button-primary" v-on="click: $event.preventDefault()">{{ 'Add Field' | trans
+					}}</a>
+
 				<div class="uk-dropdown uk-dropdown-small uk-dropdown-flip">
 					<ul class="uk-nav uk-nav-dropdown">
-						<li v-repeat="type: types | orderBy 'label'"><a v-attr="href: $url('admin/userprofile/edit', { id: type.id })">{{ type.label }}</a></li>
+						<li v-repeat="type: types | orderBy 'label'"><a
+								v-attr="href: $url('admin/userprofile/edit', { id: type.id })">{{ type.label }}</a></li>
 					</ul>
 				</div>
 			</div>
@@ -32,7 +37,9 @@
 	<div class="uk-overflow-container">
 
 		<div class="pk-table-fake pk-table-fake-header" v-class="pk-table-fake-border: !fields || !fields.length">
-			<div class="pk-table-width-minimum pk-table-fake-nestable-padding"><input type="checkbox" v-check-all="selected: input[name=id]"></div>
+			<div class="pk-table-width-minimum pk-table-fake-nestable-padding"><input type="checkbox"
+																					  v-check-all="selected: input[name=id]">
+			</div>
 			<div class="pk-table-min-width-100">{{ 'Label' | trans }}</div>
 			<div class="pk-table-width-100 uk-text-center">{{ 'Required' | trans }}</div>
 			<div class="pk-table-width-150">{{ 'Type' | trans }}</div>
@@ -45,7 +52,8 @@
 
 	</div>
 
-	<h3 class="uk-h1 uk-text-muted uk-text-center" v-show="fields && !fields.length">{{ 'No fields found.' | trans }}</h3>
+	<h3 class="uk-h1 uk-text-muted uk-text-center" v-show="fields && !fields.length">{{ 'No fields found.' | trans
+		}}</h3>
 
 </div>
 
@@ -62,7 +70,8 @@
 			</div>
 			<div class="pk-table-width-100 uk-text-center">
 				<td class="uk-text-center">
-					<a v-class="pk-icon-circle-danger: !field.data.required, pk-icon-circle-success: field.data.required" v-on="click: toggleRequired(field)"></a>
+					<a v-class="pk-icon-circle-danger: !field.data.required, pk-icon-circle-success: field.data.required"
+					   v-on="click: toggleRequired(field)"></a>
 				</td>
 			</div>
 			<div class="pk-table-width-150 pk-table-max-width-150 uk-text-truncate">

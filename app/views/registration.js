@@ -9,7 +9,10 @@ module.exports = {
 
             this.$set('error', '');
 
-            this.$http.post('user/registration/register', {user: this.user, profilevalues: this.profilevalues}, function (data) {
+            this.$http.post('user/registration/register', {
+                user: this.user,
+                profilevalues: this.profilevalues
+            }, function (data) {
                 console.log(data.redirect);
                 //window.location.replace(data.redirect);
             }).error(function (error) {
@@ -26,9 +29,7 @@ module.exports = {
 
     },
 
-    computed: {
-    }
-
+    computed: {}
 
 };
 
