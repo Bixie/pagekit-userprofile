@@ -29,8 +29,6 @@
 
         inherit: true,
 
-        props: ['profilevalue'],
-
         mixins: [profilefieldMixin],
 
         data: function () {
@@ -39,7 +37,7 @@
             };
         },
 
-        ready: function () {
+        created: function () {
             this.$set('profilevalue', this.getProfilevalue(''));
         }
 

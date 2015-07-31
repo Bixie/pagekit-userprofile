@@ -22,8 +22,9 @@ module.exports = [
             "site": "./app/components/site.vue",
             "link": "./app/components/link.vue",
             /*fields*/
-            "userprofile-text": "./app/fields/text.vue",
+            "userprofile-checkbox": "./app/fields/checkbox.vue",
             "userprofile-pulldown": "./app/fields/pulldown.vue",
+            "userprofile-text": "./app/fields/text.vue",
             /*frontpage views*/
             "userprofile": "./app/views/profile.js",
             "registration": "./app/views/registration.js",

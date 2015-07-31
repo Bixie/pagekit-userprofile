@@ -38,8 +38,6 @@
 
         inherit: true,
 
-        props: ['profilevalue'],
-
         mixins: [profilefieldMixin],
 
         data: function () {
@@ -48,7 +46,7 @@
             };
         },
 
-        ready: function () {
+        created: function () {
             this.$set('profilevalue', this.getProfilevalue(this.field.data.multiple ? [] : this.field.options[0].value));
         }
 
