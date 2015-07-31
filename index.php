@@ -90,7 +90,7 @@ return [
 
 		'request' => function ($event, $request) use ($app) {
 			if ($app->config('userprofile')->get('override_registration', true) && $request->attributes->get('_route') == '@user/registration') {
-				$event->setResponse($app->redirect('@profile/registration'), [], 301);
+				$event->setResponse($app->redirect('@userprofile/registration'), [], 301);
 			}
 		},
 
