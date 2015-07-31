@@ -27,6 +27,13 @@ class Field implements \JsonSerializable {
 	public $options;
 
 	/**
+	 * @param mixed $type
+	 */
+	public function setType ($type) {
+		$this->type = $type;
+	}
+
+	/**
 	 * {@inheritdoc}
 	 * @return mixed
 	 */
