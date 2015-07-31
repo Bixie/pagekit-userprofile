@@ -2,14 +2,15 @@
 
 namespace Pagekit\Userprofile\Model;
 
-use Pagekit\System\Model\DataTrait;
+use Pagekit\System\Model\DataModelTrait;
+use Pagekit\User\Model\AccessModelTrait;
 
 /**
  * @Entity(tableClass="@userprofile_fields")
  */
 class Field implements \JsonSerializable
 {
-    use DataTrait, FieldModelTrait;
+    use AccessModelTrait, DataModelTrait, FieldModelTrait;
 
     /** @Column(type="integer") @Id */
     public $id;
@@ -24,7 +25,7 @@ class Field implements \JsonSerializable
     public $label;
 
 	/** @Column(type="json_array") */
-    protected $options;
+	public $options;
 
 	/**
 	 * {@inheritdoc}

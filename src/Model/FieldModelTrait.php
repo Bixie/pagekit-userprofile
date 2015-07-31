@@ -2,6 +2,7 @@
 
 namespace Pagekit\Userprofile\Model;
 
+use Pagekit\Application as App;
 use Pagekit\Database\ORM\ModelTrait;
 
 trait FieldModelTrait
@@ -10,8 +11,15 @@ trait FieldModelTrait
 
     public static function getProfileFields () {
         $query = self::query();
+		$user = App::user();
+		$data = [];
+		foreach ($query->get() as $field) {
+			if ($field->hasAccess($user)) {
+				$data[] = $field;
+			}
+		}
 
-        return array_values($query->get());
+		return $data;
 
     }
 

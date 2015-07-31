@@ -29,6 +29,16 @@
                 <label><input type="checkbox" value="multiple" v-model="field.data.multiple"> {{ 'Multiple' | trans }}</label>
             </div>
         </div>
+
+        <div class="uk-form-row">
+            <span class="uk-form-label">{{ 'Restrict Access' | trans }}</span>
+            <div class="uk-form-controls uk-form-controls-text">
+                <p v-repeat="role: roles" class="uk-form-controls-condensed">
+                    <label><input type="checkbox" value="{{ role.id }}" v-checkbox="field.roles"> {{ role.name }}</label>
+                </p>
+            </div>
+        </div>
+
         <input type="hidden" v-model="field.priority"/>
     </div>
 

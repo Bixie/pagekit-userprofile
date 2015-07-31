@@ -2,8 +2,6 @@
 
 namespace Pagekit\Userprofile\Model;
 
-use Pagekit\System\Model\DataTrait;
-
 /**
  * @Entity(tableClass="@userprofile_values")
  */
