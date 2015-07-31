@@ -58,7 +58,7 @@ module.exports = Vue.extend({
         },
 
         getFieldOptions: function (type) {
-            var field, profileFieldoptions = window.Profilefields.getFieldoptions();
+            var profileFieldoptions = window.Profilefields.getFieldoptions();
             type = type || this.$get('type.id');
             return profileFieldoptions[type];
         }
