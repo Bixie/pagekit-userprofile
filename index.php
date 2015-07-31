@@ -18,24 +18,14 @@ return [
 
 	'nodes' => [
 
-		'userprofile' => [
-			'name' => '@userprofile',
-			'label' => 'Userprofile',
-			'controller' => 'Pagekit\\Userprofile\\Controller\\ProfileController',
-			'protected' => true
-//        ],
-//todo add sub-node?
-//        'userprofile/registration' => [
-//            'name' => '@userprofile/registration',
-//            'label' => 'Userprofile registration',
-//            'controller' => 'Pagekit\\Userprofile\\Controller\\ProfileController',
-//            'protected' => true
-		]
-
 	],
 
 	'routes' => [
 
+		'/profile' => [
+			'name' => '@userprofile',
+			'controller' => 'Pagekit\\Userprofile\\Controller\\ProfileController'
+		],
 		'/userprofile' => [
 			'name' => '@userprofile/admin',
 			'controller' => [

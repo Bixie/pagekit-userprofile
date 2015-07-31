@@ -1,10 +1,12 @@
 <template>
 
     <div class="uk-form-row">
-        <label for="form-name" class="uk-form-label">{{ 'Name' | trans }}</label>
-
+        <label for="form-link-userprofile" class="uk-form-label">{{ 'View' | trans }}</label>
         <div class="uk-form-controls">
-            <input id="form-name" type="text" class="uk-form-width-large" v-model="name"></input>
+            <select id="form-link-userprofile" class="uk-width-1-1" v-model="link">
+                <option value="@userprofile">{{ 'User Profile' | trans}}</option>
+                <option value="@userprofile/registration">{{ 'User Registration' | trans}}</option>
+            </select>
         </div>
     </div>
 
@@ -15,23 +17,13 @@
     module.exports = {
 
         link: {
-            label: 'Hello'
+            label: 'Userprofile'
         },
 
         props: ['link'],
 
-        data: function () {
-            return {
-                name: []
-            }
-        },
-
-        watch: {
-
-            name: function (name) {
-                this.link = '@hello/name?name=' + name;
-            }
-
+        ready: function () {
+            this.$set('link', '@userprofile');
         }
 
     };
