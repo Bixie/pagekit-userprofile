@@ -11,15 +11,6 @@
             </div>
         </div>
 
-        <div class="uk-form-row" v-show="fieldOption('size') && field.data.multiple">
-            <label for="form-placeholder" class="uk-form-label">{{ 'Size' | trans }}</label>
-
-            <div class="uk-form-controls">
-                <input id="form-size" class="uk-form-width-small uk-text-right" type="number" min="1"
-                       v-model="field.data.size" number>
-            </div>
-        </div>
-
         <div class="uk-form-row">
             <label for="form-class" class="uk-form-label">{{ 'Class suffix' | trans }}</label>
 

@@ -1,18 +1,19 @@
 module.exports = Vue.extend({
 
     data: function () {
-        var defaults = {
+        return _.merge({
             field: {
                 data: {
                     classSfx: '',
                     required: false
                 }
             }
-        };
-        _.forEach(this.getFieldOptions(window.$data.type.id).dataFields, function (defaultValue, name) {
-            defaults.field.data[name] = defaultValue;
-        });
-        return _.merge(defaults, window.$data);
+        }, window.$data);
+    },
+
+    created: function () {
+        if (this.type.required !== -1) this.field.data.required = this.type.required;
+        if (this.type.multiple !== -1) this.field.data.multiple = this.type.multiple;
     },
 
     ready: function () {
@@ -21,18 +22,9 @@ module.exports = Vue.extend({
     },
 
     computed: {
-
-        hasOptions: function () {
-            return this.getFieldOptions().hasOptions;
-        }
-
     },
 
     methods: {
-
-        fieldOption: function (name) {
-            return this.getFieldOptions().dataFields[name] !== undefined;
-        },
 
         save: function (e) {
 
@@ -55,12 +47,6 @@ module.exports = Vue.extend({
             }, function (data) {
                 UIkit.notify(data, 'danger');
             });
-        },
-
-        getFieldOptions: function (type) {
-            var profileFieldoptions = window.Profilefields.getFieldoptions();
-            type = type || this.$get('type.id');
-            return profileFieldoptions[type];
         }
 
     },

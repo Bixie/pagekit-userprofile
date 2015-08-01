@@ -20,12 +20,6 @@
 
     module.exports = {
 
-        fieldOptions: {
-            type: 'checkbox',
-            hasOptions: true,
-            dataFields: {'multiple': true}
-        },
-
         inherit: true,
 
         mixins: [profilefieldMixin],

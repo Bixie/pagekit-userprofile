@@ -1,5 +1,13 @@
 <template>
 
+    <div v-if="isAdmin" class="uk-form-row">
+        <label for="form-placeholder" class="uk-form-label">{{ 'Placeholder' | trans }}</label>
+
+        <div class="uk-form-controls">
+            <input id="form-placeholder" class="uk-form-width-large" type="text" v-model="field.data.placeholder">
+        </div>
+    </div>
+
     <div class="uk-form-row {{field.data.classSfx}}">
         <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
             }}</label>
@@ -21,11 +29,6 @@
     var profilefieldMixin = require('../mixins/profilefield.js');
 
     module.exports = {
-
-        fieldOptions: {
-            type: 'text',
-            dataFields: {'placeholder': ''}
-        },
 
         inherit: true,
 

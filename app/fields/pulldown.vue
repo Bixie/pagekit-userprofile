@@ -1,5 +1,14 @@
 <template>
 
+    <div v-show="isAdmin && field.data.multiple" class="uk-form-row">
+        <label for="form-placeholder" class="uk-form-label">{{ 'Size' | trans }}</label>
+
+        <div class="uk-form-controls">
+            <input id="form-size" class="uk-form-width-small uk-text-right" type="number" min="1"
+                   v-model="field.data.size" number>
+        </div>
+    </div>
+
     <div class="uk-form-row {{field.data.classSfx}}">
         <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
             }}</label>
@@ -29,12 +38,6 @@
     var profilefieldMixin = require('../mixins/profilefield.js');
 
     module.exports = {
-
-        fieldOptions: {
-            type: 'pulldown',
-            hasOptions: true,
-            dataFields: {'size': 1, 'multiple': false}
-        },
 
         inherit: true,
 

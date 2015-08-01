@@ -12,15 +12,7 @@
             <p class="uk-form-help-block uk-text-danger" v-show="form.label.invalid">{{ 'Please enter a label' | trans }}</p>
         </div>
 
-        <div class="uk-form-row" v-show="fieldOption('placeholder')">
-            <label for="form-placeholder" class="uk-form-label">{{ 'Placeholder' | trans }}</label>
-
-            <div class="uk-form-controls">
-                <input id="form-placeholder" class="uk-form-width-large" type="text" v-model="field.data.placeholder">
-            </div>
-        </div>
-
-        <div class="uk-form-row">
+        <div v-if="type.required < 0" class="uk-form-row">
             <span class="uk-form-label">{{ 'Field required' | trans }}</span>
 
             <div class="uk-form-controls uk-form-controls-text">
@@ -29,7 +21,7 @@
             </div>
         </div>
 
-        <div class="uk-form-row" v-show="fieldOption('multiple')">
+        <div v-if="type.multiple < 0" class="uk-form-row">
             <span class="uk-form-label">{{ 'Multiple values' | trans }}</span>
 
             <div class="uk-form-controls uk-form-controls-text">

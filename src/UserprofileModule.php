@@ -39,15 +39,15 @@ class UserprofileModule extends Module {
 	 * @return array
 	 */
 	public function getTypes () {
+		//todo cache this
 		if (!$this->types) {
 
 			$this->types = [];
-			$paths = glob(App::locator()->get('userprofile:app/fields') . '/*', GLOB_NOSORT) ?: [];
+			$paths = glob(App::locator()->get('userprofile:app/fields') . '/*.json', GLOB_NOSORT) ?: [];
 
 			foreach ($paths as $p) {
-
-				$this->registerType(basename($p, '.vue'));
-
+				$package = json_decode(file_get_contents($p), true);
+				$this->registerType($package);
 			}
 
 		}
@@ -57,9 +57,10 @@ class UserprofileModule extends Module {
 
 	/**
 	 * Register a field type.
-	 * @param string $type
+	 * @param array $package
 	 */
-	public function registerType ($type) {
-		$this->types[$type] = ['id' => $type, 'label' => __($type)];
+	public function registerType ($package) {
+		$package['label'] = __($package['id']);
+		$this->types[$package['id']] = $package;
 	}
 }
