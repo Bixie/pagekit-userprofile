@@ -3,7 +3,7 @@
     <div class="uk-form-horizontal">
 
         <div class="uk-form-row">
-            <span class="uk-form-label">{{ 'Options' | trans }}</span>
+            <span class="uk-form-label">{{ 'Manage options' | trans }}</span>
 
             <div class="uk-form-controls uk-form-controls-text">
                 <ul class="uk-nestable uk-margin-remove" v-el="optionsNestable" v-show="field.options.length">

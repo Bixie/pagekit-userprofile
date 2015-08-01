@@ -6,7 +6,7 @@
 </template>
 
 <script>
-
+var fieldOptions;
 window.Profilefields = module.exports = {
 
     props: ['fields', 'editField'],
@@ -22,11 +22,14 @@ window.Profilefields = module.exports = {
     },
 
     getFieldoptions: function () {
-        var options = {};
+        if (fieldOptions) {
+            return fieldOptions;
+        }
+        fieldOptions = {};
         _.forEach(window.Profilefields.components, function (field) {
-            options[field.fieldOptions.type] = field.fieldOptions;
+            fieldOptions[field.fieldOptions.type] = field.fieldOptions;
         });
-        return options;
+        return fieldOptions;
     }
 
 };

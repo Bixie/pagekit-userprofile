@@ -22,17 +22,22 @@
 
 	<ul class="uk-tab" v-el="tab">
 		<li><a>{{ type.label | trans }}</a></li>
+		<li v-show="hasOptions"><a>{{ 'Options' | trans }}</a></li>
 		<li><a>{{ 'Appearance' | trans }}</a></li>
 	</ul>
 
 	<div class="uk-switcher uk-margin" v-el="content">
 		<div>
 			<fieldbasic field="{{@ field }}"></fieldbasic>
+			<div class="uk-form-horizontal uk-margin" v-show="!hasOptions || field.options.length">
+				<profilefields edit-field="{{@ field.type }}"></profilefields>
+			</div>
+		</div>
+		<div>
 			<fieldoptions v-show="hasOptions" field="{{@ field }}"></fieldoptions>
 		</div>
 		<div>
 			<appearance field="{{@ field }}"></appearance>
-			<profilefields edit-field="{{@ field.type }}"></profilefields>
 		</div>
 	</div>
 
