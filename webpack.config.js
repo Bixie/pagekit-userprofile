@@ -25,6 +25,7 @@ module.exports = [
             "userprofile-checkbox": "./app/fields/checkbox.vue",
             "userprofile-dob": "./app/fields/dob.vue",
             "userprofile-pulldown": "./app/fields/pulldown.vue",
+            "userprofile-radio": "./app/fields/radio.vue",
             "userprofile-text": "./app/fields/text.vue",
             /*frontpage views*/
             "userprofile": "./app/views/profile.js",
