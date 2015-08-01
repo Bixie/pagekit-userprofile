@@ -1,4 +1,8 @@
-<?php $view->script('userprofile', 'userprofile:app/bundle/userprofile.js', ['vue', 'userprofile-profilefields', 'uikit-form-password']) ?>
+<?php
+$view->style('uikit-form-select', 'vendor/assets/uikit/css/components/form-select.css');
+//todo move field deps to index.php loader
+$view->script('userprofile', 'userprofile:app/bundle/userprofile.js', ['vue', 'userprofile-profilefields', 'uikit-form-password', 'uikit-form-select', 'uikit-datepicker']);
+?>
 
 <form id="userprofile-profile" class="uk-article uk-form uk-form-stacked" name="form" v-on="valid: save">
 	<div class="uk-grid">

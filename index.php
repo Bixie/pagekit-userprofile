@@ -122,8 +122,12 @@ return [
 			//register fields
 			$scripts->register('userprofile-profilefields', 'userprofile:app/bundle/userprofile-profilefields.js', 'vue');
 			$userprofile = $app->module('userprofile');
+			//todo adding deps to lazy asset doesn't work?
 			foreach ($userprofile->getTypes() as $type) {
-				$scripts->register('userprofile-' . $type['id'], 'userprofile:app/bundle/userprofile-' . $type['id'] . '.js', '~userprofile-profilefields');
+				$scripts->register(
+					'userprofile-' . $type['id'], 'userprofile:app/bundle/userprofile-' . $type['id'] . '.js',
+					array_merge(['~userprofile-profilefields'], $type['dependancies'])
+				);
 			}
 		}
 
