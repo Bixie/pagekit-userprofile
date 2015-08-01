@@ -1,6 +1,15 @@
 <template>
 
     <div v-if="isAdmin" class="uk-form-row {{field.data.classSfx}}">
+        <span for="form-date-format" class="uk-form-label">{{ 'Date format' | trans }}</span>
+
+        <div class="uk-form-controls">
+            <select class="uk-form-width-medium" id="form-date-format"
+                    options="dateFormats" v-model="field.data.dateFormat"></select>
+        </div>
+    </div>
+
+    <div v-if="isAdmin" class="uk-form-row {{field.data.classSfx}}">
         <span for="form-min-age" class="uk-form-label">{{ 'Minimum age' | trans }}</span>
 
         <div class="uk-form-controls">
@@ -22,23 +31,31 @@
         <span class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
             }}</span>
 
-        <div class="uk-form-controls">
+        <div class="uk-form-controls uk-flex">
+            <div class="uk-grid uk-grid-small uk-grid-width-1-3 uk-width-1-1">
 
-            <div class="uk-button uk-form-select" data-uk-form-select><span></span>
-                <i class="uk-icon-caret-down"></i>
-                <select class="uk-form-width-mini" options="months" v-model="month"></select>
+                <div>
+                    <div class="uk-button uk-width-1-1 uk-form-select" data-uk-form-select><span></span>
+                        <i class="uk-icon-caret-down uk-margin-left"></i>
+                        <select class="" options="months" v-model="month"></select>
+                    </div>
+                </div>
+
+                <div v-class="uk-flex-order-first: field.data.dateFormat == 'DD-MM-YYYY'">
+                    <div class="uk-button uk-width-1-1 uk-form-select" data-uk-form-select><span></span>
+                        <i class="uk-icon-caret-down uk-margin-left"></i>
+                        <select class="" options="numbersList(1,31, 'Day')" v-model="day"></select>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="uk-button uk-width-1-1 uk-form-select" data-uk-form-select><span></span>
+                        <i class="uk-icon-caret-down uk-margin-left"></i>
+                        <select class="" options="years" v-model="year"></select>
+                    </div>
+                </div>
+
             </div>
-
-            <div class="uk-button uk-form-select" data-uk-form-select><span></span>
-                <i class="uk-icon-caret-down"></i>
-                <select class="uk-form-width-mini" options="numbersList(1,31, 'Day')" v-model="day"></select>
-            </div>
-
-            <div class="uk-button uk-form-select" data-uk-form-select><span></span>
-                <i class="uk-icon-caret-down"></i>
-                <select class="uk-form-width-mini" options="years" v-model="year"></select>
-            </div>
-
         </div>
     </div>
 
@@ -59,7 +76,8 @@
                 dobDate: false,
                 day: '',
                 month: '',
-                year: ''
+                year: '',
+                dateFormats: ['MM-DD-YYYY', 'DD-MM-YYYY']
             };
         },
 
@@ -69,11 +87,12 @@
             if (this.dataObject.value) {
                 this.setDate(this.dataObject.value);
             } else {
-                this.dobDate = UIkit.Utils.moment('0000-00-00');
+                this.dobDate = UIkit.Utils.moment();
             }
             //defaults admin
             this.field.data.minAge = this.field.data.minAge || 1;
             this.field.data.maxAge = this.field.data.maxAge || 120;
+            this.field.data.dateFormat = this.field.data.dateFormat || 'MM-DD-YYYY';
         },
 
         ready: function () {
@@ -114,6 +133,13 @@
 
                 } catch (e) {}
             },
+            updateDate: function () {
+                if (this.day && this.month && this.year) {
+                    this.dataObject.value = this.dobDate.format('YYYY-MM-DD');
+                } else {
+                    this.dataObject.value = '';
+                }
+            },
             numbersList: function (start, end, first) {
                 var nrs = first ? [{value: "", text: this.$trans(first)}] : [];
                 for (var i = start; i <= end ; i++) nrs.push({value: i + "", text: i});
@@ -123,23 +149,21 @@
         watch: {
             day: function (value) {
                 if (value !== '') {
-                    this.dobDate.date(value);
-                    this.dataObject.value = this.dobDate.format('YYYY-MM-DD');
+                    this.dobDate.date(parseInt(value, 10));
                 }
+                this.updateDate();
             },
             month: function (value) {
                 if (value !== '') {
-                    this.dobDate.month(value);
-                    this.dataObject.value = this.dobDate.format('YYYY-MM-DD');
-                } else {
-                    this.dobDate = false;
+                    this.dobDate.month(parseInt(value, 10));
                 }
+                this.updateDate();
             },
             year: function (value) {
                 if (value !== '') {
-                    this.dobDate.year(value);
-                    this.dataObject.value = this.dobDate.format('YYYY-MM-DD');
-                }
+                    this.dobDate.year(parseInt(value, 10));
+                 }
+                this.updateDate();
             }
         }
 
