@@ -6,8 +6,10 @@
             <label for="form-label" class="uk-form-label">{{ 'Label' | trans }}</label>
 
             <div class="uk-form-controls">
-                <input id="form-label" class="uk-form-width-large" type="text" v-model="field.label">
+                <input id="form-label" class="uk-form-width-large" type="text" name="label"
+                       v-model="field.label" v-valid="required">
             </div>
+            <p class="uk-form-help-block uk-text-danger" v-show="form.label.invalid">{{ 'Please enter a label' | trans }}</p>
         </div>
 
         <div class="uk-form-row" v-show="fieldOption('placeholder')">

@@ -1,6 +1,6 @@
 <?php $view->script('field-edit', 'userprofile:app/bundle/field-edit.js', ['vue', 'userprofile-profilefields', 'uikit-nestable']); ?>
 
-<form id="field-edit" class="uk-form" name="form" v-on="submit: save" v-cloak>
+<form id="field-edit" class="uk-form" name="form" v-on="valid: save" v-cloak>
 
 	<div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
 		<div data-uk-margin>
