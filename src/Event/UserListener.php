@@ -24,7 +24,7 @@ class UserListener implements EventSubscriberInterface {
 
 	public function onUserChange ($event, User $user) {
 		/** @var \Pagekit\Userprofile\Model\Profilevalue $profilevalue */
-		foreach ($this->request->request->get('profilevalues') as $data) {
+		foreach ($this->request->request->get('profilevalues', []) as $data) {
 			// is new ?
 			if (!$profilevalue = Profilevalue::find($data['id'])) {
 
