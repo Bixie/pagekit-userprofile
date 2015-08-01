@@ -122,12 +122,27 @@ return [
 			//register fields
 			$scripts->register('userprofile-profilefields', 'userprofile:app/bundle/userprofile-profilefields.js', 'vue');
 			$userprofile = $app->module('userprofile');
-			//todo adding deps to lazy asset doesn't work?
 			foreach ($userprofile->getTypes() as $type) {
 				$scripts->register(
 					'userprofile-' . $type['id'], 'userprofile:app/bundle/userprofile-' . $type['id'] . '.js',
 					array_merge(['~userprofile-profilefields'], $type['dependancies'])
 				);
+			}
+		},
+
+		'view.styles' => function ($event, $styles) use ($app) {
+			//todo this should be prettier
+			$route = $app->request()->attributes->get('_route');
+			if (strpos($route, '@userprofile') === 0 || in_array($route, ['@user/edit'])) {
+				$userprofile = $app->module('userprofile');
+				foreach ($userprofile->getTypes() as $type) {
+					if (isset($type['style'])) {
+						foreach ($type['style'] as $name => $source) {
+							$styles->add('uikit-form-select', 'vendor/assets/uikit/css/components/form-select.css');
+
+						}
+					}
+				}
 			}
 		}
 
