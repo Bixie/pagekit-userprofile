@@ -32,10 +32,6 @@
 
         created: function () {
             this.$set('dataObject', this.getDataObject(this.field.data.value || []));
-            this.$on('save', function (data) {
-                data.field.data.required = false; //todo
-                data.field.data.multiple = true;
-            });
         }
 
     };
