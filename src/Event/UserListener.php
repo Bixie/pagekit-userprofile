@@ -11,20 +11,9 @@ class UserListener implements EventSubscriberInterface {
 
 	protected $request;
 
-	public function onRequest ($event, $request) {
-		//todo this shouldn't be the way
-		$this->request = $request;
-	}
-
-	public function onUserAdminProfile ($event, $view) {
-
-//		$event->setResult('hoi!');
-		return;
-	}
-
 	public function onUserChange ($event, User $user) {
 		/** @var \Pagekit\Userprofile\Model\Profilevalue $profilevalue */
-		foreach ($this->request->request->get('profilevalues', []) as $data) {
+		foreach (App::request()->request->get('profilevalues', []) as $data) {
 			// is new ?
 			if (!$profilevalue = Profilevalue::find($data['id'])) {
 
@@ -56,8 +45,6 @@ class UserListener implements EventSubscriberInterface {
 	 */
 	public function subscribe () {
 		return [
-			'request' => 'onRequest',
-			'view.system/user:views/admin/user-edit' => 'onUserAdminProfile',
 			'model.user.saved' => 'onUserChange',
 			'model.user.deleted' => 'onUserDeleted'
 		];

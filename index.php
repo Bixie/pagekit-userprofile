@@ -36,6 +36,10 @@ return [
 		'/api/userprofile/field' => [
 			'name' => '@site/api/field',
 			'controller' => 'Pagekit\\Userprofile\\Controller\\FieldApiController'
+		],
+		'/api/userprofile/profile' => [
+			'name' => '@site/api/profile',
+			'controller' => 'Pagekit\\Userprofile\\Controller\\ProfileApiController'
 		]
 
 	],
@@ -119,6 +123,7 @@ return [
 			$scripts->register('userprofile-settings', 'userprofile:app/bundle/settings.js', '~extensions');
 			$scripts->register('userprofile-site', 'userprofile:app/bundle/site.js', '~site-edit');
 			$scripts->register('userprofile-link', 'userprofile:app/bundle/link.js', '~panel-link');
+			$scripts->register('user-section-userprofile', 'userprofile:app/bundle/user-section-userprofile.js', ['~users', 'userprofile-profilefields']);
 			//register fields
 			$scripts->register('userprofile-profilefields', 'userprofile:app/bundle/userprofile-profilefields.js', 'vue');
 			$userprofile = $app->module('userprofile');

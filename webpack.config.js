@@ -21,6 +21,7 @@ module.exports = [
             "settings": "./app/components/settings.vue",
             "site": "./app/components/site.vue",
             "link": "./app/components/link.vue",
+            "user-section-userprofile": "./app/components/user-section-userprofile.vue",
             /*fields*/
             "userprofile-checkbox": "./app/fields/checkbox.vue",
             "userprofile-dob": "./app/fields/dob.vue",
