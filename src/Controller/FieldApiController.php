@@ -48,7 +48,7 @@ class FieldApiController {
 		foreach ($fields as $data) {
 			if ($field = Field::find($data['id'])) {
 
-				$field->setPriority($data['order']);
+				$field->priority = $data['order'];
 
 				$field->save();
 			}

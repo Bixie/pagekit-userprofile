@@ -40,7 +40,8 @@ trait FieldModelTrait {
 		}
 
 		if (!$field->id) {
-			$field->priority = self::getConnection()->fetchColumn('SELECT MAX(priority) + 1 FROM @userprofile_fields');
+			$next = self::getConnection()->fetchColumn('SELECT MAX(priority) + 1 FROM @userprofile_fields');
+			$field->priority = $next ? : 0;
 		}
 	}
 }
