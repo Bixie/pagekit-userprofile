@@ -32,6 +32,9 @@
                     attachValue: true,
                     invalid: false
                 });
+                this.$nextTick(function () {
+                    $(this.$$.optionsNestable).find('input:last').focus();
+                });
             },
             deleteFieldoption: function (idx) {
                 this.field.options.$remove(idx);
@@ -62,6 +65,7 @@
 
                     var options = [];
                     _.forEach(nestable.list(), function (option) {
+                        //todo can't reorder options with empty value
                         options.push(_.find(vm.field.options, 'value', option.value));
                     });
 
