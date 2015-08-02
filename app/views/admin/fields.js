@@ -30,6 +30,9 @@ module.exports = {
             this.Fields.save({id: field.id}, {field: field}, function () {
                 this.load();
                 UIkit.notify('Field saved.');
+            }, function (message) {
+                this.load();
+                UIkit.notify(message, {status: 'danger'});
             });
         },
 

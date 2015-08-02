@@ -3,6 +3,7 @@
 namespace Pagekit\Userprofile\Controller;
 
 use Pagekit\Application as App;
+use Pagekit\Application\Exception;
 use Pagekit\Userprofile\Model\Field;
 use Pagekit\Userprofile\Model\Profilevalue;
 
@@ -22,12 +23,19 @@ class FieldApiController {
 	 * @Request({"field": "array", "id": "int"}, csrf=true)
 	 */
 	public function saveAction ($data, $id = 0) {
+
 		if (!$field = Field::find($id)) {
 			$field = Field::create();
 			unset($data['id']);
 		}
 
-		$field->save($data);
+		try {
+
+			$field->save($data);
+
+		} catch (Exception $e) {
+			App::abort(400, $e->getMessage());
+		}
 
 		return ['message' => 'success', 'field' => $field];
 	}
