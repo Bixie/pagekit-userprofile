@@ -46,7 +46,7 @@ module.exports = {
 
     computed: {
         fieldRequired: function () {
-            return this.field.data.required ? true : false;
+            return this.field.data.required && !this.isAdmin ? true : false;
         },
         fieldLabel: function () {
             return this.isAdmin ? 'Default value' : this.field.label;

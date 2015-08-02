@@ -50,7 +50,8 @@
         },
 
         created: function () {
-            this.$set('dataObject', this.getDataObject(this.field.data.value || this.field.data.multiple ? [] : this.field.options[0].value));
+            var defaultValue = this.field.data.multiple ? [] : this.field.options.length ? this.field.options[0].value : '';
+            this.$set('dataObject', this.getDataObject(this.field.data.value || defaultValue));
         }
 
     };
