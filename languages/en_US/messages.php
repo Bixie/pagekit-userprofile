@@ -2,7 +2,7 @@
 	//fieldtypes
 	'text' => 'Textfield',
 	'pulldown' => 'Pulldown',
-	'checkbox' => 'Checkbox',
+	'checkbox' => 'Checkboxes',
 	'dob' => 'Date of Birth',
 	'radio' => 'Radio bullets',
 	//general

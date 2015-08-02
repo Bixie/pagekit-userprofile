@@ -13,8 +13,7 @@ module.exports = {
                 user: this.user,
                 profilevalues: this.profilevalues
             }, function (data) {
-                console.log(data.redirect);
-                //window.location.replace(data.redirect);
+                window.location.replace(data.redirect);
             }).error(function (error) {
                 this.error = error;
             });
