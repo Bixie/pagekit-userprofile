@@ -20,6 +20,9 @@
         created: function () {
             this.Fields = this.$resource('api/userprofile/profile/:id');
             this.load();
+            this.$on('save', function (data) {
+                data.profilevalues = this.profilevalues;
+            });
         },
 
         methods: {
