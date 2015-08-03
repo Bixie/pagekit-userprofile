@@ -3,7 +3,7 @@
 namespace Pagekit\Userprofile\Model;
 
 /**
- * @Entity(tableClass="@userprofile_values")
+ * @Entity(tableClass="@userprofile_value")
  */
 class Profilevalue implements \JsonSerializable {
 	use ProfilevalueModelTrait;

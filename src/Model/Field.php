@@ -6,7 +6,7 @@ use Pagekit\System\Model\DataModelTrait;
 use Pagekit\User\Model\AccessModelTrait;
 
 /**
- * @Entity(tableClass="@userprofile_fields")
+ * @Entity(tableClass="@userprofile_field")
  */
 class Field implements \JsonSerializable {
 	use AccessModelTrait, DataModelTrait, FieldModelTrait;

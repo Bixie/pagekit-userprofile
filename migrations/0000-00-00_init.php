@@ -6,8 +6,8 @@ return [
 
 		$util = $app['db']->getUtility();
 
-		if ($util->tableExists('@userprofile_fields') === false) {
-			$util->createTable('@userprofile_fields', function ($table) {
+		if ($util->tableExists('@userprofile_field') === false) {
+			$util->createTable('@userprofile_field', function ($table) {
 				$table->addColumn('id', 'integer', ['unsigned' => true, 'length' => 10, 'autoincrement' => true]);
 				$table->addColumn('priority', 'integer', ['default' => 0]);
 				$table->addColumn('type', 'string', ['length' => 255]);
@@ -19,8 +19,8 @@ return [
 			});
 		}
 
-		if ($util->tableExists('@userprofile_values') === false) {
-			$util->createTable('@userprofile_values', function ($table) {
+		if ($util->tableExists('@userprofile_value') === false) {
+			$util->createTable('@userprofile_value', function ($table) {
 				$table->addColumn('id', 'integer', ['unsigned' => true, 'length' => 10, 'autoincrement' => true]);
 				$table->addColumn('user_id', 'integer', ['unsigned' => true, 'length' => 10]);
 				$table->addColumn('field_id', 'integer', ['unsigned' => true, 'length' => 10]);
