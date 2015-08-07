@@ -42,10 +42,10 @@ module.exports = Vue.extend({
 
                 this.$set('field', data.field);
 
-                UIkit.notify(this.$trans('%type% saved.', {type: this.type.label}));
+                this.$notify(this.$trans('%type% saved.', {type: this.type.label}));
 
             }, function (data) {
-                UIkit.notify(data, 'danger');
+                this.$notify(data, 'danger');
             });
         }
 

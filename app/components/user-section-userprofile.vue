@@ -32,7 +32,7 @@
                     this.$set('fields', data.fields);
                     this.$set('profilevalues', data.profilevalues);
                 }, function (message) {
-                    UIkit.notify('Userprofile: ' + message, {status: 'danger'});
+                    this.$notify('Userprofile: ' + message, 'danger');
                 });
             }
         }
