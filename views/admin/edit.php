@@ -13,7 +13,7 @@
 		</div>
 		<div data-uk-margin>
 
-			<a class="uk-button uk-margin-small-right" v-attr="href: $url('admin/userprofile')">{{ field.id ? 'Close' :
+			<a class="uk-button uk-margin-small-right" v-attr="href: $url.route('admin/userprofile')">{{ field.id ? 'Close' :
 				'Cancel' | trans }}</a>
 			<button class="uk-button uk-button-primary" type="submit">{{ 'Save' | trans }}</button>
 

@@ -26,7 +26,7 @@
 				<div class="uk-dropdown uk-dropdown-small uk-dropdown-flip">
 					<ul class="uk-nav uk-nav-dropdown">
 						<li v-repeat="type: types | orderBy 'label'"><a
-								v-attr="href: $url('admin/userprofile/edit', { id: type.id })">{{ type.label }}</a></li>
+								v-attr="href: $url.route('admin/userprofile/edit', { id: type.id })">{{ type.label }}</a></li>
 					</ul>
 				</div>
 			</div>
@@ -66,7 +66,7 @@
 			</div>
 			<div class="pk-table-width-minimum"><input type="checkbox" name="id" value="{{ field.id }}"></div>
 			<div class="pk-table-min-width-100">
-				<a v-attr="href: $url('admin/userprofile/edit', { id: field.id })">{{ field.label }}</a>
+				<a v-attr="href: $url.route('admin/userprofile/edit', { id: field.id })">{{ field.label }}</a>
 			</div>
 			<div class="pk-table-width-100 uk-text-center">
 				<td class="uk-text-center">

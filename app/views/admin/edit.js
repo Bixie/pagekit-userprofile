@@ -37,7 +37,7 @@ module.exports = Vue.extend({
             this.Fields.save({id: this.field.id}, data, function (data) {
 
                 if (!this.field.id) {
-                    window.history.replaceState({}, '', this.$url('admin/userprofile/edit', {id: data.field.id}))
+                    window.history.replaceState({}, '', this.$url.route('admin/userprofile/edit', {id: data.field.id}))
                 }
 
                 this.$set('field', data.field);
