@@ -19,8 +19,8 @@ module.exports = [
         entry: {
             /*pagekit addons*/
             "settings": "./app/components/settings.vue",
-            "site": "./app/components/site.vue",
-            "link": "./app/components/link.vue",
+            "node-userprofile": "./app/components/node-userprofile.vue",
+            "link-userprofile": "./app/components/link-userprofile.vue",
             "user-section-userprofile": "./app/components/user-section-userprofile.vue",
             /*fields*/
             "userprofile-checkbox": "./app/fields/checkbox.vue",
