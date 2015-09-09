@@ -5,6 +5,6 @@
   "multiple": 0,
   "dependancies": ["uikit-form-select", "uikit-datepicker"],
   "style": {
-    "uikit-form-select": "vendor/assets/uikit/css/components/form-select.css"
+    "uikit-form-select": "app/assets/uikit/css/components/form-select.css"
   }
 }

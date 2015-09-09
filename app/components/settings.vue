@@ -55,6 +55,6 @@
 
     };
 
-    window.PackageManager.components['settings-userprofile'] = module.exports;
+    window.Extensions.components['settings-userprofile'] = module.exports;
 
 </script>

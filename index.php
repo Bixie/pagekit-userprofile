@@ -54,7 +54,7 @@ return [
 
 		'userprofile' => [
 			'label' => 'Userprofile',
-			'icon' => 'extensions/userprofile/assets/images/image.svg',
+			'icon' => 'packages/bixie/userprofile/icon.svg',
 			'url' => '@userprofile/admin',
 			// 'access' => 'userprofile: manage hellos',
 			'active' => '@userprofile(/*)'
@@ -98,19 +98,6 @@ return [
 			}
 		},
 
-		'enable.userprofile' => function () use ($app) {
-			// run all migrations that are newer than the current version
-			if ($version = $app['migrator']->create('userprofile:migrations', $this->config('version'))->run()) {
-				$app->config($this->name)->set('version', $version);
-			}
-			$app->config($this->name)->set('override_registration', 1); //todo shouldn't this be done by PackageController?
-
-		},
-
-		'disable.userprofile' => function () use ($app) {
-			// disable hook
-		},
-
 		'uninstall.userprofile' => function () use ($app) {
 			// downgrade all migrations
 			$app['migrator']->create('userprofile:migrations', $this->config('version'))->run(0);
@@ -143,7 +130,7 @@ return [
 				foreach ($userprofile->getTypes() as $type) {
 					if (isset($type['style'])) {
 						foreach ($type['style'] as $name => $source) {
-							$styles->add('uikit-form-select', 'vendor/assets/uikit/css/components/form-select.css');
+							$styles->add($name, $source);
 
 						}
 					}

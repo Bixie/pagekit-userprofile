@@ -13,6 +13,7 @@
     }
   ],
   "extra": {
-    "image": "assets/images/image.svg"
+    "icon": "icon.svg",
+    "scripts": "scripts.php"
   }
 }

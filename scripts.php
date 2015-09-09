@@ -2,7 +2,7 @@
 
 return [
 
-	'up' => function () use ($app) {
+    'install' => function ($app) {
 
 		$util = $app['db']->getUtility();
 
@@ -30,15 +30,19 @@ return [
 				$table->addIndex(['user_id'], 'USERPROFILE_VALUES_USERID');
 			});
 		}
-	},
 
-	'down' => function () use ($app) {
+    },
+
+    'uninstall' => function ($app) {
 
 		$util = $app['db']->getUtility();
 
-		if ($util->tableExists('@userprofile_fields')) {
-			$util->dropTable('@userprofile_fields');
+		if ($util->tableExists('@userprofile_field')) {
+			$util->dropTable('@userprofile_field');
 		}
-	}
+        if ($util->tableExists('@userprofile_value')) {
+            $util->dropTable('@userprofile_value');
+        }
+    }
 
 ];
