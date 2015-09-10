@@ -76,7 +76,7 @@ var Fields =
 /***/ 23:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-row\">\n        <label for=\"form-link-userprofile\" class=\"uk-form-label\">{{ 'View' | trans }}</label>\n        <div class=\"uk-form-controls\">\n            <select id=\"form-link-userprofile\" class=\"uk-width-1-1\" v-model=\"link\">\n                <option value=\"@userprofile\">{{ 'User Profile' | trans}}</option>\n                <option value=\"@userprofile/registration\">{{ 'User Registration' | trans}}</option>\n            </select>\n        </div>\n    </div>";
+	module.exports = "<div class=\"uk-form-row\">\n        <label for=\"form-link-userprofile\" class=\"uk-form-label\">{{ 'View' | trans }}</label>\n        <div class=\"uk-form-controls\">\n            <select id=\"form-link-userprofile\" class=\"uk-width-1-1\" v-model=\"link\">\n                <option value=\"@userprofile\">{{ 'User Profile' | trans }}</option>\n                <option value=\"@userprofile/registration\">{{ 'User Registration' | trans }}</option>\n            </select>\n        </div>\n    </div>";
 
 /***/ }
 
