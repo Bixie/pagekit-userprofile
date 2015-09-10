@@ -1,0 +1,167 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pagekit UNKNOWN (bixie/userprofile, messages)\n"
+"POT-Creation-Date: 2015-09-10 10:32+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Label"
+msgstr ""
+
+msgid "Hide Label"
+msgstr ""
+
+msgid "Class suffix"
+msgstr ""
+
+msgid "Required error message"
+msgstr ""
+
+msgid "Please enter a label"
+msgstr ""
+
+msgid "Field required"
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Multiple values"
+msgstr ""
+
+msgid "Multiple"
+msgstr ""
+
+msgid "Restrict Access"
+msgstr ""
+
+msgid "Manage options"
+msgstr ""
+
+msgid "Add option"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "User Profile"
+msgstr ""
+
+msgid "User Registration"
+msgstr ""
+
+msgid "Userprofile Settings"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Redirect"
+msgstr ""
+
+msgid "Redirect Pagekit registration page"
+msgstr ""
+
+msgid "Date format"
+msgstr ""
+
+msgid "Minimum age"
+msgstr ""
+
+msgid "Maximum age"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Field not found."
+msgstr ""
+
+msgid "Type not found."
+msgstr ""
+
+msgid "Field"
+msgstr ""
+
+msgid "Your Profile"
+msgstr ""
+
+msgid "User registration"
+msgstr ""
+
+msgid "Userprofile"
+msgstr ""
+
+msgid "Userprofilevalue not found."
+msgstr ""
+
+msgid "Field type not found."
+msgstr ""
+
+msgid "Edit %type%"
+msgstr ""
+
+msgid "Add %type%"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Appearance"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Add Field"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "No fields found."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Name cannot be blank."
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Invalid Email."
+msgstr ""
+
+msgid "Change password"
+msgstr ""
+
+msgid "Current Password"
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "New Password"
+msgstr ""
+
+msgid "Registration"
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Username cannot be blank."
+msgstr ""
+
+msgid "Password"
+msgstr ""
+

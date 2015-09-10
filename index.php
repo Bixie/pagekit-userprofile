@@ -136,6 +136,12 @@ return [
 					}
 				}
 			}
+		},
+
+		'console.init' => function ($event, $console) {
+
+			$console->add(new \Pagekit\Userprofile\Console\Commands\UserprofileTranslateCommand());
+
 		}
 
 	]
