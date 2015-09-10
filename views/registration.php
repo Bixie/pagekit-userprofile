@@ -8,14 +8,14 @@
 			<div class="uk-alert uk-alert-danger" v-show="error">{{ error }}</div>
 
 			<div class="uk-form-row">
-				<label for="form-username" class="uk-form-label">{{ 'Username' | trans}}</label>
+				<label for="form-username" class="uk-form-label">{{ 'Username' | trans }}</label>
 
 				<div class="uk-form-controls">
 					<input id="form-username" class="uk-form-width-large" type="text" name="username"
 						   v-model="user.username" v-valid="required">
 
 					<p class="uk-form-help-block uk-text-danger"
-					   v-show="form.username.invalid">{{ 'Username cannot be blank.' | trans}}</p>
+					   v-show="form.username.invalid">{{ 'Username cannot be blank.' | trans }}</p>
 				</div>
 			</div>
 

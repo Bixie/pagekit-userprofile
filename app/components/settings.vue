@@ -40,7 +40,7 @@
 
             save: function () {
                 this.$http.post('admin/system/settings/config', {
-                    name: this.package.name.replace('pagekit/', ''),
+                    name: 'userprofile',
                     config: this.package.config
                 }, function () {
                     this.$notify('Settings saved.', '');
