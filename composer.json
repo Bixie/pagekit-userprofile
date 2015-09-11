@@ -1,5 +1,5 @@
 {
-  "name": "pagekit/userprofile",
+  "name": "bixie/userprofile",
   "type": "pagekit-extension",
   "version": "1.0.0",
   "title": "Userprofile",
@@ -8,8 +8,8 @@
   "authors": [
     {
       "name": "Bixie",
-      "email": "matthijs@bixie.nl",
-      "homepage": "http://www.bixie.nl"
+      "email": "ifo@bixie.nl",
+      "homepage": "http://userprofile.bixie.org"
     }
   ],
   "extra": {
