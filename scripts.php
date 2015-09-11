@@ -43,6 +43,10 @@ return [
         if ($util->tableExists('@userprofile_value')) {
             $util->dropTable('@userprofile_value');
         }
-    }
+
+		// remove the config
+		$app['config']->remove('userprofile');
+
+	}
 
 ];

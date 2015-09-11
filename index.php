@@ -98,14 +98,6 @@ return [
 			}
 		},
 
-		'uninstall.userprofile' => function () use ($app) {
-			// downgrade all migrations
-			$app['migrator']->create('userprofile:migrations', $this->config('version'))->run(0);
-
-			// remove the config
-			$app['config']->remove($this->name);
-		},
-
 		'view.scripts' => function ($event, $scripts) use ($app) {
 			$scripts->register('userprofile-settings', 'userprofile:app/bundle/settings.js', '~extensions');
 			$scripts->register('node-userprofile', 'userprofile:app/bundle/node-userprofile.js', '~site-edit');
@@ -136,12 +128,6 @@ return [
 					}
 				}
 			}
-		},
-
-		'console.init' => function ($event, $console) {
-
-			$console->add(new \Pagekit\Userprofile\Console\Commands\UserprofileTranslateCommand());
-
 		}
 
 	]
