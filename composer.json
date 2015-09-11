@@ -1,7 +1,7 @@
 {
   "name": "pagekit/userprofile",
   "type": "pagekit-extension",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "title": "Userprofile",
   "description": "Userprofile for Pagekit",
   "license": "MIT",
