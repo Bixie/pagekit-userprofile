@@ -6,7 +6,7 @@ Info and demo: [http://userprofile.bixie.org](http://userprofile.bixie.org).
 
 ## Installation
 
-Please install Userprofile via the built-in Marketplace in your Pagikit Installation.
+Please install Userprofile via the built-in Marketplace in your Pagekit Installation.
 
 ![image](http://userprofile.bixie.org/storage/marketplace_userprofile.jpg)
 
