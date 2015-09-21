@@ -1,6 +1,6 @@
 <?php $view->script('userprofile-registration', 'userprofile:app/bundle/registration.js', ['vue', 'userprofile-profilefields', 'uikit-form-password']) ?>
 
-<form id="userprofile-registration" class="uk-article uk-form uk-form-stacked" name="form" v-on="valid: save">
+<form id="userprofile-registration" class="uk-article uk-form uk-form-stacked" name="form" v-on="submit: save | valid">
 	<div class="uk-grid">
 		<div class="uk-width-medium-3-4">
 			<h1 class="uk-article-title">{{ 'Registration' | trans }}</h1>
