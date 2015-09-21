@@ -19,7 +19,6 @@ module.exports = [
         entry: {
             /*pagekit addons*/
             "settings": "./app/components/settings.vue",
-            "node-userprofile": "./app/components/node-userprofile.vue",
             "link-userprofile": "./app/components/link-userprofile.vue",
             "user-section-userprofile": "./app/components/user-section-userprofile.vue",
             /*fields*/

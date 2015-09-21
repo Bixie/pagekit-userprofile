@@ -100,7 +100,6 @@ return [
 
 		'view.scripts' => function ($event, $scripts) use ($app) {
 			$scripts->register('userprofile-settings', 'userprofile:app/bundle/settings.js', '~extensions');
-			$scripts->register('node-userprofile', 'userprofile:app/bundle/node-userprofile.js', '~site-edit');
 			$scripts->register('link-userprofile', 'userprofile:app/bundle/link-userprofile.js', '~panel-link');
 			$scripts->register('user-section-userprofile', 'userprofile:app/bundle/user-section-userprofile.js', ['~users', 'userprofile-profilefields']);
 			//register fields
