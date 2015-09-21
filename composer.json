@@ -1,5 +1,6 @@
 {
   "name": "bixie/userprofile",
+  "module": "bixie/userprofile",
   "type": "pagekit-extension",
   "version": "1.0.0",
   "title": "Userprofile",

@@ -4,7 +4,7 @@ use Pagekit\Userprofile\Event\UserListener;
 
 return [
 
-	'name' => 'userprofile',
+	'name' => 'bixie/userprofile',
 
 	'type' => 'extension',
 
