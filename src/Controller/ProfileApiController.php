@@ -1,11 +1,11 @@
 <?php
 
-namespace Pagekit\Userprofile\Controller;
+namespace Bixie\Userprofile\Controller;
 
 use Pagekit\Application as App;
 use Pagekit\User\Model\User;
-use Pagekit\Userprofile\Model\Field;
-use Pagekit\Userprofile\Model\Profilevalue;
+use Bixie\Userprofile\Model\Field;
+use Bixie\Userprofile\Model\Profilevalue;
 
 class ProfileApiController {
 

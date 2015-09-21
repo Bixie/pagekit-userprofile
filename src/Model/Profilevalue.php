@@ -1,6 +1,6 @@
 <?php
 
-namespace Pagekit\Userprofile\Model;
+namespace Bixie\Userprofile\Model;
 
 /**
  * @Entity(tableClass="@userprofile_value")

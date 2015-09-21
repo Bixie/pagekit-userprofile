@@ -1,6 +1,6 @@
 <?php
 
-namespace Pagekit\Userprofile\Controller;
+namespace Bixie\Userprofile\Controller;
 
 use Pagekit\Application as App;
 

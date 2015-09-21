@@ -1,6 +1,6 @@
 <?php
 
-namespace Pagekit\Userprofile\Model;
+namespace Bixie\Userprofile\Model;
 
 use Pagekit\Database\ORM\ModelTrait;
 use Pagekit\User\Model\User;

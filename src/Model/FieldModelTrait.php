@@ -1,6 +1,6 @@
 <?php
 
-namespace Pagekit\Userprofile\Model;
+namespace Bixie\Userprofile\Model;
 
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;

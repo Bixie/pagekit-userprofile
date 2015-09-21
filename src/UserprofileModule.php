@@ -1,10 +1,10 @@
 <?php
 
-namespace Pagekit\Userprofile;
+namespace Bixie\Userprofile;
 
 use Pagekit\Application as App;
 use Pagekit\Module\Module;
-use Pagekit\Userprofile\Model\Field;
+use Bixie\Userprofile\Model\Field;
 
 class UserprofileModule extends Module {
 	/**

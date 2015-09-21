@@ -1,6 +1,6 @@
 <?php
 
-namespace Pagekit\Userprofile\Console\Commands;
+namespace Bixie\Userprofile\Console\Commands;
 
 use Pagekit\Application\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;

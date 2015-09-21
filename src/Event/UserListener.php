@@ -1,18 +1,18 @@
 <?php
 
-namespace Pagekit\Userprofile\Event;
+namespace Bixie\Userprofile\Event;
 
 use Pagekit\Application as App;
 use Pagekit\Event\EventSubscriberInterface;
 use Pagekit\User\Model\User;
-use Pagekit\Userprofile\Model\Profilevalue;
+use Bixie\Userprofile\Model\Profilevalue;
 
 class UserListener implements EventSubscriberInterface {
 
 	protected $request;
 
 	public function onUserChange ($event, User $user) {
-		/** @var \Pagekit\Userprofile\Model\Profilevalue $profilevalue */
+		/** @var \Bixie\Userprofile\Model\Profilevalue $profilevalue */
 		foreach (App::request()->request->get('profilevalues', []) as $data) {
 			// is new ?
 			if (!$profilevalue = Profilevalue::find($data['id'])) {

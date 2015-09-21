@@ -1,6 +1,6 @@
 <?php
 
-use Pagekit\Userprofile\Event\UserListener;
+use Bixie\Userprofile\Event\UserListener;
 
 return [
 
@@ -8,11 +8,11 @@ return [
 
 	'type' => 'extension',
 
-	'main' => 'Pagekit\\Userprofile\\UserprofileModule',
+	'main' => 'Bixie\\Userprofile\\UserprofileModule',
 
 	'autoload' => [
 
-		'Pagekit\\Userprofile\\' => 'src'
+		'Bixie\\Userprofile\\' => 'src'
 
 	],
 
@@ -24,22 +24,22 @@ return [
 
 		'/profile' => [
 			'name' => '@userprofile',
-			'controller' => 'Pagekit\\Userprofile\\Controller\\ProfileController'
+			'controller' => 'Bixie\\Userprofile\\Controller\\ProfileController'
 		],
 		'/userprofile' => [
 			'name' => '@userprofile/admin',
 			'controller' => [
-				'Pagekit\\Userprofile\\Controller\\UserprofileController',
-				'Pagekit\\Userprofile\\Controller\\FieldController'
+				'Bixie\\Userprofile\\Controller\\UserprofileController',
+				'Bixie\\Userprofile\\Controller\\FieldController'
 			]
 		],
 		'/api/userprofile/field' => [
 			'name' => '@site/api/field',
-			'controller' => 'Pagekit\\Userprofile\\Controller\\FieldApiController'
+			'controller' => 'Bixie\\Userprofile\\Controller\\FieldApiController'
 		],
 		'/api/userprofile/profile' => [
 			'name' => '@site/api/profile',
-			'controller' => 'Pagekit\\Userprofile\\Controller\\ProfileApiController'
+			'controller' => 'Bixie\\Userprofile\\Controller\\ProfileApiController'
 		]
 
 	],
