@@ -40,7 +40,7 @@
 
             save: function () {
                 this.$http.post('admin/system/settings/config', {
-                    name: 'userprofile',
+                    name: 'bixie/userprofile',
                     config: this.package.config
                 }, function () {
                     this.$notify('Settings saved.', '');
