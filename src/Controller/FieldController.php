@@ -18,7 +18,7 @@ class FieldController {
 	 * @Access("site: manage site", admin=true)
 	 */
 	public function editAction ($id = '') {
-		$userprofile = App::module('userprofile');
+		$userprofile = App::module('bixie/userprofile');
 
 		if (is_numeric($id)) {
 			$field = Field::find($id);
@@ -38,7 +38,7 @@ class FieldController {
 		return [
 			'$view' => [
 				'title' => __('Field'),
-				'name' => 'userprofile:views/admin/edit.php'
+				'name' => 'bixie/userprofile/admin/edit.php'
 			],
 			'$data' => [
 				'field' => $field,

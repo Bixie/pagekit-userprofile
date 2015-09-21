@@ -9,15 +9,15 @@ use Pagekit\Application as App;
  */
 class UserprofileController {
 	public function indexAction () {
-		$userprofile = App::module('userprofile');
+		$userprofile = App::module('bixie/userprofile');
 
 		return [
 			'$view' => [
 				'title' => __('Userprofile'),
-				'name' => 'userprofile:views/admin/fields.php'
+				'name' => 'bixie/userprofile/admin/fields.php'
 			],
 			'$data' => [
-				'config' => App::module('userprofile')->config('default'),
+				'config' => App::module('bixie/userprofile')->config('default'),
 				'types' => $userprofile->getTypes()
 			]
 		];

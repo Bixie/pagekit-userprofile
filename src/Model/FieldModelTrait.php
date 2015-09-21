@@ -25,7 +25,7 @@ trait FieldModelTrait {
 	 * @Saving
 	 */
 	public static function saving ($event, Field $field) {
-		$userprofile = App::module('userprofile');
+		$userprofile = App::module('bixie/userprofile');
 
 		if (!$type = $userprofile->getType($field->type)) {
 			throw new Exception(__('Field type not found.'));

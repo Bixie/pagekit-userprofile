@@ -15,7 +15,7 @@ class ProfileApiController {
 	 */
 	public function indexAction ($id = 0) {
 		$self = App::user();
-		$userprofile = App::module('userprofile');
+		$userprofile = App::module('bixie/userprofile');
 
 		$id = $id ? : $self->id;
 

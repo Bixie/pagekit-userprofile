@@ -93,7 +93,7 @@ return [
 		},
 
 		'request' => function ($event, $request) use ($app) {
-			if ($app->config('userprofile')->get('override_registration', true) && $request->attributes->get('_route') == '@user/registration') {
+			if ($app->config('bixie/userprofile')->get('override_registration', true) && $request->attributes->get('_route') == '@user/registration') {
 				$event->setResponse($app->redirect('@userprofile/registration'), [], 301);
 			}
 		},
@@ -105,7 +105,7 @@ return [
 			$scripts->register('user-section-userprofile', 'userprofile:app/bundle/user-section-userprofile.js', ['~users', 'userprofile-profilefields']);
 			//register fields
 			$scripts->register('userprofile-profilefields', 'userprofile:app/bundle/userprofile-profilefields.js', 'vue');
-			$userprofile = $app->module('userprofile');
+			$userprofile = $app->module('bixie/userprofile');
 			foreach ($userprofile->getTypes() as $type) {
 				$scripts->register(
 					'userprofile-' . $type['id'], 'userprofile:app/bundle/userprofile-' . $type['id'] . '.js',
@@ -118,7 +118,7 @@ return [
 			//todo this should be prettier
 			$route = $app->request()->attributes->get('_route');
 			if (strpos($route, '@userprofile') === 0 || in_array($route, ['@user/edit'])) {
-				$userprofile = $app->module('userprofile');
+				$userprofile = $app->module('bixie/userprofile');
 				foreach ($userprofile->getTypes() as $type) {
 					if (isset($type['style'])) {
 						foreach ($type['style'] as $name => $source) {

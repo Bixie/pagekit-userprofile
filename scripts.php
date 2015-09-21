@@ -45,7 +45,7 @@ return [
         }
 
 		// remove the config
-		$app['config']->remove('userprofile');
+		$app['config']->remove('bixie/userprofile');
 
 	}
 

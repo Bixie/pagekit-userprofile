@@ -9,7 +9,7 @@ use Pagekit\Userprofile\Model\Profilevalue;
 class ProfileController {
 	public function indexAction () {
 		$user = App::user();
-		$userprofile = App::module('userprofile');
+		$userprofile = App::module('bixie/userprofile');
 
 		if (!$user->isAuthenticated()) {
 			return App::redirect('@user/login', ['redirect' => App::url()->current()]);
@@ -18,7 +18,7 @@ class ProfileController {
 		return [
 			'$view' => [
 				'title' => __('Your Profile'),
-				'name' => 'userprofile:views/profile.php'
+				'name' => 'bixie/userprofile/profile.php'
 			],
 			'$data' => [
 				'config' => $userprofile->config('default'),
@@ -41,7 +41,7 @@ class ProfileController {
 	public function registrationAction () {
 
 		$user = App::user();
-		$userprofile = App::module('userprofile');
+		$userprofile = App::module('bixie/userprofile');
 
 		if ($user->isAuthenticated()) {
 			return App::redirect('@userprofile');
@@ -50,7 +50,7 @@ class ProfileController {
 		return [
 			'$view' => [
 				'title' => __('User registration'),
-				'name' => 'userprofile:views/registration.php'
+				'name' => 'bixie/userprofile/registration.php'
 			],
 			'$data' => [
 				'config' => $userprofile->config('default'),
