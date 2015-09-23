@@ -46,13 +46,13 @@ var Fields =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(39)
-	module.exports.template = __webpack_require__(40)
+	module.exports = __webpack_require__(36)
+	module.exports.template = __webpack_require__(37)
 
 
 /***/ },
 
-/***/ 31:
+/***/ 28:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -114,10 +114,10 @@ var Fields =
 
 /***/ },
 
-/***/ 39:
+/***/ 36:
 /***/ function(module, exports, __webpack_require__) {
 
-	var profilefieldMixin = __webpack_require__(31);
+	var profilefieldMixin = __webpack_require__(28);
 
 	    module.exports = {
 
@@ -141,7 +141,7 @@ var Fields =
 
 /***/ },
 
-/***/ 40:
+/***/ 37:
 /***/ function(module, exports) {
 
 	module.exports = "<div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <label for=\"form-placeholder\" class=\"uk-form-label\">{{ 'Placeholder' | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input id=\"form-placeholder\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.data.placeholder\">\n        </div>\n    </div>\n\n    <div class=\"uk-form-row {{field.data.classSfx}}\">\n        <label for=\"{{ fieldid }}\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n            }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input type=\"text\" class=\"uk-form-width-large\" placeholder=\"{{ field.data.placeholder || '' | trans }}\"\n                   v-attr=\"name: fieldid, id: fieldid\"\n                   v-model=\"dataObject.value\"\n                   v-valid=\"required: fieldRequired\"/>\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please enter a value' | trans }}</p>\n        </div>\n    </div>";

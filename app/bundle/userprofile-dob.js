@@ -46,13 +46,13 @@ var Fields =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(33)
-	module.exports.template = __webpack_require__(34)
+	module.exports = __webpack_require__(30)
+	module.exports.template = __webpack_require__(31)
 
 
 /***/ },
 
-/***/ 31:
+/***/ 28:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -114,10 +114,10 @@ var Fields =
 
 /***/ },
 
-/***/ 33:
+/***/ 30:
 /***/ function(module, exports, __webpack_require__) {
 
-	var profilefieldMixin = __webpack_require__(31);
+	var profilefieldMixin = __webpack_require__(28);
 
 	    module.exports = {
 
@@ -228,7 +228,7 @@ var Fields =
 
 /***/ },
 
-/***/ 34:
+/***/ 31:
 /***/ function(module, exports) {
 
 	module.exports = "<div v-if=\"isAdmin\" class=\"uk-form-row {{field.data.classSfx}}\">\n        <span for=\"form-date-format\" class=\"uk-form-label\">{{ 'Date format' | trans }}</span>\n\n        <div class=\"uk-form-controls\">\n            <select class=\"uk-form-width-medium\" id=\"form-date-format\"\n                    options=\"dateFormats\" v-model=\"field.data.dateFormat\"></select>\n        </div>\n    </div>\n\n    <div v-if=\"isAdmin\" class=\"uk-form-row {{field.data.classSfx}}\">\n        <span for=\"form-min-age\" class=\"uk-form-label\">{{ 'Minimum age' | trans }}</span>\n\n        <div class=\"uk-form-controls\">\n            <select class=\"uk-form-width-small\" id=\"form-min-age\"\n                    options=\"numbersList(1,120)\"  v-model=\"field.data.minAge\"></select>\n        </div>\n    </div>\n\n    <div v-if=\"isAdmin\" class=\"uk-form-row {{field.data.classSfx}}\">\n        <span for=\"form-max-age\" class=\"uk-form-label\">{{ 'Maximum age' | trans }}</span>\n\n        <div class=\"uk-form-controls\">\n            <select class=\"uk-form-width-small\" id=\"form-max-age\"\n                    options=\"numbersList(1,120)\"  v-model=\"field.data.maxAge\"></select>\n        </div>\n    </div>\n\n    <div v-if=\"!isAdmin\" v-el=\"dob\" class=\"uk-form-row {{field.data.classSfx}}\">\n        <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n            }}</span>\n\n        <div class=\"uk-form-controls uk-flex\">\n            <div class=\"uk-grid uk-grid-small uk-grid-width-1-3 uk-width-1-1\">\n\n                <div>\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\n                        <select class=\"\" options=\"months\" v-model=\"month\"></select>\n                    </div>\n                </div>\n\n                <div v-class=\"uk-flex-order-first: field.data.dateFormat == 'DD-MM-YYYY'\">\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\n                        <select class=\"\" options=\"numbersList(1,31, 'Day')\" v-model=\"day\"></select>\n                    </div>\n                </div>\n\n                <div>\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\n                        <select class=\"\" options=\"years\" v-model=\"year\"></select>\n                    </div>\n                </div>\n\n            </div>\n        </div>\n    </div>";

@@ -46,13 +46,13 @@ var Fields =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(35)
-	module.exports.template = __webpack_require__(36)
+	module.exports = __webpack_require__(32)
+	module.exports.template = __webpack_require__(33)
 
 
 /***/ },
 
-/***/ 31:
+/***/ 28:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -114,10 +114,10 @@ var Fields =
 
 /***/ },
 
-/***/ 35:
+/***/ 32:
 /***/ function(module, exports, __webpack_require__) {
 
-	var profilefieldMixin = __webpack_require__(31);
+	var profilefieldMixin = __webpack_require__(28);
 
 	    module.exports = {
 
@@ -142,7 +142,7 @@ var Fields =
 
 /***/ },
 
-/***/ 36:
+/***/ 33:
 /***/ function(module, exports) {
 
 	module.exports = "<div v-show=\"isAdmin && field.data.multiple\" class=\"uk-form-row\">\n        <label for=\"form-placeholder\" class=\"uk-form-label\">{{ 'Size' | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input id=\"form-size\" class=\"uk-form-width-small uk-text-right\" type=\"number\" min=\"1\"\n                   v-model=\"field.data.size\" number>\n        </div>\n    </div>\n\n    <div class=\"uk-form-row {{field.data.classSfx}}\">\n        <label for=\"{{ fieldid }}\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n            }}</label>\n\n        <div class=\"uk-form-controls\">\n\n            <select v-if=\"field.data.multiple\" class=\"uk-form-width-large\" multiple=\"multiple\"\n                    options=\"field.options\"\n                    v-attr=\"name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false\"\n                    v-model=\"dataObject.value\"\n                    v-valid=\"required: fieldRequired\"></select>\n\n            <select v-if=\"!field.data.multiple\" class=\"uk-form-width-large\"\n                    options=\"field.options\"\n                    v-attr=\"name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false\"\n                    v-model=\"dataObject.value\"\n                    v-valid=\"required: fieldRequired\"></select>\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please select a value' | trans }}</p>\n        </div>\n    </div>";

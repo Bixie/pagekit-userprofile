@@ -46,13 +46,13 @@ var Fields =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(28)
-	module.exports.template = __webpack_require__(29)
+	module.exports = __webpack_require__(25)
+	module.exports.template = __webpack_require__(26)
 
 
 /***/ },
 
-/***/ 28:
+/***/ 25:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -90,7 +90,7 @@ var Fields =
 
 /***/ },
 
-/***/ 29:
+/***/ 26:
 /***/ function(module, exports) {
 
 	module.exports = "<profilefields fields=\"{{@ fields}}\"></profilefields>\r\n\r\n    <p v-show=\"!fields\" class=\"uk-text-center\"><i class=\"uk-icon-spinner uk-icon-spin\"></i></p>";

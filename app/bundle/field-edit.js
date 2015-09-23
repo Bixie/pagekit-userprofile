@@ -100,9 +100,9 @@ var Fields =
 
 	    components: {
 
-	        fieldbasic: __webpack_require__(13),
-	        fieldoptions: __webpack_require__(16),
-	        appearance: __webpack_require__(19)
+	        fieldbasic: __webpack_require__(12),
+	        fieldoptions: __webpack_require__(15),
+	        appearance: __webpack_require__(18)
 
 	    }
 
@@ -127,16 +127,15 @@ var Fields =
 /* 9 */,
 /* 10 */,
 /* 11 */,
-/* 12 */,
-/* 13 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(14)
-	module.exports.template = __webpack_require__(15)
+	module.exports = __webpack_require__(13)
+	module.exports.template = __webpack_require__(14)
 
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -148,21 +147,21 @@ var Fields =
 	    };
 
 /***/ },
-/* 15 */
+/* 14 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-horizontal uk-margin\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-label\" class=\"uk-form-label\">{{ 'Label' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-label\" class=\"uk-form-width-large\" type=\"text\" name=\"label\"\r\n                       v-model=\"field.label\" v-valid=\"required\">\r\n            </div>\r\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.label.invalid\">{{ 'Please enter a label' | trans }}</p>\r\n        </div>\r\n\r\n        <div v-if=\"type.required < 0\" class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Field required' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"required\" v-model=\"field.data.required\"> {{ 'Required' | trans\r\n                    }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div v-if=\"type.multiple < 0\" class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Multiple values' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"multiple\" v-model=\"field.data.multiple\"> {{ 'Multiple' | trans\r\n                    }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Restrict Access' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <p v-repeat=\"role: roles\" class=\"uk-form-controls-condensed\">\r\n                    <label><input type=\"checkbox\" value=\"{{ role.id }}\" v-checkbox=\"field.roles\" number> {{ role.name\r\n                        }}</label>\r\n                </p>\r\n            </div>\r\n        </div>\r\n\r\n        <input type=\"hidden\" v-model=\"field.priority\"/>\r\n    </div>";
 
 /***/ },
-/* 16 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(17)
-	module.exports.template = __webpack_require__(18)
+	module.exports = __webpack_require__(16)
+	module.exports.template = __webpack_require__(17)
 
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -253,21 +252,21 @@ var Fields =
 	    };
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-horizontal\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Manage options' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <ul class=\"uk-nestable uk-margin-remove\" v-el=\"optionsNestable\" v-show=\"field.options.length\">\r\n                    <selectoption v-repeat=\"selectoption: field.options\"></selectoption>\r\n                </ul>\r\n                <button type=\"button\" class=\"uk-button uk-button-primary uk-button-small uk-margin\"\r\n                        v-on=\"click: addFieldoption\">{{ 'Add option' | trans }}\r\n                </button>\r\n            </div>\r\n        </div>\r\n\r\n    </div>";
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(20)
-	module.exports.template = __webpack_require__(21)
+	module.exports = __webpack_require__(19)
+	module.exports.template = __webpack_require__(20)
 
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -279,7 +278,7 @@ var Fields =
 	    };
 
 /***/ },
-/* 21 */
+/* 20 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-horizontal\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Label' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"hide-label\" v-model=\"field.data.hide_label\"> {{ 'Hide Label' |\r\n                    trans }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-class\" class=\"uk-form-label\">{{ 'Class suffix' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-class\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.data.classSfx\">\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\" v-show=\"field.data.required\">\r\n            <label for=\"form-required-error\" class=\"uk-form-label\">{{ 'Required error message' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-required-error\" class=\"uk-form-width-large\" type=\"text\"\r\n                       v-model=\"field.data.requiredError\">\r\n            </div>\r\n        </div>\r\n\r\n    </div>";

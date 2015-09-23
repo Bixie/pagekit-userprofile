@@ -46,16 +46,16 @@ var Fields =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(30)
-	module.exports.template = __webpack_require__(32)
+	module.exports = __webpack_require__(27)
+	module.exports.template = __webpack_require__(29)
 
 
 /***/ },
 
-/***/ 30:
+/***/ 27:
 /***/ function(module, exports, __webpack_require__) {
 
-	var profilefieldMixin = __webpack_require__(31);
+	var profilefieldMixin = __webpack_require__(28);
 
 	    module.exports = {
 
@@ -79,7 +79,7 @@ var Fields =
 
 /***/ },
 
-/***/ 31:
+/***/ 28:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -141,7 +141,7 @@ var Fields =
 
 /***/ },
 
-/***/ 32:
+/***/ 29:
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-row {{field.data.classSfx}}\">\r\n        <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-form-controls-text\">\r\n            <p v-repeat=\"option: field.options\" class=\"uk-form-controls-condensed\">\r\n                <label><input type=\"checkbox\" value=\"{{ option.value }}\"\r\n                              v-checkbox=\"dataObject.value\"> {{ option.text }}</label>\r\n            </p>\r\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\r\n                'Please select a value' | trans }}</p>\r\n        </div>\r\n    </div>";

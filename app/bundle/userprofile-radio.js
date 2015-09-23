@@ -46,13 +46,13 @@ var Fields =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(37)
-	module.exports.template = __webpack_require__(38)
+	module.exports = __webpack_require__(34)
+	module.exports.template = __webpack_require__(35)
 
 
 /***/ },
 
-/***/ 31:
+/***/ 28:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -114,10 +114,10 @@ var Fields =
 
 /***/ },
 
-/***/ 37:
+/***/ 34:
 /***/ function(module, exports, __webpack_require__) {
 
-	var profilefieldMixin = __webpack_require__(31);
+	var profilefieldMixin = __webpack_require__(28);
 
 	    module.exports = {
 
@@ -141,7 +141,7 @@ var Fields =
 
 /***/ },
 
-/***/ 38:
+/***/ 35:
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-row {{field.data.classSfx}}\">\r\n        <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-form-controls-text\">\r\n            <p v-repeat=\"option: field.options\" class=\"uk-form-controls-condensed\">\r\n                <label><input type=\"radio\" value=\"{{ option.value }}\"\r\n                              v-model=\"dataObject.value\"> {{ option.text }}</label>\r\n            </p>\r\n        </div>\r\n    </div>";
