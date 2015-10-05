@@ -7,7 +7,7 @@
 
             <div class="uk-form-controls">
                 <input id="form-label" class="uk-form-width-large" type="text" name="label"
-                       v-model="field.label" v-valid="required">
+                       v-model="field.label" v-validate="required">
             </div>
             <p class="uk-form-help-block uk-text-danger" v-show="form.label.invalid">{{ 'Please enter a label' | trans }}</p>
         </div>

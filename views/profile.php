@@ -15,7 +15,7 @@ $view->script('userprofile', 'userprofile:app/bundle/userprofile.js', ['vue', 'u
 
 				<div class="uk-form-controls">
 					<input id="form-name" class="uk-form-width-large" type="text" name="name" v-model="user.name"
-						   v-valid="required">
+						   v-validate="required">
 
 					<p class="uk-form-help-block uk-text-danger" v-show="form.name.invalid">{{ 'Name cannot be blank.' |
 						trans }}</p>
@@ -27,7 +27,7 @@ $view->script('userprofile', 'userprofile:app/bundle/userprofile.js', ['vue', 'u
 
 				<div class="uk-form-controls">
 					<input id="form-email" class="uk-form-width-large" type="text" name="email" v-model="user.email"
-						   v-valid="email, required">
+						   v-validate="email, required">
 
 					<p class="uk-form-help-block uk-text-danger" v-show="form.email.invalid">{{ 'Invalid Email.' | trans
 						}}</p>
