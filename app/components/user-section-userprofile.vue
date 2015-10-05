@@ -39,6 +39,6 @@
 
     };
 
-    window.Users.components['user-section-userprofile'] = module.exports;
+    window.User.components['user-section-userprofile:profile'] = module.exports;
 
 </script>
