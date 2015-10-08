@@ -2,13 +2,13 @@
 $view->script('userprofile', 'bixie/userprofile:app/bundle/userprofile.js', ['vue', 'userprofile-profilefields', 'uikit-form-password']);
 ?>
 
-<form id="userprofile-profile" class="uk-article uk-form uk-form-stacked" name="form" v-validator="form" v-on="submit: save | valid">
+<form id="userprofile-profile" class="uk-article uk-form uk-form-stacked" name="form" v-validator="form" v-on="submit: save | valid" v-cloak>
 	<div class="uk-grid">
 		<div class="uk-width-medium-3-4">
 			<h1 class="uk-article-title">{{ 'Your Profile' | trans }}</h1>
 
-			<div class="uk-alert uk-alert-success" v-show="message">{{ message }}</div>
-			<div class="uk-alert uk-alert-danger" v-show="error">{{ error }}</div>
+			<div class="uk-alert uk-alert-success" v-if="message">{{ message }}</div>
+			<div class="uk-alert uk-alert-danger" v-if="error">{{ error }}</div>
 
 			<div class="uk-form-row">
 				<label for="form-name" class="uk-form-label">{{ 'Name' | trans }}</label>
