@@ -46,7 +46,7 @@ return [
 
 	'resources' => [
 
-		'userprofile:' => ''
+		'bixie/userprofile:' => ''
 
 	],
 
@@ -99,15 +99,15 @@ return [
 		},
 
 		'view.scripts' => function ($event, $scripts) use ($app) {
-			$scripts->register('userprofile-settings', 'userprofile:app/bundle/settings.js', '~extensions');
-			$scripts->register('link-userprofile', 'userprofile:app/bundle/link-userprofile.js', '~panel-link');
-			$scripts->register('user-section-userprofile', 'userprofile:app/bundle/user-section-userprofile.js', ['~user-edit', 'userprofile-profilefields']);
+			$scripts->register('userprofile-settings', 'bixie/userprofile:app/bundle/settings.js', '~extensions');
+			$scripts->register('link-userprofile', 'bixie/userprofile:app/bundle/link-userprofile.js', '~panel-link');
+			$scripts->register('user-section-userprofile', 'bixie/userprofile:app/bundle/user-section-userprofile.js', ['~user-edit', 'userprofile-profilefields']);
 			//register fields
-			$scripts->register('userprofile-profilefields', 'userprofile:app/bundle/userprofile-profilefields.js', 'vue');
+			$scripts->register('userprofile-profilefields', 'bixie/userprofile:app/bundle/userprofile-profilefields.js', 'vue');
 			$userprofile = $app->module('bixie/userprofile');
 			foreach ($userprofile->getTypes() as $type) {
 				$scripts->register(
-					'userprofile-' . $type['id'], 'userprofile:app/bundle/userprofile-' . $type['id'] . '.js',
+					'userprofile-' . $type['id'], 'bixie/userprofile:app/bundle/userprofile-' . $type['id'] . '.js',
 					array_merge(['~userprofile-profilefields'], $type['dependancies'])
 				);
 			}

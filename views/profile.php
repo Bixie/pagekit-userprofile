@@ -1,8 +1,8 @@
 <?php
-$view->script('userprofile', 'userprofile:app/bundle/userprofile.js', ['vue', 'userprofile-profilefields', 'uikit-form-password']);
+$view->script('userprofile', 'bixie/userprofile:app/bundle/userprofile.js', ['vue', 'userprofile-profilefields', 'uikit-form-password']);
 ?>
 
-<form id="userprofile-profile" class="uk-article uk-form uk-form-stacked" name="form" v-on="submit: save | valid">
+<form id="userprofile-profile" class="uk-article uk-form uk-form-stacked" name="form" v-validator="form" v-on="submit: save | valid">
 	<div class="uk-grid">
 		<div class="uk-width-medium-3-4">
 			<h1 class="uk-article-title">{{ 'Your Profile' | trans }}</h1>

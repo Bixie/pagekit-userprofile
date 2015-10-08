@@ -10,7 +10,7 @@
 var fieldOptions;
 window.Profilefields = module.exports = {
 
-    props: ['fields', 'editField'],
+    props: ['fields', 'editField', 'form'],
 
     inherit: true,
 

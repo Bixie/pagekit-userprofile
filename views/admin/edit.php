@@ -1,6 +1,6 @@
-<?php $view->script('field-edit', 'userprofile:app/bundle/field-edit.js', ['vue', 'userprofile-profilefields', 'uikit-nestable']); ?>
+<?php $view->script('field-edit', 'bixie/userprofile:app/bundle/field-edit.js', ['vue', 'userprofile-profilefields', 'uikit-nestable']); ?>
 
-<form id="field-edit" class="uk-form" name="form" v-on="submit: save | valid" v-cloak>
+<form id="field-edit" class="uk-form" name="form" v-on="submit: save | validate" v-cloak>
 
 	<div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
 		<div data-uk-margin>
@@ -28,16 +28,16 @@
 
 	<div class="uk-switcher uk-margin" v-el="content">
 		<div>
-			<fieldbasic field="{{@ field }}"></fieldbasic>
+			<fieldbasic field="{{@ field }}" form="{{ form }}"></fieldbasic>
 			<div class="uk-form-horizontal uk-margin" v-show="!type.hasOptions || field.options.length">
-				<profilefields edit-field="{{@ field.type }}"></profilefields>
+				<profilefields edit-field="{{@ field.type }}" form="{{ form }}"></profilefields>
 			</div>
 		</div>
 		<div>
-			<fieldoptions v-show="type.hasOptions" field="{{@ field }}"></fieldoptions>
+			<fieldoptions v-show="type.hasOptions" field="{{@ field }}" form="{{ form }}"></fieldoptions>
 		</div>
 		<div>
-			<appearance field="{{@ field }}"></appearance>
+			<appearance field="{{@ field }}" form="{{ form }}"></appearance>
 		</div>
 	</div>
 
