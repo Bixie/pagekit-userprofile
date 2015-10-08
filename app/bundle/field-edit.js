@@ -142,7 +142,7 @@ var Fields =
 
 	        inherit: true,
 
-	        props: ['field']
+	        props: ['field', 'form']
 
 	    };
 
@@ -166,7 +166,7 @@ var Fields =
 
 	module.exports = {
 
-	        props: ['field'],
+	        props: ['field', 'form'],
 
 	        methods: {
 	            addFieldoption: function () {
