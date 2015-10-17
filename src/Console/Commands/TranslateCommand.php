@@ -7,12 +7,17 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class UserprofileTranslateCommand extends Command
+class TranslateCommand extends Command
 {
     /**
      * {@inheritdoc}
      */
     protected $name = 'userprofile:translate';
+
+	/**
+	 * {@inheritdoc}
+	 */
+	protected $extension = 'userprofile';
 
     /**
      * {@inheritdoc}
@@ -32,28 +37,44 @@ class UserprofileTranslateCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $locale = $this->argument('locale') ?: 'en_US';
-		$extension = 'userprofile';
+		$locale = $this->argument('locale') ?: 'en_US';
+		$rootpath = $this->container->path();
 
-		$filename = $this->container->path() . '/packages/bixie/'.$extension.'/languages/'.$locale.'/messages.php';
+		$filename = $rootpath . '/packages/bixie/'.$this->extension.'/languages/'.$locale.'/messages.php';
 		if (!is_dir(dirname($filename))) {
 			mkdir(dirname($filename), 0755, true);
 		}
 		//get existing translations
-		$system = include($this->container->path() . '/app/system/languages/'.$locale.'/messages.php');
+		$system = include($rootpath . '/app/system/languages/'.$locale.'/messages.php');
 		$existing = [];
-		if(file_exists($filename)) {
-			$existing = include($filename);
+		//other packages
+		$paths = glob($rootpath . '/packages/bixie/*/languages/'.$locale.'/messages.php', GLOB_NOSORT) ?: [];
+		foreach ($paths as $p) {
+			if ($p != $filename) {
+				$existing = array_merge($existing, include($p));
+			}
 		}
-
-		//get strings
-		$potString = file_get_contents($this->container->path() . '/packages/bixie/'.$extension.'/languages/messages.pot');
-		$potString = str_replace(['\"%', '%\"', '\"'], ["'%", "%'", '_QQ_'], $potString); //avoid nasty regex
-		$pattern = '/msgid\s\"(.*?)\"/';
-		preg_match_all($pattern, $potString, $matches);
+		//own translations
+		if(file_exists($filename)) {
+			$existing = array_merge($existing, include($filename));
+		}
 
 		//create translations
 		$translations = [];
+		//insert extra strings
+		foreach (['base', 'fields'] as $extra) {
+			if (file_exists($rootpath . '/packages/bixie/' . $this->extension . '/languages/' . $extra . '.php')) {
+				$extraStrings = include($rootpath . '/packages/bixie/' . $this->extension . '/languages/' . $extra . '.php');
+				foreach ($extraStrings as $string) {
+					$translations[$string] = $locale != 'en_US' && isset($existing[$string])? $existing[$string] : $string;
+				}
+			}
+		}
+		//get pot strings
+		$potString = file_get_contents($rootpath . '/packages/bixie/'.$this->extension.'/languages/messages.pot');
+		$potString = str_replace(['\"%', '%\"', '\"'], ["'%", "%'", '_QQ_'], $potString); //avoid nasty regex
+		$pattern = '/msgid\s\"(.*?)\"/';
+		preg_match_all($pattern, $potString, $matches);
 		foreach ($matches[1] as $string) {
 			$string = str_replace('_QQ_', '"', $string);
 			if (!$string || isset($system[$string])) continue;
@@ -64,8 +85,8 @@ class UserprofileTranslateCommand extends Command
 		$content  = sprintf('<?php return %s;', var_export($translations, true));
 		file_put_contents($filename, $content);
 
-		$this->line(sprintf("Extension %s: %d strings saved", $extension, count($translations)));
+		$this->line(sprintf("Extension %s: %d strings saved", $this->extension, count($translations)));
 
-    }
+	}
 
 }

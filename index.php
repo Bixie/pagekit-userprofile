@@ -131,7 +131,7 @@ return [
 
 		'console.init' => function ($event, $console) {
 
-			$console->add(new Bixie\Userprofile\Console\Commands\UserprofileTranslateCommand());
+			$console->add(new Bixie\Userprofile\Console\Commands\TranslateCommand());
 
 		}
 
