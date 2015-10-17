@@ -127,6 +127,12 @@ return [
 					}
 				}
 			}
+		},
+
+		'console.init' => function ($event, $console) {
+
+			$console->add(new Bixie\Userprofile\Console\Commands\UserprofileTranslateCommand());
+
 		}
 
 	]

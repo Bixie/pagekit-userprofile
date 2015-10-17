@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pagekit UNKNOWN (bixie/userprofile, messages)\n"
-"POT-Creation-Date: 2015-09-10 10:32+0000\n"
+"POT-Creation-Date: 2015-10-17 10:55+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,6 +10,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Label"
+msgstr ""
+
+msgid "Manage options"
+msgstr ""
+
+msgid "%type% saved."
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "Userprofile Settings"
+msgstr ""
+
+msgid "Date format"
+msgstr ""
+
+msgid "Month"
+msgstr ""
+
+msgid "January"
+msgstr ""
+
+msgid "February"
+msgstr ""
+
+msgid "March"
+msgstr ""
+
+msgid "April"
+msgstr ""
+
+msgid "May"
+msgstr ""
+
+msgid "June"
+msgstr ""
+
+msgid "July"
+msgstr ""
+
+msgid "August"
+msgstr ""
+
+msgid "September"
+msgstr ""
+
+msgid "October"
+msgstr ""
+
+msgid "November"
+msgstr ""
+
+msgid "December"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Profile Updated"
 msgstr ""
 
 msgid "Hide Label"
@@ -39,22 +102,13 @@ msgstr ""
 msgid "Restrict Access"
 msgstr ""
 
-msgid "Manage options"
-msgstr ""
-
 msgid "Add option"
-msgstr ""
-
-msgid "View"
 msgstr ""
 
 msgid "User Profile"
 msgstr ""
 
 msgid "User Registration"
-msgstr ""
-
-msgid "Userprofile Settings"
 msgstr ""
 
 msgid "Save"
@@ -66,7 +120,10 @@ msgstr ""
 msgid "Redirect Pagekit registration page"
 msgstr ""
 
-msgid "Date format"
+msgid "Checkboxes"
+msgstr ""
+
+msgid "Date of birth"
 msgstr ""
 
 msgid "Minimum age"
@@ -75,10 +132,13 @@ msgstr ""
 msgid "Maximum age"
 msgstr ""
 
-msgid "Size"
+msgid "Pulldown"
 msgstr ""
 
-msgid "Placeholder"
+msgid "Radio bullets"
+msgstr ""
+
+msgid "Textfield"
 msgstr ""
 
 msgid "Field not found."
@@ -163,5 +223,8 @@ msgid "Username cannot be blank."
 msgstr ""
 
 msgid "Password"
+msgstr ""
+
+msgid "Register"
 msgstr ""
 
