@@ -89,7 +89,7 @@
                     safeValue: function (checkDups) {
                         this.selectoption.value = _.escape(_.snakeCase(this.selectoption.value));
                         if (checkDups) {
-                            this.checkDuplicates();
+                            this.$parent.checkDuplicates();
                         }
                     }
                 },
@@ -99,7 +99,7 @@
                         if (this.selectoption.attachValue) {
                             this.selectoption.value = _.escape(_.snakeCase(value));
                         }
-                        this.checkDuplicates();
+                        this.$parent.checkDuplicates();
                     }
 
                 }

@@ -360,7 +360,7 @@ var Fields =
 	                safeValue: function safeValue(checkDups) {
 	                    this.selectoption.value = _.escape(_.snakeCase(this.selectoption.value));
 	                    if (checkDups) {
-	                        this.checkDuplicates();
+	                        this.$parent.checkDuplicates();
 	                    }
 	                }
 	            },
@@ -370,7 +370,7 @@ var Fields =
 	                    if (this.selectoption.attachValue) {
 	                        this.selectoption.value = _.escape(_.snakeCase(value));
 	                    }
-	                    this.checkDuplicates();
+	                    this.$parent.checkDuplicates();
 	                }
 
 	            }
