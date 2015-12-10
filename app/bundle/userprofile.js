@@ -47,12 +47,19 @@ var Fields =
 
 	module.exports = {
 
-	    data: window.$data,
+	    el: '#userprofile-profile',
+
+	    data: function () {
+	        return _.merge({
+	            message: '',
+	            error: '',
+	            form: {}
+	        }, window.$data);
+	    },
 
 	    methods: {
 
-	        save: function (e) {
-	            e.preventDefault();
+	        save: function () {
 
 	            this.$set('message', '');
 	            this.$set('error', '');
@@ -65,20 +72,11 @@ var Fields =
 	            });
 	        }
 
-	    },
-
-	    components: {
-	    },
-
-	    computed: {}
+	    }
 
 	};
 
-	$(function () {
-
-	    new Vue(module.exports).$mount('#userprofile-profile');
-
-	});
+	Vue.ready(module.exports);
 
 
 /***/ }

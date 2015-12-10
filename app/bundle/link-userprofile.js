@@ -47,29 +47,61 @@ var Fields =
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(21)
-	module.exports.template = __webpack_require__(22)
 
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(22)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\userprofile\\app\\components\\link-userprofile.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
 
 /***/ },
 
 /***/ 21:
 /***/ function(module, exports) {
 
+	'use strict';
+
+	// <template>
+
+	//     <div class="uk-form-row">
+	//         <label for="form-link-userprofile" class="uk-form-label">{{ 'View' | trans }}</label>
+	//         <div class="uk-form-controls">
+	//             <select id="form-link-userprofile" class="uk-width-1-1" v-model="link">
+	//                 <option value="@userprofile">{{ 'User Profile' | trans }}</option>
+	//                 <option value="@userprofile/registration">{{ 'User Registration' | trans }}</option>
+	//             </select>
+	//         </div>
+	//     </div>
+
+	// </template>
+
+	// <script>
+
 	module.exports = {
 
-	        link: {
-	            label: 'Userprofile'
-	        },
+	    link: {
+	        label: 'Userprofile'
+	    },
 
-	        props: ['link'],
+	    props: ['link'],
 
-	        ready: function () {
-	            this.$set('link', '@userprofile');
-	        }
+	    ready: function ready() {
+	        this.$set('link', '@userprofile');
+	    }
 
-	    };
+	};
 
-	    window.Links.components['userprofile'] = module.exports;
+	window.Links.components['userprofile'] = module.exports;
+
+	// </script>
 
 /***/ },
 

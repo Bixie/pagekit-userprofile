@@ -1,4 +1,6 @@
-module.exports = Vue.extend({
+module.exports = {
+
+    el: '#field-edit',
 
     data: function () {
         return _.merge({
@@ -7,7 +9,8 @@ module.exports = Vue.extend({
                     classSfx: '',
                     required: false
                 }
-            }
+            },
+            form: {}
         }, window.$data);
     },
 
@@ -18,17 +21,12 @@ module.exports = Vue.extend({
 
     ready: function () {
         this.Fields = this.$resource('api/userprofile/field/:id');
-        this.tab = UIkit.tab(this.$$.tab, {connect: this.$$.content});
-    },
-
-    computed: {
+        this.tab = UIkit.tab(this.$els.tab, {connect: this.$els.content});
     },
 
     methods: {
 
-        save: function (e) {
-
-            e.preventDefault();
+        save: function () {
 
             var data = {field: this.field};
 
@@ -59,10 +57,6 @@ module.exports = Vue.extend({
 
     }
 
-});
+};
 
-$(function () {
-
-    (new module.exports()).$mount('#field-edit');
-
-});
+Vue.ready(module.exports);

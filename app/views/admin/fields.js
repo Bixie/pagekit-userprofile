@@ -1,10 +1,13 @@
 module.exports = {
 
+    el: '#userprofile-fields',
+
     data: function () {
         return _.merge({
             users: false,
             pages: 0,
             count: '',
+            fields: [],
             types: [],
             selected: []
         }, window.$data);
@@ -82,14 +85,17 @@ module.exports = {
 
         field: {
 
-            inherit: true,
+            props: ['field'],
             template: '#field',
-
             computed: {
                 type: function () {
-                    return this.getType(this.field);
+                    return this.$root.getType(this.field);
                 }
-
+            },
+            methods: {
+                isSelected: function (field) {
+                    return this.$root.isSelected(field);
+                }
             }
         }
 
@@ -102,7 +108,7 @@ module.exports = {
             var vm = this;
 
             // TODO this is still buggy
-            UIkit.nestable(this.$$.nestable, {
+            UIkit.nestable(this.$els.nestable, {
                 maxDepth: 1,
                 group: 'userprofile.fields'
             }).off('change.uk.nestable').on('change.uk.nestable', function (e, nestable, el, type) {
@@ -132,9 +138,6 @@ module.exports = {
 
 };
 
-$(function () {
 
-    new Vue(module.exports).$mount('#userprofile-fields');
-
-});
+Vue.ready(module.exports);
 

@@ -47,8 +47,20 @@ var Fields =
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(36)
-	module.exports.template = __webpack_require__(37)
 
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(37)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\userprofile\\app\\fields\\text.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
 
 /***/ },
 
@@ -57,7 +69,7 @@ var Fields =
 
 	module.exports = {
 
-	    props: ['isAdmin'],
+	    props: ['isAdmin', 'profilevalues', 'user', 'field', 'form'],
 
 	    methods: {
 	        getDataObject: function (defaultValue) {
@@ -96,7 +108,7 @@ var Fields =
 	            return this.profilevalues[index];
 	        },
 	        fieldInvalid: function (form) {
-	            return form[this.fieldid].invalid;
+	            return false; //todo form[this.fieldid].invalid;
 	        }
 
 	    },
@@ -117,34 +129,64 @@ var Fields =
 /***/ 36:
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	// <template>
+
+	//     <div v-if="isAdmin" class="uk-form-row">
+	//         <label for="form-placeholder" class="uk-form-label">{{ 'Placeholder' | trans }}</label>
+
+	//         <div class="uk-form-controls">
+	//             <input id="form-placeholder" class="uk-form-width-large" type="text" v-model="field.data.placeholder">
+	//         </div>
+	//     </div>
+
+	//     <div class="uk-form-row {{field.data.classSfx}}">
+	//         <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
+	//             }}</label>
+
+	//         <div class="uk-form-controls">
+	//             <input type="text" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
+	//                    :attr="{name: fieldid, id: fieldid, required: fieldRequired}"
+	//                    v-model="dataObject.value"/>
+
+	//             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
+	//                 'Please enter a value' | trans }}</p>
+	//         </div>
+	//     </div>
+
+	// </template>
+
+	// <script>
 	var profilefieldMixin = __webpack_require__(28);
 
-	    module.exports = {
+	module.exports = {
 
-	        inherit: true,
+	    mixins: [profilefieldMixin],
 
-	        mixins: [profilefieldMixin],
+	    data: function data() {
+	        return {
+	            dataObject: {},
+	            fieldid: _.uniqueId('profilefield_')
+	        };
+	    },
 
-	        data: function () {
-	            return {
-	                fieldid: _.uniqueId('profilefield_')
-	            };
-	        },
+	    created: function created() {
+	        this.$set('dataObject', this.getDataObject(this.field.data.value || ''));
+	    }
 
-	        created: function () {
-	            this.$set('dataObject', this.getDataObject(this.field.data.value || ''));
-	        }
+	};
 
-	    };
+	window.Profilefields.components['text'] = module.exports;
 
-	    window.Profilefields.components['text'] = module.exports;
+	// </script>
 
 /***/ },
 
 /***/ 37:
 /***/ function(module, exports) {
 
-	module.exports = "<div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <label for=\"form-placeholder\" class=\"uk-form-label\">{{ 'Placeholder' | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input id=\"form-placeholder\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.data.placeholder\">\n        </div>\n    </div>\n\n    <div class=\"uk-form-row {{field.data.classSfx}}\">\n        <label for=\"{{ fieldid }}\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n            }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input type=\"text\" class=\"uk-form-width-large\" placeholder=\"{{ field.data.placeholder || '' | trans }}\"\n                   v-attr=\"name: fieldid, id: fieldid\"\n                   v-model=\"dataObject.value\"\n                   v-validate=\"required: fieldRequired\"/>\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please enter a value' | trans }}</p>\n        </div>\n    </div>";
+	module.exports = "<div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <label for=\"form-placeholder\" class=\"uk-form-label\">{{ 'Placeholder' | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input id=\"form-placeholder\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.data.placeholder\">\n        </div>\n    </div>\n\n    <div class=\"uk-form-row {{field.data.classSfx}}\">\n        <label :for=\"fieldid\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n            }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input type=\"text\" class=\"uk-form-width-large\" placeholder=\"{{ field.data.placeholder || '' | trans }}\"\n                   :attr=\"{name: fieldid, id: fieldid, required: fieldRequired}\"\n                   v-model=\"dataObject.value\"/>\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please enter a value' | trans }}</p>\n        </div>\n    </div>";
 
 /***/ }
 

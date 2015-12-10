@@ -46,26 +46,60 @@ var Profilefields =
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(2)
-	module.exports.template = __webpack_require__(3)
 
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(3)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\userprofile\\app\\components\\profilefields.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
 
 /***/ },
 /* 1 */,
 /* 2 */
 /***/ function(module, exports) {
 
+	'use strict';
+
+	// <template>
+	//     <div>
+
+	//         <component v-if="!isAdmin" v-for="field in fields | orderBy 'priority'"
+	//                    :is="field.type"
+	//                    :profilevalues="profilevalues"
+	//                    :user="user"
+	//                    :field="field"
+	//                    :form="form"></component>
+
+	//         <component v-if="isAdmin" :is="editField"
+	//                    :is-admin="true"
+	//                    :editField="editField"
+	//                    :profilevalues="profilevalues"
+	//                    :user="user"
+	//                    :field="field"
+	//                    :form="form"></component>
+
+	//     </div>
+	// </template>
+
+	// <script>
 	var fieldOptions;
 	window.Profilefields = module.exports = {
 
-	    props: ['fields', 'editField', 'form'],
-
-	    inherit: true,
+	    props: ['fields', 'field', 'profilevalues', 'user', 'editField', 'form'],
 
 	    components: {},
 
 	    computed: {
-	        isAdmin: function () {
-	            return !!this.editField
+	        isAdmin: function isAdmin() {
+	            return !!this.editField;
 	        }
 	    }
 
@@ -75,11 +109,13 @@ var Profilefields =
 	    resolve(module.exports);
 	});
 
+	// </script>
+
 /***/ },
 /* 3 */
 /***/ function(module, exports) {
 
-	module.exports = "<component v-if=\"!isAdmin\" v-repeat=\"field: fields | orderBy 'priority'\" is=\"{{ field.type }}\"></component>\n\n    <component v-if=\"isAdmin\" is=\"{{ editField }}\" is-admin=\"true\"></component>";
+	module.exports = "<div>\n\n        <component v-if=\"!isAdmin\" v-for=\"field in fields | orderBy 'priority'\"\n                   :is=\"field.type\"\n                   :profilevalues=\"profilevalues\"\n                   :user=\"user\"\n                   :field=\"field\"\n                   :form=\"form\"></component>\n\n        <component v-if=\"isAdmin\" :is=\"editField\"\n                   :is-admin=\"true\"\n                   :editField=\"editField\"\n                   :profilevalues=\"profilevalues\"\n                   :user=\"user\"\n                   :field=\"field\"\n                   :form=\"form\"></component>\n\n    </div>";
 
 /***/ }
 /******/ ]);

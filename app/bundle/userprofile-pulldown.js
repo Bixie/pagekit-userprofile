@@ -47,8 +47,20 @@ var Fields =
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(32)
-	module.exports.template = __webpack_require__(33)
 
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(33)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\userprofile\\app\\fields\\pulldown.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
 
 /***/ },
 
@@ -57,7 +69,7 @@ var Fields =
 
 	module.exports = {
 
-	    props: ['isAdmin'],
+	    props: ['isAdmin', 'profilevalues', 'user', 'field', 'form'],
 
 	    methods: {
 	        getDataObject: function (defaultValue) {
@@ -96,7 +108,7 @@ var Fields =
 	            return this.profilevalues[index];
 	        },
 	        fieldInvalid: function (form) {
-	            return form[this.fieldid].invalid;
+	            return false; //todo form[this.fieldid].invalid;
 	        }
 
 	    },
@@ -117,35 +129,77 @@ var Fields =
 /***/ 32:
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	// <template>
+
+	//     <div v-if="isAdmin && field.data.multiple" class="uk-form-row">
+	//         <label for="form-size" class="uk-form-label">{{ 'Size' | trans }}</label>
+
+	//         <div class="uk-form-controls">
+	//             <input id="form-size" class="uk-form-width-small uk-text-right" type="number" min="1"
+	//                    v-model="field.data.size" number>
+	//         </div>
+	//     </div>
+
+	//     <div class="uk-form-row {{field.data.classSfx}}">
+	//         <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
+	//             }}</label>
+
+	//         <div class="uk-form-controls">
+
+	//             <select v-if="field.data.multiple" class="uk-form-width-large" multiple="multiple"
+	//                     :attr="{name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false, required: fieldRequired}"
+	//                     v-model="dataObject.value">
+	//                 <option v-for="option in field.options" :value="option.value">{{ option.text }}</option>
+	//             </select>
+
+	//             <select v-if="!field.data.multiple" class="uk-form-width-large"
+	//                     :attr="{name: fieldid, id: fieldid, size:(field.data.size > 1 ? field.data.size : false), required: fieldRequired}"
+	//                     v-model="dataObject.value">
+	//                 <option v-for="option in field.options" :value="option.value">{{ option.text }}</option>
+	//             </select>
+
+	//             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
+	//                 'Please select a value' | trans }}</p>
+	//         </div>
+	//     </div>
+
+	// </template>
+
+	// <script>
 	var profilefieldMixin = __webpack_require__(28);
 
-	    module.exports = {
+	module.exports = {
 
-	        inherit: true,
+	    inherit: true,
 
-	        mixins: [profilefieldMixin],
+	    mixins: [profilefieldMixin],
 
-	        data: function () {
-	            return {
-	                fieldid: _.uniqueId('field_')
-	            };
-	        },
+	    data: function data() {
+	        return {
+	            dataObject: {},
+	            fieldid: _.uniqueId('field_')
+	        };
+	    },
 
-	        created: function () {
-	            var defaultValue = this.field.data.multiple ? [] : this.field.options.length ? this.field.options[0].value : '';
-	            this.$set('dataObject', this.getDataObject(this.field.data.value || defaultValue));
-	        }
+	    created: function created() {
+	        var defaultValue = this.field.data.multiple ? [] : this.field.options.length ? this.field.options[0].value : '';
+	        this.$set('dataObject', this.getDataObject(this.field.data.value || defaultValue));
+	    }
 
-	    };
+	};
 
-	    window.Profilefields.components['pulldown'] = module.exports;
+	window.Profilefields.components['pulldown'] = module.exports;
+
+	// </script>
 
 /***/ },
 
 /***/ 33:
 /***/ function(module, exports) {
 
-	module.exports = "<div v-show=\"isAdmin && field.data.multiple\" class=\"uk-form-row\">\n        <label for=\"form-placeholder\" class=\"uk-form-label\">{{ 'Size' | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input id=\"form-size\" class=\"uk-form-width-small uk-text-right\" type=\"number\" min=\"1\"\n                   v-model=\"field.data.size\" number>\n        </div>\n    </div>\n\n    <div class=\"uk-form-row {{field.data.classSfx}}\">\n        <label for=\"{{ fieldid }}\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n            }}</label>\n\n        <div class=\"uk-form-controls\">\n\n            <select v-if=\"field.data.multiple\" class=\"uk-form-width-large\" multiple=\"multiple\"\n                    options=\"field.options\"\n                    v-attr=\"name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false\"\n                    v-model=\"dataObject.value\"\n                    v-validate=\"required: fieldRequired\"></select>\n\n            <select v-if=\"!field.data.multiple\" class=\"uk-form-width-large\"\n                    options=\"field.options\"\n                    v-attr=\"name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false\"\n                    v-model=\"dataObject.value\"\n                    v-validate=\"required: fieldRequired\"></select>\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please select a value' | trans }}</p>\n        </div>\n    </div>";
+	module.exports = "<div v-if=\"isAdmin && field.data.multiple\" class=\"uk-form-row\">\n        <label for=\"form-size\" class=\"uk-form-label\">{{ 'Size' | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input id=\"form-size\" class=\"uk-form-width-small uk-text-right\" type=\"number\" min=\"1\"\n                   v-model=\"field.data.size\" number>\n        </div>\n    </div>\n\n    <div class=\"uk-form-row {{field.data.classSfx}}\">\n        <label :for=\"fieldid\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n            }}</label>\n\n        <div class=\"uk-form-controls\">\n\n            <select v-if=\"field.data.multiple\" class=\"uk-form-width-large\" multiple=\"multiple\"\n                    :attr=\"{name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false, required: fieldRequired}\"\n                    v-model=\"dataObject.value\">\n                <option v-for=\"option in field.options\" :value=\"option.value\">{{ option.text }}</option>\n            </select>\n\n            <select v-if=\"!field.data.multiple\" class=\"uk-form-width-large\"\n                    :attr=\"{name: fieldid, id: fieldid, size:(field.data.size > 1 ? field.data.size : false), required: fieldRequired}\"\n                    v-model=\"dataObject.value\">\n                <option v-for=\"option in field.options\" :value=\"option.value\">{{ option.text }}</option>\n            </select>\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please select a value' | trans }}</p>\n        </div>\n    </div>";
 
 /***/ }
 

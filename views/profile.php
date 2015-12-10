@@ -2,7 +2,9 @@
 $view->script('userprofile', 'bixie/userprofile:app/bundle/userprofile.js', ['vue', 'userprofile-profilefields', 'uikit-form-password']);
 ?>
 
-<form id="userprofile-profile" class="uk-article uk-form uk-form-stacked" name="form" v-validator="form" v-on="submit: save | valid" v-cloak>
+<form id="userprofile-profile" class="uk-article uk-form uk-form-stacked"
+	  name="form" v-validator="form" @submit.prevent="save | valid" v-cloak>
+
 	<div class="uk-grid">
 		<div class="uk-width-medium-3-4">
 			<h1 class="uk-article-title">{{ 'Your Profile' | trans }}</h1>
@@ -15,7 +17,7 @@ $view->script('userprofile', 'bixie/userprofile:app/bundle/userprofile.js', ['vu
 
 				<div class="uk-form-controls">
 					<input id="form-name" class="uk-form-width-large" type="text" name="name" v-model="user.name"
-						   v-validate="required">
+						   v-validate:required>
 
 					<p class="uk-form-help-block uk-text-danger" v-show="form.name.invalid">{{ 'Name cannot be blank.' |
 						trans }}</p>
@@ -27,7 +29,7 @@ $view->script('userprofile', 'bixie/userprofile:app/bundle/userprofile.js', ['vu
 
 				<div class="uk-form-controls">
 					<input id="form-email" class="uk-form-width-large" type="text" name="email" v-model="user.email"
-						   v-validate="email, required">
+						   v-validate:email v-validate:required>
 
 					<p class="uk-form-help-block uk-text-danger" v-show="form.email.invalid">{{ 'Invalid Email.' | trans
 						}}</p>
@@ -66,7 +68,10 @@ $view->script('userprofile', 'bixie/userprofile:app/bundle/userprofile.js', ['vu
 				</div>
 			</div>
 
-			<profilefields fields="{{@ fields}}"></profilefields>
+			<profilefields class="uk-margin" :fields.sync="fields"
+						   :profilevalues="profilevalues"
+						   :user="user"
+						   :form="form"></profilefields>
 
 			<div class="uk-form-row">
 				<button class="uk-button uk-button-primary" type="submit">{{ 'Save' | trans }}</button>
@@ -78,7 +83,7 @@ $view->script('userprofile', 'bixie/userprofile:app/bundle/userprofile.js', ['vu
 			<div class="uk-panel uk-panel-box uk-text-center" v-show="user.username">
 
 				<div class="uk-panel-teaser">
-					<img height="280" width="280" v-attr="alt: user.username" v-gravatar="user.email">
+					<img height="280" width="280" :alt="user.username" v-gravatar="user.email">
 				</div>
 
 				<h3 class="uk-panel-title uk-margin-bottom-remove">{{ user.username }}</h3>

@@ -36,8 +36,6 @@
 
     module.exports = {
 
-        inherit: true,
-
         props: ['field']
 
     };

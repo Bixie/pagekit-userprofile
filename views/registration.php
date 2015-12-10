@@ -72,7 +72,7 @@
 			<div class="uk-panel uk-panel-box uk-text-center" v-show="user.username">
 
 				<div class="uk-panel-teaser">
-					<img height="280" width="280" v-attr="alt: user.username" v-gravatar="user.email">
+					<img height="280" width="280" :alt="user.username" v-gravatar="user.email">
 				</div>
 
 				<h3 class="uk-panel-title uk-margin-bottom-remove">{{ user.username }}</h3>

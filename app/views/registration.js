@@ -1,11 +1,12 @@
 module.exports = {
 
+    el: '#userprofile-registration',
+
     data: window.$data,
 
     methods: {
 
-        save: function (e) {
-            e.preventDefault();
+        save: function () {
 
             this.$set('error', '');
 
@@ -19,14 +20,10 @@ module.exports = {
             });
         }
 
-    },
-
-    components: {
-    },
-
-    computed: {}
+    }
 
 };
+Vue.ready(module.exports);
 
 $(function () {
 

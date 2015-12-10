@@ -1,6 +1,6 @@
 module.exports = {
 
-    props: ['isAdmin'],
+    props: ['isAdmin', 'profilevalues', 'user', 'field', 'form'],
 
     methods: {
         getDataObject: function (defaultValue) {
@@ -39,7 +39,7 @@ module.exports = {
             return this.profilevalues[index];
         },
         fieldInvalid: function (form) {
-            return form[this.fieldid].invalid;
+            return false; //todo form[this.fieldid].invalid;
         }
 
     },

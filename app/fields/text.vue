@@ -9,19 +9,19 @@
     </div>
 
     <div class="uk-form-row {{field.data.classSfx}}">
-        <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
+        <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
             }}</label>
 
         <div class="uk-form-controls">
             <input type="text" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
-                   v-attr="name: fieldid, id: fieldid"
-                   v-model="dataObject.value"
-                   v-validate="required: fieldRequired"/>
+                   :attr="{name: fieldid, id: fieldid, required: fieldRequired}"
+                   v-model="dataObject.value"/>
 
             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
                 'Please enter a value' | trans }}</p>
         </div>
     </div>
+
 
 </template>
 
@@ -30,12 +30,11 @@
 
     module.exports = {
 
-        inherit: true,
-
         mixins: [profilefieldMixin],
 
         data: function () {
             return {
+                dataObject: {},
                 fieldid: _.uniqueId('profilefield_')
             };
         },

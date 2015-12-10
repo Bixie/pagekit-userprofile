@@ -7,7 +7,7 @@
 
             <div class="uk-form-controls">
                 <input id="form-label" class="uk-form-width-large" type="text" name="label"
-                       v-model="field.label" v-validate="required">
+                       v-model="field.label" v-valid="required">
             </div>
             <p class="uk-form-help-block uk-text-danger" v-show="form.label.invalid">{{ 'Please enter a label' | trans }}</p>
         </div>
@@ -34,25 +34,22 @@
             <span class="uk-form-label">{{ 'Restrict Access' | trans }}</span>
 
             <div class="uk-form-controls uk-form-controls-text">
-                <p v-repeat="role: roles" class="uk-form-controls-condensed">
-                    <label><input type="checkbox" value="{{ role.id }}" v-checkbox="field.roles" number> {{ role.name
-                        }}</label>
+                <p v-for="role in roles" class="uk-form-controls-condensed">
+                    <label><input type="checkbox" :value="role.id" v-model="field.roles" number> {{ role.name }}</label>
                 </p>
             </div>
         </div>
 
         <input type="hidden" v-model="field.priority"/>
     </div>
-
+<pre>{{$data|json}}</pre>
 </template>
 
 <script>
 
     module.exports = {
 
-        inherit: true,
-
-        props: ['field', 'form']
+        props: ['field', 'type', 'form', 'roles']
 
     };
 

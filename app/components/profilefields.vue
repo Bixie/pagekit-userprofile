@@ -1,18 +1,29 @@
 <template>
+    <div>
 
-    <component v-if="!isAdmin" v-repeat="field: fields | orderBy 'priority'" is="{{ field.type }}"></component>
+        <component v-if="!isAdmin" v-for="field in fields | orderBy 'priority'"
+                   :is="field.type"
+                   :profilevalues="profilevalues"
+                   :user="user"
+                   :field="field"
+                   :form="form"></component>
 
-    <component v-if="isAdmin" is="{{ editField }}" is-admin="true"></component>
+        <component v-if="isAdmin" :is="editField"
+                   :is-admin="true"
+                   :editField="editField"
+                   :profilevalues="profilevalues"
+                   :user="user"
+                   :field="field"
+                   :form="form"></component>
 
+    </div>
 </template>
 
 <script>
 var fieldOptions;
 window.Profilefields = module.exports = {
 
-    props: ['fields', 'editField', 'form'],
-
-    inherit: true,
+    props: ['fields', 'field', 'profilevalues', 'user', 'editField', 'form'],
 
     components: {},
 

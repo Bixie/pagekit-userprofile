@@ -1,21 +1,30 @@
 <template>
+    <div>
 
-    <profilefields fields="{{@ fields}}"></profilefields>
+        <profilefields :fields.sync="fields" :profilevalues="profilevalues" :user="user" :form="form"></profilefields>
 
-    <p v-show="!fields" class="uk-text-center"><i class="uk-icon-spinner uk-icon-spin"></i></p>
+        <p v-show="!fields" class="uk-text-center"><i class="uk-icon-spinner uk-icon-spin"></i></p>
 
+    </div>
 </template>
 
 <script>
 
     module.exports = {
 
+        props: ['user', 'config', 'form'],
+
+        data: function () {
+            return {
+                fields: [],
+                profilevalues: []
+            }
+        },
+
         section: {
             label: 'Userprofile',
             priority: 200
         },
-
-        inherit: true,
 
         created: function () {
             this.Fields = this.$resource('api/userprofile/profile/:id');

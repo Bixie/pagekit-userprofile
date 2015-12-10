@@ -47,53 +47,90 @@ var Fields =
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(25)
-	module.exports.template = __webpack_require__(26)
 
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(26)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\userprofile\\app\\components\\user-section-userprofile.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
 
 /***/ },
 
 /***/ 25:
 /***/ function(module, exports) {
 
+	'use strict';
+
+	// <template>
+
+	//     <div>
+
+	//         <profilefields :fields.sync="fields" :profilevalues="profilevalues" :user="user" :form="form"></profilefields>
+
+	//         <p v-show="!fields" class="uk-text-center"><i class="uk-icon-spinner uk-icon-spin"></i></p>
+
+	//     </div>
+
+	// </template>
+
+	// <script>
+
 	module.exports = {
 
-	        section: {
-	            label: 'Userprofile',
-	            priority: 200
-	        },
+	    props: ['user', 'config', 'form'],
 
-	        inherit: true,
+	    data: function data() {
+	        return {
+	            fields: [],
+	            profilevalues: []
+	        };
+	    },
 
-	        created: function () {
-	            this.Fields = this.$resource('api/userprofile/profile/:id');
-	            this.load();
-	            this.$on('save', function (data) {
-	                data.profilevalues = this.profilevalues;
+	    section: {
+	        label: 'Userprofile',
+	        priority: 200
+	    },
+
+	    created: function created() {
+	        this.Fields = this.$resource('api/userprofile/profile/:id');
+	        this.load();
+	        this.$on('save', function (data) {
+	            data.profilevalues = this.profilevalues;
+	        });
+	    },
+
+	    methods: {
+
+	        load: function load() {
+	            return this.Fields.query({ id: this.user.id }, function (data) {
+	                this.$set('fields', data.fields);
+	                this.$set('profilevalues', data.profilevalues);
+	            }, function (message) {
+	                this.$notify('Userprofile: ' + message, 'danger');
 	            });
-	        },
-
-	        methods: {
-
-	            load: function () {
-	                return this.Fields.query({id: this.user.id}, function (data) {
-	                    this.$set('fields', data.fields);
-	                    this.$set('profilevalues', data.profilevalues);
-	                }, function (message) {
-	                    this.$notify('Userprofile: ' + message, 'danger');
-	                });
-	            }
 	        }
+	    }
 
-	    };
+	};
 
-	    window.User.components['user-section-userprofile:profile'] = module.exports;
+	window.User.components['user-section-userprofile:profile'] = module.exports;
+
+	// </script>
 
 /***/ },
 
 /***/ 26:
 /***/ function(module, exports) {
 
-	module.exports = "<profilefields fields=\"{{@ fields}}\"></profilefields>\r\n\r\n    <p v-show=\"!fields\" class=\"uk-text-center\"><i class=\"uk-icon-spinner uk-icon-spin\"></i></p>";
+	module.exports = "<div>\r\n\r\n        <profilefields :fields.sync=\"fields\" :profilevalues=\"profilevalues\" :user=\"user\" :form=\"form\"></profilefields>\r\n\r\n        <p v-show=\"!fields\" class=\"uk-text-center\"><i class=\"uk-icon-spinner uk-icon-spin\"></i></p>\r\n\r\n    </div>";
 
 /***/ }
 
