@@ -20,7 +20,7 @@
 		<div class="uk-position-relative" data-uk-margin>
 
 			<div data-uk-dropdown="{ mode: 'click' }">
-				<a class="uk-button uk-button-primary" click.prevent="">{{ 'Add Field' | trans
+				<a class="uk-button uk-button-primary" @click.prevent="">{{ 'Add Field' | trans
 					}}</a>
 
 				<div class="uk-dropdown uk-dropdown-small uk-dropdown-flip">
