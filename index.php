@@ -44,6 +44,8 @@ return [
 
 	],
 
+	'userprofilefields' => 'fields',
+
 	'resources' => [
 
 		'bixie/userprofile:' => ''

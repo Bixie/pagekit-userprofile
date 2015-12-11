@@ -43,7 +43,14 @@ class UserprofileModule extends Module {
 		if (!$this->types) {
 
 			$this->types = [];
-			$paths = glob(App::locator()->get('bixie/userprofile:app/fields') . '/*.php', GLOB_NOSORT) ?: [];
+			$app = App::getInstance(); //available for type.php files
+			$paths = [];
+
+			foreach (App::module() as $module) {
+				if ($module->get('userprofilefields')) {
+					$paths = array_merge($paths, glob(sprintf('%s/%s/*.php', $module->path, $module->get('userprofilefields')), GLOB_NOSORT) ?: []);
+				}
+			}
 
 			foreach ($paths as $p) {
 				$package = array_merge([
