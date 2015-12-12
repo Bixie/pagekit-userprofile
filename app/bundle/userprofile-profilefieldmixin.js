@@ -88,6 +88,9 @@ var ProfilefieldMixin =
 	        },
 	        fieldInvalid: function (form) {
 	            return false; //todo form[this.fieldid].invalid;
+	        },
+	        classes: function (classes_array, classes_string) {
+	            return (classes_array || []).concat(String(classes_string || '').split(' '));
 	        }
 
 	    },

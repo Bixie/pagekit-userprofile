@@ -80,7 +80,7 @@
 
 	// <template>
 
-	//     <div :class="['uk-form-row', isAdmin ? 'uk-hidden' : '', field.data.classSfx || '']">
+	//     <div :class="classes(['uk-form-row', (isAdmin ? 'uk-hidden' : '')], field.data.classSfx)">
 
 	//         {{{ dataObject.prepared }}}
 
@@ -181,7 +181,7 @@
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = "<div :class=\"['uk-form-row', isAdmin ? 'uk-hidden' : '', field.data.classSfx || '']\">\n\n        {{{ dataObject.prepared }}}\n\n    </div>";
+	module.exports = "<div :class=\"classes(['uk-form-row', (isAdmin ? 'uk-hidden' : '')], field.data.classSfx)\">\n\n        {{{ dataObject.prepared }}}\n\n    </div>";
 
 /***/ }
 /******/ ]);
