@@ -49,6 +49,26 @@ module.exports = {
 
     },
 
+    computed: {
+        fieldSettings: function () {
+            var settings = this.field.type ? Profilefields.components[this.field.type].settings : {},
+                parent = this;
+            if (settings.template !== undefined) {
+                new Vue(_.merge({
+                    'el': '#type-settings',
+                    'name': 'type-settings',
+                    'parent': parent,
+                    'data':  _.merge({
+                        'field': parent.field,
+                        'form': parent.form
+                    }, settings.data),
+                }, settings));
+                return false;
+            }
+            return settings;
+        }
+    },
+
     components: {
 
         fieldbasic: require('../../components/field-basic.vue'),
@@ -58,5 +78,16 @@ module.exports = {
     }
 
 };
+
+Vue.field.templates.formrow = require('../../templates/formrow.html');
+Vue.field.templates.raw = require('../../templates/raw.html');
+Vue.field.types.text = '<input type="text" v-bind="attrs" v-model="value">';
+Vue.field.types.textarea = '<textarea v-bind="attrs" v-model="value"></textarea>';
+Vue.field.types.select = '<select v-bind="attrs" v-model="value"><option v-for="option in options" :value="option">{{ $key }}</option></select>';
+Vue.field.types.radio = '<p class="uk-form-controls-condensed"><label v-for="option in options"><input type="radio" :value="option" v-model="value"> {{ $key | trans }}</label></p>';
+Vue.field.types.checkbox = '<p class="uk-form-controls-condensed"><label><input type="checkbox" v-bind="attrs" v-model="value" v-bind:true-value="1" v-bind:false-value="0" number> {{ optionlabel | trans }}</label></p>';
+Vue.field.types.number = '<input type="number" v-bind="attrs" v-model="value" number>';
+Vue.field.types.title = '<h3 v-bind="attrs">{{ title | trans }}</h3>';
+Vue.field.types.editor = '<v-editor :value.sync="value" :options="{markdown : field.markdown}" v-bind="attrs"></v-editor>';
 
 Vue.ready(module.exports);

@@ -46,10 +46,10 @@ var Fields =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(16)
+	module.exports = __webpack_require__(18)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(17)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(19)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -64,7 +64,7 @@ var Fields =
 
 /***/ },
 
-/***/ 16:
+/***/ 18:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -105,7 +105,7 @@ var Fields =
 
 /***/ },
 
-/***/ 17:
+/***/ 19:
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-row\">\n        <label for=\"form-link-userprofile\" class=\"uk-form-label\">{{ 'View' | trans }}</label>\n        <div class=\"uk-form-controls\">\n            <select id=\"form-link-userprofile\" class=\"uk-width-1-1\" v-model=\"link\">\n                <option value=\"@userprofile\">{{ 'User Profile' | trans }}</option>\n                <option value=\"@userprofile/registration\">{{ 'User Registration' | trans }}</option>\n            </select>\n        </div>\n    </div>";

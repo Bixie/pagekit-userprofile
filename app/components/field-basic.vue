@@ -40,7 +40,6 @@
             </div>
         </div>
 
-        <input type="hidden" v-model="field.priority"/>
     </div>
 
 </template>

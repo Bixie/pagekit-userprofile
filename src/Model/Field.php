@@ -2,6 +2,7 @@
 
 namespace Bixie\Userprofile\Model;
 
+use Pagekit\Application as App;
 use Pagekit\System\Model\DataModelTrait;
 use Pagekit\User\Model\AccessModelTrait;
 
@@ -38,7 +39,11 @@ class Field implements \JsonSerializable {
 	 * @return mixed
 	 */
 	public function getOptions () {
-		return $this->options ?: [];
+
+		/** @var \Bixie\Userprofile\Type\Type $type */
+		$type = App::module('bixie/userprofile')->getType($this->type);
+
+		return $type->getOptions($this);
 	}
 
 	/**

@@ -1,21 +1,12 @@
 <template>
     <div>
-
-        <component v-if="!isAdmin" v-for="field in fields | orderBy 'priority'"
+        <component v-for="field in fields | orderBy 'priority'"
                    :is="field.type"
+                   :is-admin="isAdmin"
                    :profilevalues="profilevalues"
                    :user="user"
                    :field="field"
                    :form="form"></component>
-
-        <component v-if="isAdmin" :is="editField"
-                   :is-admin="true"
-                   :editField="editField"
-                   :profilevalues="profilevalues"
-                   :user="user"
-                   :field="field"
-                   :form="form"></component>
-
     </div>
 </template>
 
@@ -23,13 +14,13 @@
 var fieldOptions;
 window.Profilefields = module.exports = {
 
-    props: ['fields', 'field', 'profilevalues', 'user', 'editField', 'form'],
+    props: ['fields', 'field', 'profilevalues', 'user', 'editType', 'form'],
 
     components: {},
 
     computed: {
         isAdmin: function () {
-            return !!this.editField
+            return !!this.editType
         }
     }
 

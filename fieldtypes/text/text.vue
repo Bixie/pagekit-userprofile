@@ -1,27 +1,18 @@
 <template>
 
-    <div v-if="isAdmin" class="uk-form-row">
-        <label for="form-placeholder" class="uk-form-label">{{ 'Placeholder' | trans }}</label>
-
-        <div class="uk-form-controls">
-            <input id="form-placeholder" class="uk-form-width-large" type="text" v-model="field.data.placeholder">
-        </div>
-    </div>
-
-    <div class="uk-form-row {{field.data.classSfx}}">
-        <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
-            }}</label>
+    <div class="uk-form-row {{field.data.classSfx || ''}}">
+        <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</label>
 
         <div class="uk-form-controls">
             <input type="text" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
-                   :attr="{name: fieldid, id: fieldid, required: fieldRequired}"
-                   v-model="dataObject.value"/>
+                   :attr="{name: fieldid, id: fieldid}"
+                   v-model="dataObject.value"
+                   :required="fieldRequired">
 
             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
                 'Please enter a value' | trans }}</p>
         </div>
     </div>
-
 
 </template>
 
@@ -31,10 +22,20 @@
 
         mixins: [ProfilefieldMixin],
 
+        settings: {
+            'placeholder': {
+                type: 'text',
+                label: 'Placeholder',
+                attrs: {'class': 'uk-form-width-large'}
+            }
+        },
+
+        appearance: {},
+
         data: function () {
             return {
                 dataObject: {},
-                fieldid: _.uniqueId('profilefield_')
+                fieldid: _.uniqueId('userprofilefield_')
             };
         },
 

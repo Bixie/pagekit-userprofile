@@ -107,12 +107,8 @@ return [
 			//register fields
 			$scripts->register('userprofile-profilefieldmixin', 'bixie/userprofile:app/bundle/userprofile-profilefieldmixin.js', 'vue');
 			$scripts->register('userprofile-profilefields', 'bixie/userprofile:app/bundle/userprofile-profilefields.js', ['vue', 'userprofile-profilefieldmixin']);
-			$userprofile = $app->module('bixie/userprofile');
-			foreach ($userprofile->getTypes() as $type) {
-				$scripts->register(
-					'userprofile-' . $type['id'], 'bixie/userprofile:app/bundle/userprofile-' . $type['id'] . '.js',
-					array_merge(['~userprofile-profilefields'], $type['dependancies'])
-				);
+			foreach ($app->module('bixie/userprofile')->getTypes() as $type) {
+				$type->registerScripts($scripts);
 			}
 		},
 
@@ -120,14 +116,8 @@ return [
 			//todo this should be prettier
 			$route = $app->request()->attributes->get('_route');
 			if (strpos($route, '@userprofile') === 0 || in_array($route, ['@user/edit'])) {
-				$userprofile = $app->module('bixie/userprofile');
-				foreach ($userprofile->getTypes() as $type) {
-					if (isset($type['style'])) {
-						foreach ($type['style'] as $name => $source) {
-							$styles->add($name, $source);
-
-						}
-					}
+				foreach ($app->module('bixie/userprofile')->getTypes() as $type) {
+					$type->addStyles($styles);
 				}
 			}
 		},

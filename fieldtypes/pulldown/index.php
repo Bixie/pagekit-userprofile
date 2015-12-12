@@ -1,9 +1,11 @@
 <?php
+/** @var Application $app */
 return [
 	'id' => 'pulldown',
 	'label' => __('Pulldown'),
-	'hasOptions' => 1,
-	'required' => -1,
-	'multiple' => -1,
-	'dependancies' => []
+	'config' => [
+		'hasOptions' => 1,
+		'required' => -1,
+		'multiple' => -1,
+	]
 ];

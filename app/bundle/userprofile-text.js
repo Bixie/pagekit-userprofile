@@ -45,10 +45,10 @@
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(14)
+	module.exports = __webpack_require__(15)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(15)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(16)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -63,29 +63,21 @@
 
 /***/ },
 
-/***/ 14:
+/***/ 15:
 /***/ function(module, exports) {
 
 	'use strict';
 
 	// <template>
 
-	//     <div v-if="isAdmin" class="uk-form-row">
-	//         <label for="form-placeholder" class="uk-form-label">{{ 'Placeholder' | trans }}</label>
-
-	//         <div class="uk-form-controls">
-	//             <input id="form-placeholder" class="uk-form-width-large" type="text" v-model="field.data.placeholder">
-	//         </div>
-	//     </div>
-
-	//     <div class="uk-form-row {{field.data.classSfx}}">
-	//         <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
-	//             }}</label>
+	//     <div class="uk-form-row {{field.data.classSfx || ''}}">
+	//         <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</label>
 
 	//         <div class="uk-form-controls">
 	//             <input type="text" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
-	//                    :attr="{name: fieldid, id: fieldid, required: fieldRequired}"
-	//                    v-model="dataObject.value"/>
+	//                    :attr="{name: fieldid, id: fieldid}"
+	//                    v-model="dataObject.value"
+	//                    :required="fieldRequired">
 
 	//             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
 	//                 'Please enter a value' | trans }}</p>
@@ -100,10 +92,20 @@
 
 	    mixins: [ProfilefieldMixin],
 
+	    settings: {
+	        'placeholder': {
+	            type: 'text',
+	            label: 'Placeholder',
+	            attrs: { 'class': 'uk-form-width-large' }
+	        }
+	    },
+
+	    appearance: {},
+
 	    data: function data() {
 	        return {
 	            dataObject: {},
-	            fieldid: _.uniqueId('profilefield_')
+	            fieldid: _.uniqueId('userprofilefield_')
 	        };
 	    },
 
@@ -119,10 +121,10 @@
 
 /***/ },
 
-/***/ 15:
+/***/ 16:
 /***/ function(module, exports) {
 
-	module.exports = "<div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <label for=\"form-placeholder\" class=\"uk-form-label\">{{ 'Placeholder' | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input id=\"form-placeholder\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.data.placeholder\">\n        </div>\n    </div>\n\n    <div class=\"uk-form-row {{field.data.classSfx}}\">\n        <label :for=\"fieldid\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n            }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input type=\"text\" class=\"uk-form-width-large\" placeholder=\"{{ field.data.placeholder || '' | trans }}\"\n                   :attr=\"{name: fieldid, id: fieldid, required: fieldRequired}\"\n                   v-model=\"dataObject.value\"/>\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please enter a value' | trans }}</p>\n        </div>\n    </div>";
+	module.exports = "<div class=\"uk-form-row {{field.data.classSfx || ''}}\">\n        <label :for=\"fieldid\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input type=\"text\" class=\"uk-form-width-large\" placeholder=\"{{ field.data.placeholder || '' | trans }}\"\n                   :attr=\"{name: fieldid, id: fieldid}\"\n                   v-model=\"dataObject.value\"\n                   :required=\"fieldRequired\">\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please enter a value' | trans }}</p>\n        </div>\n    </div>";
 
 /***/ }
 

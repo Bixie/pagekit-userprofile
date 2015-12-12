@@ -28,8 +28,26 @@
 	<div class="uk-switcher uk-margin" v-el:content>
 		<div>
 			<fieldbasic :field.sync="field" :type="type" :form="form" :roles="roles"></fieldbasic>
-			<div class="uk-form-horizontal uk-margin" v-show="!type.hasOptions || field.options.length">
-				<profilefields :edit-field="field.type" :field.sync="field" :profilevalues="profilevalues" :user="user" :form="form"></profilefields>
+
+			<div class="uk-form-horizontal uk-margin">
+				<div class="uk-margin" v-if="fieldSettings">
+					<fields :config="fieldSettings" :model.sync="field.data" template="formrow"></fields>
+				</div>
+
+				<profilefields class="uk-margin" v-show="!type.hasOptions || field.options.length"
+							   v-ref:formmakerfields
+							   :edit-type="field.type"
+							   :field.sync="field"
+							   :fields="[field]"
+							   :profilevalues="profilevalues"
+							   :user="user"
+							   :form="form"></profilefields>
+
+				<div id="type-settings" class="uk-margin"
+					 :data-object.sync="field.data"
+					 :field.sync="field"
+					 :form="form"></div>
+
 			</div>
 		</div>
 		<div>

@@ -1,6 +1,6 @@
 <template>
 
-    <div class="uk-form-row {{field.data.classSfx}}">
+    <div class="uk-form-row {{field.data.classSfx || ''}}">
         <span class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</span>
 
         <div class="uk-form-controls uk-form-controls-text">
@@ -21,10 +21,14 @@
 
         mixins: [ProfilefieldMixin],
 
+        settings: {},
+
+        appearance: {},
+
         data: function () {
             return {
                 dataObject: {},
-                fieldid: _.uniqueId('field_')
+                fieldid: _.uniqueId('userprofilefield_')
             };
         },
 

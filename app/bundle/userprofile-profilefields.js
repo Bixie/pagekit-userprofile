@@ -70,22 +70,13 @@ var Profilefields =
 
 	// <template>
 	//     <div>
-
-	//         <component v-if="!isAdmin" v-for="field in fields | orderBy 'priority'"
+	//         <component v-for="field in fields | orderBy 'priority'"
 	//                    :is="field.type"
+	//                    :is-admin="isAdmin"
 	//                    :profilevalues="profilevalues"
 	//                    :user="user"
 	//                    :field="field"
 	//                    :form="form"></component>
-
-	//         <component v-if="isAdmin" :is="editField"
-	//                    :is-admin="true"
-	//                    :editField="editField"
-	//                    :profilevalues="profilevalues"
-	//                    :user="user"
-	//                    :field="field"
-	//                    :form="form"></component>
-
 	//     </div>
 	// </template>
 
@@ -93,13 +84,13 @@ var Profilefields =
 	var fieldOptions;
 	window.Profilefields = module.exports = {
 
-	    props: ['fields', 'field', 'profilevalues', 'user', 'editField', 'form'],
+	    props: ['fields', 'field', 'profilevalues', 'user', 'editType', 'form'],
 
 	    components: {},
 
 	    computed: {
 	        isAdmin: function isAdmin() {
-	            return !!this.editField;
+	            return !!this.editType;
 	        }
 	    }
 
@@ -115,7 +106,7 @@ var Profilefields =
 /* 3 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n\n        <component v-if=\"!isAdmin\" v-for=\"field in fields | orderBy 'priority'\"\n                   :is=\"field.type\"\n                   :profilevalues=\"profilevalues\"\n                   :user=\"user\"\n                   :field=\"field\"\n                   :form=\"form\"></component>\n\n        <component v-if=\"isAdmin\" :is=\"editField\"\n                   :is-admin=\"true\"\n                   :editField=\"editField\"\n                   :profilevalues=\"profilevalues\"\n                   :user=\"user\"\n                   :field=\"field\"\n                   :form=\"form\"></component>\n\n    </div>";
+	module.exports = "<div>\n        <component v-for=\"field in fields | orderBy 'priority'\"\n                   :is=\"field.type\"\n                   :is-admin=\"isAdmin\"\n                   :profilevalues=\"profilevalues\"\n                   :user=\"user\"\n                   :field=\"field\"\n                   :form=\"form\"></component>\n    </div>";
 
 /***/ }
 /******/ ]);

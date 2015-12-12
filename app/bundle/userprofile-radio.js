@@ -45,10 +45,10 @@
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(12)
+	module.exports = __webpack_require__(13)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(13)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(14)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -63,14 +63,14 @@
 
 /***/ },
 
-/***/ 12:
+/***/ 13:
 /***/ function(module, exports) {
 
 	'use strict';
 
 	// <template>
 
-	//     <div class="uk-form-row {{field.data.classSfx}}">
+	//     <div class="uk-form-row {{field.data.classSfx || ''}}">
 
 	//         <span class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</span>
 
@@ -96,10 +96,14 @@
 
 	    mixins: [ProfilefieldMixin],
 
+	    settings: {},
+
+	    appearance: {},
+
 	    data: function data() {
 	        return {
 	            dataObject: {},
-	            fieldid: _.uniqueId('field_')
+	            fieldid: _.uniqueId('userprofilefield_')
 	        };
 	    },
 
@@ -115,10 +119,10 @@
 
 /***/ },
 
-/***/ 13:
+/***/ 14:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-row {{field.data.classSfx}}\">\r\n        <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-form-controls-text\">\r\n            <p v-for=\"option in field.options\" class=\"uk-form-controls-condensed\">\r\n                <label><input type=\"radio\" value=\"{{ option.value }}\"\r\n                              v-model=\"dataObject.value\"> {{ option.text }}</label>\r\n            </p>\r\n        </div>\r\n    </div>";
+	module.exports = "<div class=\"uk-form-row {{field.data.classSfx || ''}}\">\r\n        <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-form-controls-text\">\r\n            <p v-for=\"option in field.options\" class=\"uk-form-controls-condensed\">\r\n                <label><input type=\"radio\" value=\"{{ option.value }}\"\r\n                              v-model=\"dataObject.value\"> {{ option.text }}</label>\r\n            </p>\r\n        </div>\r\n    </div>";
 
 /***/ }
 

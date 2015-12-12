@@ -1,7 +1,7 @@
 <?php
 return [
-	'id' => 'text',
-	'label' => __('Textfield'),
+	'id' => 'textbox',
+	'label' => __('Text area'),
 	'config' => [
 		'hasOptions' => 0,
 		'required' => -1,

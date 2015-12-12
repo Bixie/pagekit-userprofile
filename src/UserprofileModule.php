@@ -55,28 +55,18 @@ class UserprofileModule extends Module {
 			foreach ($paths as $p) {
 				$package = array_merge([
 					'id' => '',
-					'hasOptions' => 0,
-					'required' => 0,
-					'multiple' => 0,
+					'class' => '\Bixie\Userprofile\Type\Type',
+					'resource' => 'bixie/userprofile:app/bundle',
+					'config' => [
+						'hasOptions' => 0,
+						'required' => 0,
+						'multiple' => 0,
+					],
 					'dependancies' => [],
-					'style' => [],
-					'prepareValue' => function (Field $field, $value) {
-						return $value;
-					},
-					'formatValue' => function (Field $field, $value) {
-						if (count($field->options)) {
-							$options = $field->getOptionsRef();
-							if (is_array($value) && count($value)) {
-								return array_map(function ($val) use ($options) {
-									return isset($options[$val]) ? $options[$val] : $val;
-								}, $value);
-							} else {
-								return $value ? isset($options[$value]) ? [$options[$value]] : [$value] : ['-'];
-							}
-						} else {
-							return is_array($value) ? count($value) ? $value : ['-'] : [$value ?: '-'];
-						}
-					}
+					'styles' => [],
+					'getOptions' => '',
+					'prepareValue' => '',
+					'formatValue' => ''
 				], include($p));
 				$this->registerType($package);
 			}
@@ -91,6 +81,6 @@ class UserprofileModule extends Module {
 	 * @param array $package
 	 */
 	public function registerType ($package) {
-		$this->types[$package['id']] = $package;
+		$this->types[$package['id']] = new $package['class']($package);
 	}
 }
