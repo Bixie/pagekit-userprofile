@@ -64,7 +64,8 @@ var ProfilefieldMixin =
 	                    user_id: this.user.id,
 	                    field_id: this.field.id,
 	                    multiple: this.field.data.multiple || 0,
-	                    value: defaultValue
+	                    value: defaultValue,
+	                    prepared: this.field.prepared
 	                };
 	            if (index === -1) {
 	                index = this.profilevalues.length;

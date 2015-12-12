@@ -34,6 +34,11 @@ class Field implements \JsonSerializable {
 		$this->type = $type;
 	}
 
+	/** @var array */
+	protected static $properties = [
+		'prepared' => 'prepareValue'
+	];
+
 	/**
 	 * {@inheritdoc}
 	 * @return mixed
@@ -52,6 +57,17 @@ class Field implements \JsonSerializable {
 	 */
 	public function setOptions ($options) {
 		$this->options = $options;
+	}
+
+	/**
+	 * Prepare default value before displaying form
+	 * @return array
+	 */
+	public function prepareValue () {
+		/** @var \Bixie\Userprofile\Type\Type $type */
+		$type = App::module('bixie/userprofile')->getType($this->type);
+
+		return $type->prepareValue($this, $this->get('value'));
 	}
 
 	/**

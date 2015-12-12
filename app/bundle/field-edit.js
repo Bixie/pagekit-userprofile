@@ -98,7 +98,7 @@ var Fields =
 
 	    computed: {
 	        fieldSettings: function () {
-	            var settings = this.field.type ? Profilefields.components[this.field.type].settings : {},
+	            var settings = this.field.type ? Profilefields.components[this.field.type].settings || Profilefields.components[this.field.type].options.settings : {},
 	                parent = this;
 	            if (settings.template !== undefined) {
 	                new Vue(_.merge({
