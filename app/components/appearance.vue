@@ -42,7 +42,7 @@
 
         computed: {
             appearanceSettings: function () {
-                return this.field.type ? Profilefields.components[this.field.type].appearance : {};
+                return this.field.type ? Profilefields.components[this.field.type].appearance || Profilefields.components[this.field.type].options.appearance : {};
             }
         }
 
