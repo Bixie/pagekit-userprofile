@@ -34,6 +34,18 @@ class FieldController {
 		if (!$type = $userprofile->getType($field->type)) {
 			throw new NotFoundException(__('Type not found.'));
 		}
+		//default values
+		if (!$field->id) {
+			foreach ($type->getConfig() as $key => $value) {
+				$field->set($key, $value);
+			}
+		}
+		//check fixed value
+		foreach (['multiple', 'required'] as $key) {
+			if ($type[$key] != -1) {
+				$field->set($key, $type[$key]);
+			}
+		}
 
 		return [
 			'$view' => [
