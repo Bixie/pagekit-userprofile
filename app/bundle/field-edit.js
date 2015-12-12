@@ -98,9 +98,9 @@ var Fields =
 
 	    components: {
 
-	        fieldbasic: __webpack_require__(12),
-	        fieldoptions: __webpack_require__(15),
-	        appearance: __webpack_require__(18)
+	        fieldbasic: __webpack_require__(7),
+	        fieldoptions: __webpack_require__(10),
+	        appearance: __webpack_require__(13)
 
 	    }
 
@@ -116,18 +116,13 @@ var Fields =
 /* 4 */,
 /* 5 */,
 /* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(13)
+	module.exports = __webpack_require__(8)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(14)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(9)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -141,7 +136,7 @@ var Fields =
 	})()}
 
 /***/ },
-/* 13 */
+/* 8 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -214,8 +209,6 @@ var Fields =
 
 	//     </div>
 
-	// <pre>{{$data|json}}</pre>
-
 	// </template>
 
 	// <script>
@@ -229,19 +222,19 @@ var Fields =
 	// </script>
 
 /***/ },
-/* 14 */
+/* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-horizontal uk-margin\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-label\" class=\"uk-form-label\">{{ 'Label' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-label\" class=\"uk-form-width-large\" type=\"text\" name=\"label\"\r\n                       v-model=\"field.label\" v-valid=\"required\">\r\n            </div>\r\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.label.invalid\">{{ 'Please enter a label' | trans }}</p>\r\n        </div>\r\n\r\n        <div v-if=\"type.required < 0\" class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Field required' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"required\" v-model=\"field.data.required\"> {{ 'Required' | trans\r\n                    }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div v-if=\"type.multiple < 0\" class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Multiple values' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"multiple\" v-model=\"field.data.multiple\"> {{ 'Multiple' | trans\r\n                    }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Restrict Access' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <p v-for=\"role in roles\" class=\"uk-form-controls-condensed\">\r\n                    <label><input type=\"checkbox\" :value=\"role.id\" v-model=\"field.roles\" number> {{ role.name }}</label>\r\n                </p>\r\n            </div>\r\n        </div>\r\n\r\n        <input type=\"hidden\" v-model=\"field.priority\"/>\r\n    </div>\r\n<pre>{{$data|json}}</pre>";
+	module.exports = "<div class=\"uk-form-horizontal uk-margin\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-label\" class=\"uk-form-label\">{{ 'Label' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-label\" class=\"uk-form-width-large\" type=\"text\" name=\"label\"\r\n                       v-model=\"field.label\" v-valid=\"required\">\r\n            </div>\r\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.label.invalid\">{{ 'Please enter a label' | trans }}</p>\r\n        </div>\r\n\r\n        <div v-if=\"type.required < 0\" class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Field required' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"required\" v-model=\"field.data.required\"> {{ 'Required' | trans\r\n                    }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div v-if=\"type.multiple < 0\" class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Multiple values' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"multiple\" v-model=\"field.data.multiple\"> {{ 'Multiple' | trans\r\n                    }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Restrict Access' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <p v-for=\"role in roles\" class=\"uk-form-controls-condensed\">\r\n                    <label><input type=\"checkbox\" :value=\"role.id\" v-model=\"field.roles\" number> {{ role.name }}</label>\r\n                </p>\r\n            </div>\r\n        </div>\r\n\r\n        <input type=\"hidden\" v-model=\"field.priority\"/>\r\n    </div>";
 
 /***/ },
-/* 15 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(16)
+	module.exports = __webpack_require__(11)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(17)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(12)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -255,7 +248,7 @@ var Fields =
 	})()}
 
 /***/ },
-/* 16 */
+/* 11 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -382,19 +375,19 @@ var Fields =
 	// </script>
 
 /***/ },
-/* 17 */
+/* 12 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-horizontal\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Manage options' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <ul class=\"uk-nestable uk-margin-remove\" v-el:options-nestable v-show=\"field.options.length\">\r\n                    <selectoption v-for=\"selectoption in field.options\" :selectoption=\"selectoption\"></selectoption>\r\n                </ul>\r\n                <button type=\"button\" class=\"uk-button uk-button-primary uk-button-small uk-margin\"\r\n                        @click=\"addFieldoption\">{{ 'Add option' | trans }}\r\n                </button>\r\n            </div>\r\n        </div>\r\n\r\n    </div>";
 
 /***/ },
-/* 18 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(19)
+	module.exports = __webpack_require__(14)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(20)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(15)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -408,7 +401,7 @@ var Fields =
 	})()}
 
 /***/ },
-/* 19 */
+/* 14 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -472,7 +465,7 @@ var Fields =
 	// </script>
 
 /***/ },
-/* 20 */
+/* 15 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-horizontal\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Label' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"hide-label\" v-model=\"field.data.hide_label\"> {{ 'Hide Label' |\r\n                    trans }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-class\" class=\"uk-form-label\">{{ 'Class suffix' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-class\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.data.classSfx\">\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\" v-show=\"field.data.required\">\r\n            <label for=\"form-required-error\" class=\"uk-form-label\">{{ 'Required error message' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-required-error\" class=\"uk-form-width-large\" type=\"text\"\r\n                       v-model=\"field.data.requiredError\">\r\n            </div>\r\n        </div>\r\n\r\n    </div>";

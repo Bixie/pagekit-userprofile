@@ -1,4 +1,3 @@
-var Fields =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -46,15 +45,15 @@ var Fields =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(34)
+	module.exports = __webpack_require__(12)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(35)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(13)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\userprofile\\app\\fields\\radio.vue"
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\userprofile\\fieldtypes\\radio\\radio.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -64,70 +63,8 @@ var Fields =
 
 /***/ },
 
-/***/ 28:
+/***/ 12:
 /***/ function(module, exports) {
-
-	module.exports = {
-
-	    props: ['isAdmin', 'profilevalues', 'user', 'field', 'form'],
-
-	    methods: {
-	        getDataObject: function (defaultValue) {
-	            if (this.isAdmin) {
-	                this.field.data.value = this.field.data.value || defaultValue;
-	                return this.field.data;
-	            }
-	            return this.getProfilevalue(defaultValue);
-	        },
-	        getProfilevalue: function (defaultValue) {
-	            var index = _.findIndex(this.profilevalues, 'field_id', this.field.id),
-	                defaultProfilevalue = {
-	                    id: 0,
-	                    user_id: this.user.id,
-	                    field_id: this.field.id,
-	                    multiple: this.field.data.multiple || 0,
-	                    value: defaultValue
-	                };
-	            if (index === -1) {
-	                index = this.profilevalues.length;
-	                this.profilevalues.push(defaultProfilevalue);
-	            }
-	            //multiple setting changed, convert value
-	            if (this.field.data.multiple && this.profilevalues[index].multiple != this.field.data.multiple) {
-
-	                this.profilevalues[index].multiple = this.field.data.multiple;
-
-	                if (typeof this.profilevalues[index].value === 'object' && !this.profilevalues[index].multiple) {
-	                    this.profilevalues[index].value = this.profilevalues[index].value[0];
-	                }
-	                if (typeof this.profilevalues[index].value !== 'object' && this.profilevalues[index].multiple) {
-	                    this.profilevalues[index].value = [this.profilevalues[index].value];
-	                }
-
-	            }
-	            return this.profilevalues[index];
-	        },
-	        fieldInvalid: function (form) {
-	            return false; //todo form[this.fieldid].invalid;
-	        }
-
-	    },
-
-	    computed: {
-	        fieldRequired: function () {
-	            return this.field.data.required && !this.isAdmin ? true : false;
-	        },
-	        fieldLabel: function () {
-	            return this.isAdmin ? 'Default value' : this.field.label;
-	        }
-	    }
-
-	};
-
-/***/ },
-
-/***/ 34:
-/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -154,11 +91,10 @@ var Fields =
 	// </template>
 
 	// <script>
-	var profilefieldMixin = __webpack_require__(28);
 
 	module.exports = {
 
-	    mixins: [profilefieldMixin],
+	    mixins: [ProfilefieldMixin],
 
 	    data: function data() {
 	        return {
@@ -179,7 +115,7 @@ var Fields =
 
 /***/ },
 
-/***/ 35:
+/***/ 13:
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-row {{field.data.classSfx}}\">\r\n        <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-form-controls-text\">\r\n            <p v-for=\"option in field.options\" class=\"uk-form-controls-condensed\">\r\n                <label><input type=\"radio\" value=\"{{ option.value }}\"\r\n                              v-model=\"dataObject.value\"> {{ option.text }}</label>\r\n            </p>\r\n        </div>\r\n    </div>";

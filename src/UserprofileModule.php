@@ -48,7 +48,7 @@ class UserprofileModule extends Module {
 
 			foreach (App::module() as $module) {
 				if ($module->get('userprofilefields')) {
-					$paths = array_merge($paths, glob(sprintf('%s/%s/*.php', $module->path, $module->get('userprofilefields')), GLOB_NOSORT) ?: []);
+					$paths = array_merge($paths, glob(sprintf('%s/%s/*/index.php', $module->path, $module->get('userprofilefields')), GLOB_NOSORT) ?: []);
 				}
 			}
 

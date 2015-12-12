@@ -1,4 +1,3 @@
-var Fields =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -46,15 +45,15 @@ var Fields =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(30)
+	module.exports = __webpack_require__(8)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(31)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(9)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\userprofile\\app\\fields\\dob.vue"
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\userprofile\\fieldtypes\\dob\\dob.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -64,70 +63,8 @@ var Fields =
 
 /***/ },
 
-/***/ 28:
+/***/ 8:
 /***/ function(module, exports) {
-
-	module.exports = {
-
-	    props: ['isAdmin', 'profilevalues', 'user', 'field', 'form'],
-
-	    methods: {
-	        getDataObject: function (defaultValue) {
-	            if (this.isAdmin) {
-	                this.field.data.value = this.field.data.value || defaultValue;
-	                return this.field.data;
-	            }
-	            return this.getProfilevalue(defaultValue);
-	        },
-	        getProfilevalue: function (defaultValue) {
-	            var index = _.findIndex(this.profilevalues, 'field_id', this.field.id),
-	                defaultProfilevalue = {
-	                    id: 0,
-	                    user_id: this.user.id,
-	                    field_id: this.field.id,
-	                    multiple: this.field.data.multiple || 0,
-	                    value: defaultValue
-	                };
-	            if (index === -1) {
-	                index = this.profilevalues.length;
-	                this.profilevalues.push(defaultProfilevalue);
-	            }
-	            //multiple setting changed, convert value
-	            if (this.field.data.multiple && this.profilevalues[index].multiple != this.field.data.multiple) {
-
-	                this.profilevalues[index].multiple = this.field.data.multiple;
-
-	                if (typeof this.profilevalues[index].value === 'object' && !this.profilevalues[index].multiple) {
-	                    this.profilevalues[index].value = this.profilevalues[index].value[0];
-	                }
-	                if (typeof this.profilevalues[index].value !== 'object' && this.profilevalues[index].multiple) {
-	                    this.profilevalues[index].value = [this.profilevalues[index].value];
-	                }
-
-	            }
-	            return this.profilevalues[index];
-	        },
-	        fieldInvalid: function (form) {
-	            return false; //todo form[this.fieldid].invalid;
-	        }
-
-	    },
-
-	    computed: {
-	        fieldRequired: function () {
-	            return this.field.data.required && !this.isAdmin ? true : false;
-	        },
-	        fieldLabel: function () {
-	            return this.isAdmin ? 'Default value' : this.field.label;
-	        }
-	    }
-
-	};
-
-/***/ },
-
-/***/ 30:
-/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -204,13 +141,12 @@ var Fields =
 	// </template>
 
 	// <script>
-	var profilefieldMixin = __webpack_require__(28);
 
 	module.exports = {
 
 	    inherit: true,
 
-	    mixins: [profilefieldMixin],
+	    mixins: [ProfilefieldMixin],
 
 	    data: function data() {
 	        return {
@@ -304,7 +240,7 @@ var Fields =
 
 /***/ },
 
-/***/ 31:
+/***/ 9:
 /***/ function(module, exports) {
 
 	module.exports = "<div v-if=\"isAdmin\" class=\"uk-form-row {{field.data.classSfx}}\">\n        <span for=\"form-date-format\" class=\"uk-form-label\">{{ 'Date format' | trans }}</span>\n\n        <div class=\"uk-form-controls\">\n            <select class=\"uk-form-width-medium\" id=\"form-date-format\" v-model=\"field.data.dateFormat\">\n                <option v-for=\"option in dateFormats\" :value=\"option.value\">{{ option.text }}</option>\n            </select>\n        </div>\n    </div>\n\n    <div v-if=\"isAdmin\" class=\"uk-form-row {{field.data.classSfx}}\">\n        <span for=\"form-min-age\" class=\"uk-form-label\">{{ 'Minimum age' | trans }}</span>\n\n        <div class=\"uk-form-controls\">\n            <select class=\"uk-form-width-small\" id=\"form-min-age\" options=\"numbersList(1,120)\" v-model=\"field.data.minAge\">\n                <option v-for=\"option in numbersList(1,120)\" :value=\"option.value\">{{ option.text }}</option>\n            </select>\n        </div>\n    </div>\n\n    <div v-if=\"isAdmin\" class=\"uk-form-row {{field.data.classSfx}}\">\n        <span for=\"form-max-age\" class=\"uk-form-label\">{{ 'Maximum age' | trans }}</span>\n\n        <div class=\"uk-form-controls\">\n            <select class=\"uk-form-width-small\" id=\"form-max-age\" v-model=\"field.data.maxAge\">\n                <option v-for=\"option in numbersList(1,120)\" :value=\"option.value\">{{ option.text }}</option>\n            </select>\n        </div>\n    </div>\n\n    <div v-if=\"!isAdmin\" v-el:dob class=\"uk-form-row {{field.data.classSfx}}\">\n    <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n        }}</span>\n\n        <div class=\"uk-form-controls uk-flex\">\n            <div class=\"uk-grid uk-grid-small uk-grid-width-1-3 uk-width-1-1\">\n\n                <div>\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\n                        <select class=\"\" v-model=\"month\">\n                            <option v-for=\"option in months\" :value=\"option.value\">{{ option.text }}</option>\n                        </select>\n                    </div>\n                </div>\n\n                <div :class=\"{'uk-flex-order-first': field.data.dateFormat == 'DD-MM-YYYY'}\">\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\n                        <select class=\"\" options=\"numbersList(1,31, 'Day')\" v-model=\"day\">\n                            <option v-for=\"option in numbersList(1,31, 'Day')\" :value=\"option.value\">{{ option.text }}</option>\n                        </select>\n                    </div>\n                </div>\n\n                <div>\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\n                        <select class=\"\" options=\"years\" v-model=\"year\">\n                            <option v-for=\"option in years\" :value=\"option.value\">{{ option.text }}</option>\n                        </select>\n                    </div>\n                </div>\n\n            </div>\n        </div>\n    </div>";

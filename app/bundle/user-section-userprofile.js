@@ -46,10 +46,10 @@ var Fields =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(25)
+	module.exports = __webpack_require__(20)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(26)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(21)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -64,7 +64,7 @@ var Fields =
 
 /***/ },
 
-/***/ 25:
+/***/ 20:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -127,7 +127,7 @@ var Fields =
 
 /***/ },
 
-/***/ 26:
+/***/ 21:
 /***/ function(module, exports) {
 
 	module.exports = "<div>\r\n\r\n        <profilefields :fields.sync=\"fields\" :profilevalues=\"profilevalues\" :user=\"user\" :form=\"form\"></profilefields>\r\n\r\n        <p v-show=\"!fields\" class=\"uk-text-center\"><i class=\"uk-icon-spinner uk-icon-spin\"></i></p>\r\n\r\n    </div>";

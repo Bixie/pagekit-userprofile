@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = window.ProfilefieldMixin = {
 
     props: ['isAdmin', 'profilevalues', 'user', 'field', 'form'],
 

@@ -42,7 +42,7 @@
 
         <input type="hidden" v-model="field.priority"/>
     </div>
-<pre>{{$data|json}}</pre>
+
 </template>
 
 <script>

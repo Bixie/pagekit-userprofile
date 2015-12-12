@@ -44,7 +44,7 @@ return [
 
 	],
 
-	'userprofilefields' => 'fields',
+	'userprofilefields' => 'fieldtypes',
 
 	'resources' => [
 
@@ -105,7 +105,8 @@ return [
 			$scripts->register('link-userprofile', 'bixie/userprofile:app/bundle/link-userprofile.js', '~panel-link');
 			$scripts->register('user-section-userprofile', 'bixie/userprofile:app/bundle/user-section-userprofile.js', ['~user-edit', 'userprofile-profilefields']);
 			//register fields
-			$scripts->register('userprofile-profilefields', 'bixie/userprofile:app/bundle/userprofile-profilefields.js', 'vue');
+			$scripts->register('userprofile-profilefieldmixin', 'bixie/userprofile:app/bundle/userprofile-profilefieldmixin.js', 'vue');
+			$scripts->register('userprofile-profilefields', 'bixie/userprofile:app/bundle/userprofile-profilefields.js', ['vue', 'userprofile-profilefieldmixin']);
 			$userprofile = $app->module('bixie/userprofile');
 			foreach ($userprofile->getTypes() as $type) {
 				$scripts->register(

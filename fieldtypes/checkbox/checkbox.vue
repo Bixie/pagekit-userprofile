@@ -16,11 +16,10 @@
 </template>
 
 <script>
-    var profilefieldMixin = require('../mixins/profilefield.js');
 
     module.exports = {
 
-        mixins: [profilefieldMixin],
+        mixins: [ProfilefieldMixin],
 
         data: function () {
             return {

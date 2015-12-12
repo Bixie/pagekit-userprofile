@@ -36,13 +36,12 @@
 </template>
 
 <script>
-    var profilefieldMixin = require('../mixins/profilefield.js');
 
     module.exports = {
 
         inherit: true,
 
-        mixins: [profilefieldMixin],
+        mixins: [ProfilefieldMixin],
 
         data: function () {
             return {
