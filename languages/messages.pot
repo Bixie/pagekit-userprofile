@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pagekit UNKNOWN (bixie/userprofile, messages)\n"
-"POT-Creation-Date: 2015-10-17 10:55+0000\n"
+"POT-Creation-Date: 2015-12-12 20:43+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,7 +12,34 @@ msgstr ""
 msgid "Label"
 msgstr ""
 
+msgid "Please enter a label"
+msgstr ""
+
+msgid "Field required"
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Multiple values"
+msgstr ""
+
+msgid "Multiple"
+msgstr ""
+
+msgid "Restrict Access"
+msgstr ""
+
 msgid "Manage options"
+msgstr ""
+
+msgid "Add option"
+msgstr ""
+
+msgid "Class suffix"
+msgstr ""
+
+msgid "Required error message"
 msgstr ""
 
 msgid "%type% saved."
@@ -21,10 +48,22 @@ msgstr ""
 msgid "View"
 msgstr ""
 
+msgid "User Profile"
+msgstr ""
+
+msgid "User Registration"
+msgstr ""
+
 msgid "Userprofile Settings"
 msgstr ""
 
-msgid "Date format"
+msgid "Save"
+msgstr ""
+
+msgid "Redirect"
+msgstr ""
+
+msgid "Redirect Pagekit registration page"
 msgstr ""
 
 msgid "Month"
@@ -66,10 +105,13 @@ msgstr ""
 msgid "December"
 msgstr ""
 
-msgid "Size"
+msgid "Day"
 msgstr ""
 
-msgid "Placeholder"
+msgid "Year"
+msgstr ""
+
+msgid "Enable Markdown"
 msgstr ""
 
 msgid "Profile Updated"
@@ -78,58 +120,13 @@ msgstr ""
 msgid "Hide Label"
 msgstr ""
 
-msgid "Class suffix"
-msgstr ""
-
-msgid "Required error message"
-msgstr ""
-
-msgid "Please enter a label"
-msgstr ""
-
-msgid "Field required"
-msgstr ""
-
-msgid "Required"
-msgstr ""
-
-msgid "Multiple values"
-msgstr ""
-
-msgid "Multiple"
-msgstr ""
-
-msgid "Restrict Access"
-msgstr ""
-
-msgid "Add option"
-msgstr ""
-
-msgid "User Profile"
-msgstr ""
-
-msgid "User Registration"
-msgstr ""
-
-msgid "Save"
-msgstr ""
-
-msgid "Redirect"
-msgstr ""
-
-msgid "Redirect Pagekit registration page"
-msgstr ""
-
 msgid "Checkboxes"
 msgstr ""
 
 msgid "Date of birth"
 msgstr ""
 
-msgid "Minimum age"
-msgstr ""
-
-msgid "Maximum age"
+msgid "Html code"
 msgstr ""
 
 msgid "Pulldown"
@@ -139,6 +136,9 @@ msgid "Radio bullets"
 msgstr ""
 
 msgid "Textfield"
+msgstr ""
+
+msgid "Text area"
 msgstr ""
 
 msgid "Field not found."
@@ -175,6 +175,9 @@ msgid "Options"
 msgstr ""
 
 msgid "Appearance"
+msgstr ""
+
+msgid "Fields"
 msgstr ""
 
 msgid "Delete"

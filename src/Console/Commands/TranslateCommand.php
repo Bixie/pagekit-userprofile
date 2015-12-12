@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Create .pot file:
+ *  `php ./pagekit extension:translate bixie/userprofile`
+ * Create .php files
+ *  `php ./pagekit userprofile:translate [en_US]`
+ */
 namespace Bixie\Userprofile\Console\Commands;
 
 use Pagekit\Application\Console\Command;
