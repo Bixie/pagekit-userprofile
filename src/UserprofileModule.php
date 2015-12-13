@@ -5,6 +5,7 @@ namespace Bixie\Userprofile;
 use Pagekit\Application as App;
 use Pagekit\Module\Module;
 use Bixie\Userprofile\Model\Field;
+use Bixie\Userprofile\Type\TypeBase;
 
 class UserprofileModule extends Module {
 	/**
@@ -27,7 +28,7 @@ class UserprofileModule extends Module {
 
 	/**
 	 * @param  string $type
-	 * @return array
+	 * @return TypeBase
 	 */
 	public function getType ($type) {
 		$types = $this->getTypes();

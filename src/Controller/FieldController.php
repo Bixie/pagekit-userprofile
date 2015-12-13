@@ -18,6 +18,7 @@ class FieldController {
 	 * @Access("site: manage site", admin=true)
 	 */
 	public function editAction ($id = '') {
+		/** @var \Bixie\Userprofile\UserprofileModule $userprofile */
 		$userprofile = App::module('bixie/userprofile');
 
 		if (is_numeric($id)) {
@@ -34,14 +35,14 @@ class FieldController {
 		if (!$type = $userprofile->getType($field->type)) {
 			throw new NotFoundException(__('Type not found.'));
 		}
-		//default values
+		$fixedFields = ['multiple', 'required'];
 		if (!$field->id) {
 			foreach ($type->getConfig() as $key => $value) {
-				$field->set($key, $value);
+				if (!in_array($key, $fixedFields)) $field->set($key, $value);
 			}
 		}
 		//check fixed value
-		foreach (['multiple', 'required'] as $key) {
+		foreach ($fixedFields as $key) {
 			if ($type[$key] != -1) {
 				$field->set($key, $type[$key]);
 			}
