@@ -59,7 +59,10 @@
 				</div>
 			</div>
 
-			<profilefields fields="{{@ fields}}"></profilefields>
+			<profilefields class="uk-margin" :fields.sync="fields"
+						   :profilevalues="profilevalues"
+						   :user="user"
+						   :form="form"></profilefields>
 
 
 			<div class="uk-form-row">

@@ -70,13 +70,8 @@ var Fields =
 	    }
 
 	};
+
 	Vue.ready(module.exports);
-
-	$(function () {
-
-	    new Vue(module.exports).$mount('#userprofile-registration');
-
-	});
 
 
 /***/ }
