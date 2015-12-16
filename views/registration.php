@@ -12,7 +12,7 @@
 
 				<div class="uk-form-controls">
 					<input id="form-username" class="uk-form-width-large" type="text" name="username"
-						   v-model="user.username" v-validate="required">
+						   v-model="user.username" v-validate:required>
 
 					<p class="uk-form-help-block uk-text-danger"
 					   v-show="form.username.invalid">{{ 'Username cannot be blank.' | trans }}</p>
@@ -24,7 +24,7 @@
 
 				<div class="uk-form-controls">
 					<input id="form-name" class="uk-form-width-large" type="text" name="name"
-						   v-model="user.name" v-validate="required">
+						   v-model="user.name" v-validate:required>
 
 					<p class="uk-form-help-block uk-text-danger" v-show="form.name.invalid">{{ 'Name cannot be blank.' |
 						trans }}</p>
@@ -36,7 +36,7 @@
 
 				<div class="uk-form-controls">
 					<input id="form-email" class="uk-form-width-large" type="text" name="email"
-						   v-model="user.email" v-validate="email, required">
+						   v-model="user.email"  v-validate:required  v-validate:email>
 
 					<p class="uk-form-help-block uk-text-danger" v-show="form.email.invalid">{{ 'Invalid Email.' | trans
 						}}</p>
@@ -49,7 +49,7 @@
 				<div class="uk-form-controls">
 					<div class="uk-form-password">
 						<input id="form-password" class="uk-form-width-large" type="password" name="password"
-							   v-model="user.password" v-validate="required">
+							   v-model="user.password" v-validate:required>
 						<a href="" class="uk-form-password-toggle" tabindex="-1"
 						   data-uk-form-password="{ lblShow: '{{ 'Show' | trans }}', lblHide: '{{ 'Hide' | trans }}' }">{{
 							'Show' | trans }}</a>
