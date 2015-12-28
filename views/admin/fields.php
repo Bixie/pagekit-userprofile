@@ -58,7 +58,7 @@
 </div>
 
 <script id="field" type="text/template">
-	<li class="uk-nestable-item" :class="{'uk-active': isSelected(field)}" data-id="{{ field.id }}">
+	<li class="uk-nestable-item" :class="{'uk-active': $parent.isSelected(field)}" data-id="{{ field.id }}">
 
 		<div class="uk-nestable-panel pk-table-fake uk-form uk-visible-hover">
 			<div class="pk-table-width-minimum pk-table-collapse">
@@ -71,7 +71,7 @@
 			<div class="pk-table-width-100 uk-text-center">
 				<td class="uk-text-center">
 					<a :class="{'pk-icon-circle-danger': !field.data.required, 'pk-icon-circle-success': field.data.required}"
-					   @click.prevent="toggleRequired(field)"></a>
+					   @click.prevent="$parent.toggleRequired(field)"></a>
 				</td>
 			</div>
 			<div class="pk-table-width-150 pk-table-max-width-150 uk-text-truncate">

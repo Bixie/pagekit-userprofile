@@ -60,9 +60,9 @@ var Fields =
 	            this.$http.post('user/registration/register', {
 	                user: this.user,
 	                profilevalues: this.profilevalues
-	            }, function (data) {
+	            }).then(function (data) {
 	                window.location.replace(data.redirect);
-	            }).error(function (error) {
+	            }, function (error) {
 	                this.error = error;
 	            });
 	        }

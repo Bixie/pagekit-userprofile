@@ -17,10 +17,10 @@ module.exports = {
             this.$set('message', '');
             this.$set('error', '');
 
-            this.$http.post('user/profile/save', {user: this.user, profilevalues: this.profilevalues}, function () {
+            this.$http.post('user/profile/save', {user: this.user, profilevalues: this.profilevalues}).then(function () {
                 //todo return new profilevalues ids
                 this.message = this.$trans('Profile Updated');
-            }).error(function (error) {
+            }, function (error) {
                 this.error = error;
             });
         }

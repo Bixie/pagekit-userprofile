@@ -68,8 +68,8 @@ var Fields =
 	    methods: {
 
 	        load: function () {
-	            return this.Fields.query(function (data) {
-	                this.$set('fields', data);
+	            return this.Fields.query().then(function (res) {
+	                this.$set('fields', res.data);
 	            });
 	        },
 
@@ -77,7 +77,7 @@ var Fields =
 
 	            field.data.required = field.data.required ? 0 : 1;
 
-	            this.Fields.save({id: field.id}, {field: field}, function () {
+	            this.Fields.save({id: field.id}, {field: field}).then(function () {
 	                this.load();
 	                this.$notify('Field saved.');
 	            }, function (message) {
@@ -120,7 +120,7 @@ var Fields =
 
 	        removeFields: function () {
 
-	            this.Fields.delete({id: 'bulk'}, {ids: this.selected}, function () {
+	            this.Fields.delete({id: 'bulk'}, {ids: this.selected}).then(function () {
 	                this.load();
 	                this.$notify('Fields(s) deleted.');
 	            });
@@ -162,7 +162,7 @@ var Fields =
 
 	                if (type && type !== 'removed') {
 
-	                    vm.Fields.save({id: 'updateOrder'}, {fields: nestable.list()}, function () {
+	                    vm.Fields.save({id: 'updateOrder'}, {fields: nestable.list()}).then(function () {
 
 	                        // @TODO reload everything on reorder really needed?
 	                        vm.load().success(function () {
@@ -175,7 +175,7 @@ var Fields =
 	                            }
 	                        });
 
-	                    }).error(function () {
+	                    }, function () {
 	                        this.$notify('Reorder failed.', 'danger');
 	                    });
 	                }
