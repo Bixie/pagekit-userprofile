@@ -2,10 +2,12 @@
 
 namespace Bixie\Userprofile;
 
+use Bixie\Userprofile\Model\Profilevalue;
 use Pagekit\Application as App;
 use Pagekit\Module\Module;
 use Bixie\Userprofile\Model\Field;
 use Bixie\Userprofile\Type\TypeBase;
+use Pagekit\User\Model\User;
 
 class UserprofileModule extends Module {
 	/**
@@ -24,6 +26,27 @@ class UserprofileModule extends Module {
 
 			return new Field;
 		};
+	}
+
+	/**
+	 * @param User|null $user
+	 * @return array|bool
+	 */
+	public function getProfile (User $user = null) {
+		if ($user = $user ?: App::user()) {
+			$fields = Field::getProfileFields();
+			$data = [];
+			$profile = [];
+			foreach (Profilevalue::getUserProfilevalues($user) as $profileValue) {
+				$data[$profileValue->field_id] = $profileValue->getValue();
+			}
+			foreach ($fields as $profileField) {
+				$profileField->set('value', $data[$profileField->id]);
+				$profile[$profileField->label] = $profileField->prepareValue();
+			}
+			return $profile;
+		}
+		return false;
 	}
 
 	/**
