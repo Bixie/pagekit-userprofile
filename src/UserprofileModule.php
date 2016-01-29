@@ -41,8 +41,10 @@ class UserprofileModule extends Module {
 				$data[$profileValue->field_id] = $profileValue->getValue();
 			}
 			foreach ($fields as $profileField) {
-				$profileField->set('value', $data[$profileField->id]);
-				$profile[$profileField->label] = $profileField->prepareValue();
+				if (isset($data[$profileField->id])) {
+					$profileField->set('value', $data[$profileField->id]);
+					$profile[$profileField->label] = $profileField->prepareValue();
+				}
 			}
 			return $profile;
 		}
