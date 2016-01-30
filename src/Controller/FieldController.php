@@ -25,14 +25,14 @@ class FieldController {
 			$field = Field::find($id);
 		} else {
 			$field = Field::create();
-			$field->setType($id);
+			$field->setFieldType($id);
 		}
 
 		if (!$field) {
 			throw new NotFoundException(__('Field not found.'));
 		}
 
-		if (!$type = $userprofile->getType($field->type)) {
+		if (!$type = $userprofile->getFieldType($field->type)) {
 			throw new NotFoundException(__('Type not found.'));
 		}
 		$fixedFields = ['multiple', 'required'];

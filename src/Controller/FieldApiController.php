@@ -29,6 +29,10 @@ class FieldApiController {
 			unset($data['id']);
 		}
 
+		if (!$data['slug'] = App::filter($data['slug'] ?: $data['label'], 'slugify')) {
+			App::abort(400, __('Invalid slug.'));
+		}
+
 		try {
 
 			$field->save($data);

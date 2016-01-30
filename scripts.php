@@ -1,4 +1,6 @@
 <?php
+use Doctrine\DBAL\Schema\Comparator;
+use Bixie\Userprofile\Model\Field;
 
 return [
 
@@ -12,6 +14,7 @@ return [
 				$table->addColumn('priority', 'integer', ['default' => 0]);
 				$table->addColumn('type', 'string', ['length' => 255]);
 				$table->addColumn('label', 'string', ['length' => 255]);
+				$table->addColumn('slug', 'string', ['length' => 255]);
 				$table->addColumn('options', 'json_array', ['notnull' => false]);
 				$table->addColumn('roles', 'simple_array', ['notnull' => false]);
 				$table->addColumn('data', 'json_array', ['notnull' => false]);
@@ -47,6 +50,26 @@ return [
 		// remove the config
 		$app['config']->remove('bixie/userprofile');
 
-	}
+	},
+
+	'updates' => [
+
+		'1.2.0' => function ($app) {
+			$util = $app['db']->getUtility();
+
+			if ($util->tableExists('@userprofile_field')) {
+				$table =  $util->listTableDetails('@userprofile_field');
+				if (!$table->hasColumn('slug')) {
+					$table->addColumn('slug', 'string', ['length' => 255]);
+					$util->alterTable((new Comparator())->diffTable($util->listTableDetails('@userprofile_field'), $table));
+					foreach (Field::findAll() as $field) {
+						$field->save(['slug' => $app->filter($field->label, 'slugify')]);
+					}
+				}
+
+			}
+		}
+
+	]
 
 ];

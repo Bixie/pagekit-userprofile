@@ -14,9 +14,11 @@ trait ProfilevalueModelTrait {
 	 */
 	public static function getUserProfilevalues (User $user) {
 		$query = self::where(['user_id' => $user->id]);
-
-		return array_values($query->get());
-
+		$profileValues = [];
+		foreach ($query->get() as $profileValue) {
+			$profileValues[$profileValue->field_id] = $profileValue;
+		}
+		return $profileValues;
 	}
 
 }

@@ -1,4 +1,4 @@
-<?php $view->script('fields-userprofile', 'bixie/userprofile:app/bundle/fields.js', ['vue', 'uikit-nestable']) ?>
+<?php $view->script('fields-userprofile', 'bixie/userprofile:app/bundle/fields.js', ['bixie-framework', 'uikit-nestable']) ?>
 
 <div id="userprofile-fields" class="uk-form uk-form-horizontal" v-cloak>
 

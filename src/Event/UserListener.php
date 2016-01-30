@@ -13,20 +13,20 @@ class UserListener implements EventSubscriberInterface {
 
 	public function onUserChange ($event, User $user) {
 		/** @var \Bixie\Userprofile\Model\Profilevalue $profilevalue */
-		foreach (App::request()->request->get('profilevalues', []) as $data) {
+		foreach (App::request()->request->get('profilevalues', []) as $field_value) {
 			// is new ?
-			if (!$profilevalue = Profilevalue::find($data['id'])) {
+			if (!$profilevalue = Profilevalue::find($field_value['data']['id'])) {
 
-				if ($data['id']) {
+				if ($field_value['data']['id']) {
 					App::abort(404, __('Userprofilevalue not found.'));
 				}
 
 				$profilevalue = Profilevalue::create();
 			}
-			$profilevalue->field_id = $data['field_id'];
+			$profilevalue->field_id = $field_value['field']['id'];
 			$profilevalue->user_id = $user->id;
-			$profilevalue->multiple = $data['multiple'];
-			$profilevalue->setValue($data['value']);
+			$profilevalue->multiple = isset($field_value['field']['data']['multiple']) && $field_value['field']['data']['multiple'] == 1 ? 1 : 0;
+			$profilevalue->setValue($field_value['value']);
 
 			$profilevalue->save();
 

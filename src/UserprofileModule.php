@@ -2,30 +2,51 @@
 
 namespace Bixie\Userprofile;
 
-use Bixie\Userprofile\Model\Profilevalue;
+use Bixie\Framework\FieldValue\FieldValue;
 use Pagekit\Application as App;
 use Pagekit\Module\Module;
+use Bixie\Userprofile\Model\Profilevalue;
+//use Doctrine\DBAL\Schema\Comparator;
 use Bixie\Userprofile\Model\Field;
-use Bixie\Userprofile\Type\TypeBase;
 use Pagekit\User\Model\User;
 
 class UserprofileModule extends Module {
 	/**
+	 * @var \Bixie\Framework\FrameworkModule
+	 */
+	protected $framework;
+	/**
 	 * @var array
 	 */
-	protected $types;
+	protected $fieldTypes;
 
 	/**
 	 * {@inheritdoc}
 	 */
 	public function main (App $app) {
-		$app['field'] = function ($app) {
-			if ($id = $app['request']->attributes->get('_field') and $field = Field::find($id)) {
-				return $field;
-			}
+		if (!in_array('bixie/framework', App::system()->config('extensions'))) {
+			throw new \RuntimeException('Bixie Framework required for Userprofile');
+		}
 
-			return new Field;
-		};
+
+		$app->on('boot', function () use ($app) {
+			$this->framework = App::module('bixie/framework');
+		});
+
+//		$app->on('request', function () use ($app) {
+//			$util = $app['db']->getUtility();
+//			if ($util->tableExists('@userprofile_field')) {
+//				$table =  $util->listTableDetails('@userprofile_field');
+//				if (!$table->hasColumn('slug')) {
+//					$table->addColumn('slug', 'string', ['length' => 255]);
+//					$util->alterTable((new Comparator())->diffTable($util->listTableDetails('@userprofile_field'), $table));
+//					foreach (Field::findAll() as $field) {
+//						$field->save(['slug' => $app->filter($field->label, 'slugify')]);
+//					}
+//				}
+//			}
+//		});
+
 	}
 
 	/**
@@ -34,17 +55,16 @@ class UserprofileModule extends Module {
 	 */
 	public function getProfile (User $user = null) {
 		if ($user = $user ?: App::user()) {
-			$fields = Field::getProfileFields();
-			$data = [];
+			$profileValues = Profilevalue::getUserProfilevalues($user);
 			$profile = [];
-			foreach (Profilevalue::getUserProfilevalues($user) as $profileValue) {
-				$data[$profileValue->field_id] = $profileValue->getValue();
-			}
-			foreach ($fields as $profileField) {
-				if (isset($data[$profileField->id])) {
-					$profileField->set('value', $data[$profileField->id]);
-					$profile[$profileField->label] = $profileField->prepareValue();
+			foreach (Field::getProfileFields() as $field) {
+				$value = isset($profileValues[$field->id]) ? $profileValues[$field->id]->value : [];
+				$id = isset($profileValues[$field->id]) ? $profileValues[$field->id]->id : 0;
+				//convert single value to string
+				if ($field->getFieldType()['multiple'] !== 1 && is_array($value)) {
+					$value = reset($value) ?: '';
 				}
+				$profile[$field->slug] = (new FieldValue($field, compact('id', 'value')))->toFormattedArray();
 			}
 			return $profile;
 		}
@@ -53,60 +73,23 @@ class UserprofileModule extends Module {
 
 	/**
 	 * @param  string $type
-	 * @return TypeBase
+	 * @return \Bixie\Framework\FieldType\FieldTypeBase
 	 */
-	public function getType ($type) {
-		$types = $this->getTypes();
+	public function getFieldType ($type) {
+		$fieldTypes = $this->getFieldTypes();
 
-		return isset($types[$type]) ? $types[$type] : null;
+		return isset($fieldTypes[$type]) ? $fieldTypes[$type] : null;
 	}
 
 	/**
 	 * @return array
 	 */
-	public function getTypes () {
-		//todo cache this
-		if (!$this->types) {
-
-			$this->types = [];
-			$app = App::getInstance(); //available for type.php files
-			$paths = [];
-
-			foreach (App::module() as $module) {
-				if ($module->get('userprofilefields')) {
-					$paths = array_merge($paths, glob(sprintf('%s/%s/*/index.php', $module->path, $module->get('userprofilefields')), GLOB_NOSORT) ?: []);
-				}
-			}
-
-			foreach ($paths as $p) {
-				$package = array_merge([
-					'id' => '',
-					'class' => '\Bixie\Userprofile\Type\Type',
-					'resource' => 'bixie/userprofile:app/bundle',
-					'config' => [
-						'hasOptions' => 0,
-						'required' => 0,
-						'multiple' => 0,
-					],
-					'dependancies' => [],
-					'styles' => [],
-					'getOptions' => '',
-					'prepareValue' => '',
-					'formatValue' => ''
-				], include($p));
-				$this->registerType($package);
-			}
-
+	public function getFieldTypes () {
+		if (!$this->fieldTypes) {
+			$this->fieldTypes = $this->framework->getFieldTypes('bixie/userprofile');
 		}
 
-		return $this->types;
+		return $this->fieldTypes;
 	}
 
-	/**
-	 * Register a field type.
-	 * @param array $package
-	 */
-	public function registerType ($package) {
-		$this->types[$package['id']] = new $package['class']($package);
-	}
 }

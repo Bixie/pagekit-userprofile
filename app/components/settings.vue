@@ -10,7 +10,9 @@
             </div>
             <div data-uk-margin>
 
-                <button class="uk-button uk-button-primary" @click="save">{{ 'Save' | trans }}</button>
+                <button class="uk-button uk-modal-close">{{ 'Close' | trans }}</button>
+
+                <button class="uk-button uk-button-primary uk-margin-small-left" @click="save">{{ 'Save' | trans }}</button>
 
             </div>
         </div>
@@ -40,15 +42,14 @@
 
             save: function () {
                 this.$http.post('admin/system/settings/config', {
-                    name: 'bixie/userprofile',
-                    config: this.package.config
-                }, function () {
-                    this.$notify('Settings saved.', '');
-                }).error(function (data) {
-                    this.$notify(data, 'danger');
-                }).always(function () {
-                    this.$parent.close();
-                });
+                        name: 'bixie/userprofile',
+                        config: this.package.config
+                    }).then(function () {
+                        this.$notify('Settings saved.', '');
+                    }, function (res) {
+                        this.$notify(res.data, 'danger');
+                    }
+                );
             }
 
         }

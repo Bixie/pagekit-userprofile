@@ -103,20 +103,13 @@ return [
 		'view.scripts' => function ($event, $scripts) use ($app) {
 			$scripts->register('userprofile-settings', 'bixie/userprofile:app/bundle/settings.js', '~extensions');
 			$scripts->register('link-userprofile', 'bixie/userprofile:app/bundle/link-userprofile.js', '~panel-link');
-			$scripts->register('user-section-userprofile', 'bixie/userprofile:app/bundle/user-section-userprofile.js', ['~user-edit', 'userprofile-profilefields']);
-			//register fields
-			$scripts->register('userprofile-profilefieldmixin', 'bixie/userprofile:app/bundle/userprofile-profilefieldmixin.js', 'vue');
-			$scripts->register('userprofile-profilefields', 'bixie/userprofile:app/bundle/userprofile-profilefields.js', ['vue', 'userprofile-profilefieldmixin']);
-			foreach ($app->module('bixie/userprofile')->getTypes() as $type) {
-				$type->registerScripts($scripts);
-			}
+			$scripts->register('user-section-userprofile', 'bixie/userprofile:app/bundle/user-section-userprofile.js', ['~user-edit', 'bixie-fieldtypes']);
 		},
 
 		'view.styles' => function ($event, $styles) use ($app) {
-			//todo this should be prettier
 			$route = $app->request()->attributes->get('_route');
 			if (strpos($route, '@userprofile') === 0 || in_array($route, ['@user/edit'])) {
-				foreach ($app->module('bixie/userprofile')->getTypes() as $type) {
+				foreach ($app->module('bixie/userprofile')->getFieldTypes() as $type) {
 					$type->addStyles($styles);
 				}
 			}

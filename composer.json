@@ -16,5 +16,8 @@
   "extra": {
     "icon": "icon.svg",
     "scripts": "scripts.php"
+  },
+  "require": {
+    "bixie/framework": "~0.1"
   }
 }

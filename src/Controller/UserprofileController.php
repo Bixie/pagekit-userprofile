@@ -18,7 +18,7 @@ class UserprofileController {
 			],
 			'$data' => [
 				'config' => App::module('bixie/userprofile')->config('default'),
-				'types' => $userprofile->getTypes()
+				'types' => $userprofile->getFieldTypes()
 			]
 		];
 	}

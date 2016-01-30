@@ -4,7 +4,6 @@ namespace Bixie\Userprofile\Controller;
 
 use Pagekit\Application as App;
 use Bixie\Userprofile\Model\Field;
-use Bixie\Userprofile\Model\Profilevalue;
 
 class ProfileController {
 	public function indexAction () {
@@ -22,8 +21,8 @@ class ProfileController {
 			],
 			'$data' => [
 				'config' => $userprofile->config('default'),
-				'fields' => Field::getProfileFields(),
-				'profilevalues' => Profilevalue::getUserProfilevalues($user),
+				'fields' => array_values(Field::getProfileFields()),
+				'profilevalues' => $userprofile->getProfile($user),
 				'user' => [
 					'id' => $user->id,
 					'username' => $user->username,
@@ -54,8 +53,7 @@ class ProfileController {
 			],
 			'$data' => [
 				'config' => $userprofile->config('default'),
-				'fields' => Field::getProfileFields(),
-				'profilevalues' => [],
+				'fields' => array_values(Field::getProfileFields()),
 				'user' => [
 					'id' => null,
 					'username' => '',

@@ -20,8 +20,8 @@ module.exports = {
             this.$http.post('user/profile/save', {user: this.user, profilevalues: this.profilevalues}).then(function () {
                 //todo return new profilevalues ids
                 this.message = this.$trans('Profile Updated');
-            }, function (error) {
-                this.error = error;
+            }, function (res) {
+                this.error = res.data;
             });
         }
 

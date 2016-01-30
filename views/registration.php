@@ -1,4 +1,4 @@
-<?php $view->script('userprofile-registration', 'bixie/userprofile:app/bundle/registration.js', ['vue', 'userprofile-profilefields', 'uikit-form-password']) ?>
+<?php $view->script('userprofile-registration', 'bixie/userprofile:app/bundle/registration.js', ['bixie-fieldtypes', 'uikit-form-password']) ?>
 
 <form id="userprofile-registration" class="uk-article uk-form uk-form-stacked" name="form" v-validator="form" @submit.prevent="save | valid" v-cloak>
 	<div class="uk-grid">
@@ -59,11 +59,10 @@
 				</div>
 			</div>
 
-			<profilefields class="uk-margin" :fields.sync="fields"
-						   :profilevalues="profilevalues"
-						   :user="user"
-						   :form="form"></profilefields>
-
+			<fieldtypes class="uk-margin" :fields="fields"
+						:model.sync="profilevalues"
+						:user="user"
+						:form="form"></fieldtypes>
 
 			<div class="uk-form-row">
 				<button class="uk-button uk-button-primary" type="submit">{{ 'Register' | trans }}</button>

@@ -1,4 +1,4 @@
-<?php $view->script('field-edit', 'bixie/userprofile:app/bundle/field-edit.js', ['vue', 'userprofile-profilefields', 'uikit-nestable']); ?>
+<?php $view->script('field-edit', 'bixie/userprofile:app/bundle/field-edit.js', ['bixie-fieldtypes', 'uikit-nestable']); ?>
 
 <form id="field-edit" class="uk-form" v-validator="form" @submit.prevent="save | valid" v-cloak>
 
@@ -21,36 +21,15 @@
 
 	<ul class="uk-tab" v-el:tab>
 		<li><a>{{ type.label | trans }}</a></li>
-		<li v-show="type.hasOptions"><a>{{ 'Options' | trans }}</a></li>
+		<li v-if="type.hasOptions"><a>{{ 'Options' | trans }}</a></li>
 		<li><a>{{ 'Appearance' | trans }}</a></li>
 	</ul>
 
 	<div class="uk-switcher uk-margin" v-el:content>
 		<div>
 			<fieldbasic :field.sync="field" :type="type" :form="form" :roles="roles"></fieldbasic>
-
-			<div class="uk-form-horizontal uk-margin">
-				<div class="uk-margin" v-if="fieldSettings">
-					<fields :config="fieldSettings" :model.sync="field.data" template="formrow"></fields>
-				</div>
-
-				<profilefields class="uk-margin" v-show="!type.hasOptions || field.options.length"
-							   v-ref:formmakerfields
-							   :edit-type="field.type"
-							   :field.sync="field"
-							   :fields="[field]"
-							   :profilevalues="profilevalues"
-							   :user="user"
-							   :form="form"></profilefields>
-
-				<div id="type-settings" class="uk-margin"
-					 :data-object.sync="field.data"
-					 :field.sync="field"
-					 :form="form"></div>
-
-			</div>
 		</div>
-		<div>
+		<div v-if="type.hasOptions">
 			<fieldoptions v-show="type.hasOptions" :field.sync="field" :form="form"></fieldoptions>
 		</div>
 		<div>

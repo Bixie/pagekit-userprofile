@@ -1,7 +1,11 @@
 <template>
     <div>
 
-        <profilefields :fields.sync="fields" :profilevalues="profilevalues" :user="user" :form="form"></profilefields>
+        <fieldtypes class="uk-margin" :fields="fields"
+                    :model.sync="profilevalues"
+                    :user="user"
+                    :form="form"></fieldtypes>
+
 
         <p v-show="!fields" class="uk-text-center"><i class="uk-icon-spinner uk-icon-spin"></i></p>
 
@@ -17,7 +21,7 @@
         data: function () {
             return {
                 fields: [],
-                profilevalues: []
+                profilevalues: {}
             }
         },
 
@@ -27,7 +31,7 @@
         },
 
         created: function () {
-            this.Fields = this.$resource('api/userprofile/profile/:id');
+            this.Fields = this.$resource('api/userprofile/profile/{id}');
             this.load();
             this.$on('save', function (data) {
                 data.profilevalues = this.profilevalues;
@@ -37,11 +41,11 @@
         methods: {
 
             load: function () {
-                return this.Fields.query({id: this.user.id}, function (data) {
-                    this.$set('fields', data.fields);
-                    this.$set('profilevalues', data.profilevalues);
-                }, function (message) {
-                    this.$notify('Userprofile: ' + message, 'danger');
+                return this.Fields.query({id: this.user.id}).then(function (res) {
+                    this.$set('fields', res.data.fields);
+                    this.$set('profilevalues', res.data.profilevalues);
+                }, function (res) {
+                    this.$notify('Userprofile: ' + res.data, 'danger');
                 });
             }
         }

@@ -12,36 +12,6 @@ glob.sync(path.join(__dirname, 'fieldtypes/*/*.vue')).forEach(function (file) {
 module.exports = [
 
     {
-        entry: {
-            "userprofile-profilefieldmixin": "./app/mixins/profilefield.js"
-        },
-        output: {
-            filename: "./app/bundle/[name].js",
-            library: "ProfilefieldMixin"
-        },
-        module: {
-            loaders: [
-                { test: /\.vue$/, loader: "vue" }
-            ]
-        }
-    },
-
-    {
-        entry: {
-            "userprofile-profilefields": "./app/components/profilefields.vue"
-        },
-        output: {
-            filename: "./app/bundle/[name].js",
-            library: "Profilefields"
-        },
-        module: {
-            loaders: [
-                { test: /\.vue$/, loader: "vue" }
-            ]
-        }
-    },
-
-    {
         entry: fieldtypes,
         output: {
             filename: "./app/bundle/[name].js"

@@ -5,7 +5,6 @@ namespace Bixie\Userprofile\Controller;
 use Pagekit\Application as App;
 use Pagekit\User\Model\User;
 use Bixie\Userprofile\Model\Field;
-use Bixie\Userprofile\Model\Profilevalue;
 
 class ProfileApiController {
 
@@ -28,8 +27,8 @@ class ProfileApiController {
 
 		return [
 			'config' => $userprofile->config(),
-			'fields' => Field::getProfileFields(),
-			'profilevalues' => Profilevalue::getUserProfilevalues($user),
+			'fields' => array_values(Field::getProfileFields()),
+			'profilevalues' => $userprofile->getProfile($user),
 			'user' => [
 				'id' => $user->id,
 				'username' => $user->username,

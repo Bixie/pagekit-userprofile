@@ -6,6 +6,7 @@ namespace Bixie\Userprofile\Model;
  * @Entity(tableClass="@userprofile_value")
  */
 class Profilevalue implements \JsonSerializable {
+
 	use ProfilevalueModelTrait;
 
 	/** @Column(type="integer") @Id */
@@ -21,7 +22,6 @@ class Profilevalue implements \JsonSerializable {
 	public $multiple = 0;
 
 	/** @Column(type="simple_array") */
-	//todo I want this protected, but PropertyTrait won't let me
 	public $value = '';
 
 	/**

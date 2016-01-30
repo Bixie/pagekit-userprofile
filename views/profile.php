@@ -1,5 +1,5 @@
 <?php
-$view->script('userprofile', 'bixie/userprofile:app/bundle/userprofile.js', ['vue', 'userprofile-profilefields', 'uikit-form-password']);
+$view->script('userprofile', 'bixie/userprofile:app/bundle/userprofile.js', ['bixie-fieldtypes', 'uikit-form-password']);
 ?>
 
 <form id="userprofile-profile" class="uk-article uk-form uk-form-stacked"
@@ -68,10 +68,10 @@ $view->script('userprofile', 'bixie/userprofile:app/bundle/userprofile.js', ['vu
 				</div>
 			</div>
 
-			<profilefields class="uk-margin" :fields.sync="fields"
-						   :profilevalues="profilevalues"
-						   :user="user"
-						   :form="form"></profilefields>
+			<fieldtypes class="uk-margin" :fields="fields"
+						:model.sync="profilevalues"
+						:user="user"
+						:form="form"></fieldtypes>
 
 			<div class="uk-form-row">
 				<button class="uk-button uk-button-primary" type="submit">{{ 'Save' | trans }}</button>
