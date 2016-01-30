@@ -67,7 +67,7 @@ var Fields =
 	    },
 
 	    ready: function () {
-	        this.Fields = this.$resource('api/userprofile/field/:id');
+	        this.Fields = this.$resource('api/userprofile/field/{id}');
 	        this.tab = UIkit.tab(this.$els.tab, {connect: this.$els.content});
 	    },
 
@@ -79,18 +79,18 @@ var Fields =
 
 	            this.$broadcast('save', data);
 
-	            this.Fields.save({id: this.field.id}, data, function (data) {
+	            this.Fields.save({id: this.field.id || 0}, data).then(function (res) {
 
 	                if (!this.field.id) {
-	                    window.history.replaceState({}, '', this.$url.route('admin/userprofile/edit', {id: data.field.id}))
+	                    window.history.replaceState({}, '', this.$url.route('admin/userprofile/edit', {id: res.data.field.id}))
 	                }
 
-	                this.$set('field', data.field);
+	                this.$set('field', res.data.field);
 
 	                this.$notify(this.$trans('%type% saved.', {type: this.type.label}));
 
-	            }, function (data) {
-	                this.$notify(data, 'danger');
+	            }, function (res) {
+	                this.$notify(res.data, 'danger');
 	            });
 	        }
 
@@ -125,17 +125,6 @@ var Fields =
 	    }
 
 	};
-
-	Vue.field.templates.formrow = __webpack_require__(16);
-	Vue.field.templates.raw = __webpack_require__(17);
-	Vue.field.types.text = '<input type="text" v-bind="attrs" v-model="value">';
-	Vue.field.types.textarea = '<textarea v-bind="attrs" v-model="value"></textarea>';
-	Vue.field.types.select = '<select v-bind="attrs" v-model="value"><option v-for="option in options" :value="option">{{ $key }}</option></select>';
-	Vue.field.types.radio = '<p class="uk-form-controls-condensed"><label v-for="option in options"><input type="radio" :value="option" v-model="value"> {{ $key | trans }}</label></p>';
-	Vue.field.types.checkbox = '<p class="uk-form-controls-condensed"><label><input type="checkbox" v-bind="attrs" v-model="value" v-bind:true-value="1" v-bind:false-value="0" number> {{ optionlabel | trans }}</label></p>';
-	Vue.field.types.number = '<input type="number" v-bind="attrs" v-model="value" number>';
-	Vue.field.types.title = '<h3 v-bind="attrs">{{ title | trans }}</h3>';
-	Vue.field.types.editor = '<v-editor :value.sync="value" :options="{markdown : field.markdown}" v-bind="attrs"></v-editor>';
 
 	Vue.ready(module.exports);
 
@@ -174,63 +163,113 @@ var Fields =
 
 	// <template>
 
-	//     <div class="uk-form-horizontal uk-margin">
+	//     <div class="uk-margin">
 
-	//         <div class="uk-form-row">
+	//         <div class="uk-grid">
 
-	//             <label for="form-label" class="uk-form-label">{{ 'Label' | trans }}</label>
+	//             <div class="uk-width-medium-3-4 uk-form-horizontal">
 
-	//             <div class="uk-form-controls">
+	//                 <div class="uk-form-row">
 
-	//                 <input id="form-label" class="uk-form-width-large" type="text" name="label"
+	//                     <label for="form-label" class="uk-form-label">{{ 'Label' | trans }}</label>
 
-	//                        v-model="field.label" v-valid="required">
+	//                     <div class="uk-form-controls">
+
+	//                         <input id="form-label" class="uk-form-width-large" type="text" name="label"
+
+	//                                v-model="field.label" v-validate:required>
+
+	//                     </div>
+
+	//                     <p class="uk-form-help-block uk-text-danger" v-show="form.label.invalid">{{ 'Please enter a label' | trans }}</p>
+
+	//                 </div>
+
+	//                 <div class="uk-form-row">
+
+	//                     <label for="form-slug" class="uk-form-label">{{ 'Slug' | trans }}</label>
+
+	//                     <div class="uk-form-controls">
+
+	//                         <input id="form-slug" class="uk-form-width-large" type="text" v-model="field.slug">
+
+	//                     </div>
+
+	//                 </div>
+
+	//                 <div class="uk-margin" v-if="fieldSettings">
+
+	//                     <fields :config="fieldSettings" :model.sync="field.data" template="formrow"></fields>
+
+	//                 </div>
+
+	//                 <fieldtypes class="uk-margin" v-show="!type.hasOptions || field.options.length"
+
+	//                             v-ref:fieldtypes
+
+	//                             :edit-type="field.type"
+
+	//                             :fields="[field]"
+
+	//                             :field.sync="field"
+
+	//                             :form="form"></fieldtypes>
+
+	//                 <div id="type-settings" class="uk-margin"
+
+	//                      :data-object.sync="field.data"
+
+	//                      :field.sync="field"
+
+	//                      :form="form"></div>
 
 	//             </div>
 
-	//             <p class="uk-form-help-block uk-text-danger" v-show="form.label.invalid">{{ 'Please enter a label' | trans }}</p>
+	//             <div class="uk-width-medium-1-4 uk-form-stacked">
 
-	//         </div>
+	//                 <div v-if="type.required < 0" class="uk-form-row">
 
-	//         <div v-if="type.required < 0" class="uk-form-row">
+	//                     <span class="uk-form-label">{{ 'Field required' | trans }}</span>
 
-	//             <span class="uk-form-label">{{ 'Field required' | trans }}</span>
+	//                     <div class="uk-form-controls uk-form-controls-text">
 
-	//             <div class="uk-form-controls uk-form-controls-text">
+	//                         <label><input type="checkbox" value="required" v-model="field.data.required"> {{ 'Required' | trans
 
-	//                 <label><input type="checkbox" value="required" v-model="field.data.required"> {{ 'Required' | trans
+	//                             }}</label>
 
-	//                     }}</label>
+	//                     </div>
 
-	//             </div>
+	//                 </div>
 
-	//         </div>
+	//                 <div v-if="type.multiple < 0" class="uk-form-row">
 
-	//         <div v-if="type.multiple < 0" class="uk-form-row">
+	//                     <span class="uk-form-label">{{ 'Multiple values' | trans }}</span>
 
-	//             <span class="uk-form-label">{{ 'Multiple values' | trans }}</span>
+	//                     <div class="uk-form-controls uk-form-controls-text">
 
-	//             <div class="uk-form-controls uk-form-controls-text">
+	//                         <label><input type="checkbox" value="multiple" v-model="field.data.multiple"> {{ 'Multiple' | trans
 
-	//                 <label><input type="checkbox" value="multiple" v-model="field.data.multiple"> {{ 'Multiple' | trans
+	//                             }}</label>
 
-	//                     }}</label>
+	//                     </div>
 
-	//             </div>
+	//                 </div>
 
-	//         </div>
+	//                 <div class="uk-form-row">
 
-	//         <div class="uk-form-row">
+	//                     <span class="uk-form-label">{{ 'Restrict Access' | trans }}</span>
 
-	//             <span class="uk-form-label">{{ 'Restrict Access' | trans }}</span>
+	//                     <div class="uk-form-controls uk-form-controls-text">
 
-	//             <div class="uk-form-controls uk-form-controls-text">
+	//                         <p v-for="role in roles" class="uk-form-controls-condensed">
 
-	//                 <p v-for="role in roles" class="uk-form-controls-condensed">
+	//                             <label><input type="checkbox" :value="role.id" v-model="field.roles" number> {{ role.name }}</label>
 
-	//                     <label><input type="checkbox" :value="role.id" v-model="field.roles" number> {{ role.name }}</label>
+	//                         </p>
 
-	//                 </p>
+	//                     </div>
+
+	//                 </div>
 
 	//             </div>
 
@@ -244,7 +283,27 @@ var Fields =
 
 	module.exports = {
 
-	    props: ['field', 'type', 'form', 'roles']
+	    props: ['field', 'type', 'roles', 'form'],
+
+	    computed: {
+	        fieldSettings: function fieldSettings() {
+	            var settings = this.field.type ? BixieFieldtypes.components[this.field.type].settings || BixieFieldtypes.components[this.field.type].options.settings : {},
+	                parent = this;
+	            if (settings.template !== undefined) {
+	                new Vue(_.merge({
+	                    'el': '#type-settings',
+	                    'name': 'type-settings',
+	                    'parent': parent,
+	                    'data': _.merge({
+	                        'field': parent.field,
+	                        'form': parent.form
+	                    }, settings.data)
+	                }, settings));
+	                return false;
+	            }
+	            return settings;
+	        }
+	    }
 
 	};
 
@@ -254,7 +313,7 @@ var Fields =
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-horizontal uk-margin\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-label\" class=\"uk-form-label\">{{ 'Label' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-label\" class=\"uk-form-width-large\" type=\"text\" name=\"label\"\r\n                       v-model=\"field.label\" v-valid=\"required\">\r\n            </div>\r\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.label.invalid\">{{ 'Please enter a label' | trans }}</p>\r\n        </div>\r\n\r\n        <div v-if=\"type.required < 0\" class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Field required' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"required\" v-model=\"field.data.required\"> {{ 'Required' | trans\r\n                    }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div v-if=\"type.multiple < 0\" class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Multiple values' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"multiple\" v-model=\"field.data.multiple\"> {{ 'Multiple' | trans\r\n                    }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Restrict Access' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <p v-for=\"role in roles\" class=\"uk-form-controls-condensed\">\r\n                    <label><input type=\"checkbox\" :value=\"role.id\" v-model=\"field.roles\" number> {{ role.name }}</label>\r\n                </p>\r\n            </div>\r\n        </div>\r\n\r\n    </div>";
+	module.exports = "<div class=\"uk-margin\">\r\n\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4 uk-form-horizontal\">\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-label\" class=\"uk-form-label\">{{ 'Label' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <input id=\"form-label\" class=\"uk-form-width-large\" type=\"text\" name=\"label\"\r\n                               v-model=\"field.label\" v-validate:required>\r\n                    </div>\r\n                    <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.label.invalid\">{{ 'Please enter a label' | trans }}</p>\r\n                </div>\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-slug\" class=\"uk-form-label\">{{ 'Slug' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <input id=\"form-slug\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.slug\">\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-margin\" v-if=\"fieldSettings\">\r\n                    <fields :config=\"fieldSettings\" :model.sync=\"field.data\" template=\"formrow\"></fields>\r\n                </div>\r\n\r\n                <fieldtypes class=\"uk-margin\" v-show=\"!type.hasOptions || field.options.length\"\r\n                            v-ref:fieldtypes\r\n                            :edit-type=\"field.type\"\r\n                            :fields=\"[field]\"\r\n                            :field.sync=\"field\"\r\n                            :form=\"form\"></fieldtypes>\r\n\r\n                <div id=\"type-settings\" class=\"uk-margin\"\r\n                     :data-object.sync=\"field.data\"\r\n                     :field.sync=\"field\"\r\n                     :form=\"form\"></div>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4 uk-form-stacked\">\r\n\r\n                <div v-if=\"type.required < 0\" class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Field required' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <label><input type=\"checkbox\" value=\"required\" v-model=\"field.data.required\"> {{ 'Required' | trans\r\n                            }}</label>\r\n                    </div>\r\n                </div>\r\n\r\n                <div v-if=\"type.multiple < 0\" class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Multiple values' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <label><input type=\"checkbox\" value=\"multiple\" v-model=\"field.data.multiple\"> {{ 'Multiple' | trans\r\n                            }}</label>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Restrict Access' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <p v-for=\"role in roles\" class=\"uk-form-controls-condensed\">\r\n                            <label><input type=\"checkbox\" :value=\"role.id\" v-model=\"field.roles\" number> {{ role.name }}</label>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>";
 
 /***/ },
 /* 10 */
@@ -493,7 +552,7 @@ var Fields =
 
 	    computed: {
 	        appearanceSettings: function appearanceSettings() {
-	            return this.field.type ? Profilefields.components[this.field.type].appearance || Profilefields.components[this.field.type].options.appearance : {};
+	            return this.field.type ? BixieFieldtypes.components[this.field.type].appearance || BixieFieldtypes.components[this.field.type].options.appearance : {};
 	        }
 	    }
 
@@ -506,18 +565,6 @@ var Fields =
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-horizontal\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Label' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"hide-label\" v-model=\"field.data.hide_label\"> {{ 'Hide Label' |\r\n                    trans }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-class\" class=\"uk-form-label\">{{ 'Class suffix' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-class\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.data.classSfx\">\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\" v-show=\"field.data.required\">\r\n            <label for=\"form-required-error\" class=\"uk-form-label\">{{ 'Required error message' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-required-error\" class=\"uk-form-width-large\" type=\"text\"\r\n                       v-model=\"field.data.requiredError\">\r\n            </div>\r\n        </div>\r\n\r\n        <fields :config=\"appearanceSettings\" :model.sync=\"field.data\" template=\"formrow\"></fields>\r\n\r\n    </div>";
-
-/***/ },
-/* 16 */
-/***/ function(module, exports) {
-
-	module.exports = "<div v-for=\"field in fields\" :class=\"{'uk-form-row': !field.raw}\">\r\n    <label v-if=\"field.label\" class=\"uk-form-label\">\r\n        <i v-if=\"field.tip\" class=\"uk-icon-info uk-icon-hover uk-margin-small-right\" data-uk-tooltip=\"{delay: 100}\" :title=\"field.tip\"></i>\r\n        {{ field.label | trans }}\r\n    </label>\r\n    <div v-if=\"!field.raw\" class=\"uk-form-controls\" :class=\"{'uk-form-controls-text': ['checkbox', 'radio'].indexOf(field.type)>-1}\">\r\n        <field :config=\"field\" :values.sync=\"values\"></field>\r\n    </div>\r\n    <field v-else :config=\"field\" :values.sync=\"values\"></field>\r\n</div>\r\n";
-
-/***/ },
-/* 17 */
-/***/ function(module, exports) {
-
-	module.exports = "<template v-for=\"field in fields\">\r\n    <field :config=\"field\" :values.sync=\"values\"></field>\r\n</template>\r\n";
 
 /***/ }
 /******/ ]);

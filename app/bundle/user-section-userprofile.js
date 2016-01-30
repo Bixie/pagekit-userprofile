@@ -46,10 +46,10 @@ var Fields =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(22)
+	module.exports = __webpack_require__(20)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(23)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(21)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -64,7 +64,7 @@ var Fields =
 
 /***/ },
 
-/***/ 22:
+/***/ 20:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -73,7 +73,13 @@ var Fields =
 
 	//     <div>
 
-	//         <profilefields :fields.sync="fields" :profilevalues="profilevalues" :user="user" :form="form"></profilefields>
+	//         <fieldtypes class="uk-margin" :fields="fields"
+
+	//                     :model.sync="profilevalues"
+
+	//                     :user="user"
+
+	//                     :form="form"></fieldtypes>
 
 	//         <p v-show="!fields" class="uk-text-center"><i class="uk-icon-spinner uk-icon-spin"></i></p>
 
@@ -90,7 +96,7 @@ var Fields =
 	    data: function data() {
 	        return {
 	            fields: [],
-	            profilevalues: []
+	            profilevalues: {}
 	        };
 	    },
 
@@ -100,7 +106,7 @@ var Fields =
 	    },
 
 	    created: function created() {
-	        this.Fields = this.$resource('api/userprofile/profile/:id');
+	        this.Fields = this.$resource('api/userprofile/profile/{id}');
 	        this.load();
 	        this.$on('save', function (data) {
 	            data.profilevalues = this.profilevalues;
@@ -110,11 +116,11 @@ var Fields =
 	    methods: {
 
 	        load: function load() {
-	            return this.Fields.query({ id: this.user.id }, function (data) {
-	                this.$set('fields', data.fields);
-	                this.$set('profilevalues', data.profilevalues);
-	            }, function (message) {
-	                this.$notify('Userprofile: ' + message, 'danger');
+	            return this.Fields.query({ id: this.user.id }).then(function (res) {
+	                this.$set('fields', res.data.fields);
+	                this.$set('profilevalues', res.data.profilevalues);
+	            }, function (res) {
+	                this.$notify('Userprofile: ' + res.data, 'danger');
 	            });
 	        }
 	    }
@@ -127,10 +133,10 @@ var Fields =
 
 /***/ },
 
-/***/ 23:
+/***/ 21:
 /***/ function(module, exports) {
 
-	module.exports = "<div>\r\n\r\n        <profilefields :fields.sync=\"fields\" :profilevalues=\"profilevalues\" :user=\"user\" :form=\"form\"></profilefields>\r\n\r\n        <p v-show=\"!fields\" class=\"uk-text-center\"><i class=\"uk-icon-spinner uk-icon-spin\"></i></p>\r\n\r\n    </div>";
+	module.exports = "<div>\r\n\r\n        <fieldtypes class=\"uk-margin\" :fields=\"fields\"\r\n                    :model.sync=\"profilevalues\"\r\n                    :user=\"user\"\r\n                    :form=\"form\"></fieldtypes>\r\n\r\n\r\n        <p v-show=\"!fields\" class=\"uk-text-center\"><i class=\"uk-icon-spinner uk-icon-spin\"></i></p>\r\n\r\n    </div>";
 
 /***/ }
 
