@@ -33,20 +33,6 @@ class UserprofileModule extends Module {
 			$this->framework = App::module('bixie/framework');
 		});
 
-//		$app->on('request', function () use ($app) {
-//			$util = $app['db']->getUtility();
-//			if ($util->tableExists('@userprofile_field')) {
-//				$table =  $util->listTableDetails('@userprofile_field');
-//				if (!$table->hasColumn('slug')) {
-//					$table->addColumn('slug', 'string', ['length' => 255]);
-//					$util->alterTable((new Comparator())->diffTable($util->listTableDetails('@userprofile_field'), $table));
-//					foreach (Field::findAll() as $field) {
-//						$field->save(['slug' => $app->filter($field->label, 'slugify')]);
-//					}
-//				}
-//			}
-//		});
-
 	}
 
 	/**
