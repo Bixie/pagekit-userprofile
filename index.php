@@ -44,7 +44,7 @@ return [
 
 	],
 
-	'userprofilefields' => 'fieldtypes',
+	'fieldtypes' => 'fieldtypes',
 
 	'resources' => [
 
