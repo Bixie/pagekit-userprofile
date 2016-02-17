@@ -14,7 +14,7 @@ module.exports = {
     },
 
     created: function () {
-        this.Fields = this.$resource('api/userprofile/field/:id');
+        this.Fields = this.$resource('api/userprofile/field{/id}');
         this.load();
     },
 
