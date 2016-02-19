@@ -11,7 +11,7 @@ module.exports = {
                 }
             },
             form: {}
-        }, window.$data);
+        }, window.$data, window.$userprofile);
     },
 
     created: function () {
@@ -47,26 +47,6 @@ module.exports = {
             });
         }
 
-    },
-
-    computed: {
-        fieldSettings: function () {
-            var settings = this.field.type ? Profilefields.components[this.field.type].settings || Profilefields.components[this.field.type].options.settings : {},
-                parent = this;
-            if (settings.template !== undefined) {
-                new Vue(_.merge({
-                    'el': '#type-settings',
-                    'name': 'type-settings',
-                    'parent': parent,
-                    'data':  _.merge({
-                        'field': parent.field,
-                        'form': parent.form
-                    }, settings.data),
-                }, settings));
-                return false;
-            }
-            return settings;
-        }
     },
 
     components: {

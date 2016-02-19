@@ -29,6 +29,7 @@ return [
 				$table->addColumn('field_id', 'integer', ['unsigned' => true, 'length' => 10]);
 				$table->addColumn('multiple', 'smallint');
 				$table->addColumn('value', 'json_array', ['notnull' => false]);
+				$table->addColumn('data', 'json_array', ['notnull' => false]);
 				$table->setPrimaryKey(['id']);
 				$table->addIndex(['user_id'], 'USERPROFILE_VALUES_USERID');
 			});
@@ -66,7 +67,13 @@ return [
 						$field->save(['slug' => $app->filter($field->label, 'slugify')]);
 					}
 				}
-
+			}
+			if ($util->tableExists('@userprofile_value')) {
+				$table =  $util->listTableDetails('@userprofile_value');
+				if (!$table->hasColumn('data')) {
+					$table->addColumn('data', 'json_array', ['notnull' => false]);
+					$util->alterTable((new Comparator())->diffTable($util->listTableDetails('@userprofile_value'), $table));
+				}
 			}
 		}
 

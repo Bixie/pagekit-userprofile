@@ -106,6 +106,26 @@ return [
 			$scripts->register('user-section-userprofile', 'bixie/userprofile:app/bundle/user-section-userprofile.js', ['~user-edit', 'bixie-fieldtypes']);
 		},
 
+		'view.data' => function ($event, $data) use ($app) {
+			$route = $app->request()->attributes->get('_route');
+			if (strpos($route, '@userprofile') === 0 || $route == '@user/edit') {
+				$data->add('$fieldtypes', [
+					'ajax_url' => 'api/userprofile/profile/ajax'
+				]);
+			}
+			//load profile
+			if (in_array($route, ['@userprofile', '@userprofile/registration', '@user/edit'])) {
+				$self = $app->user();
+				$user = $route == '@user/edit' ? \Pagekit\User\Model\User::find($app->request()->get('id')) : $self;
+				if ($self->hasAccess('user: manage users') || $user->id == $self->id) {
+					$data->add('$userprofile', [
+						'fields' => array_values(\Bixie\Userprofile\Model\Field::getProfileFields()),
+						'profilevalues' => $app->module('bixie/userprofile')->getProfile($user),
+					]);
+				}
+			}
+		},
+
 		'view.styles' => function ($event, $styles) use ($app) {
 			$route = $app->request()->attributes->get('_route');
 			if (strpos($route, '@userprofile') === 0 || in_array($route, ['@user/edit'])) {

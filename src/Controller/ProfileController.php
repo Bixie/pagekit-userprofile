@@ -20,9 +20,7 @@ class ProfileController {
 				'name' => 'bixie/userprofile/profile.php'
 			],
 			'$data' => [
-				'config' => $userprofile->config('default'),
-				'fields' => array_values(Field::getProfileFields()),
-				'profilevalues' => $userprofile->getProfile($user),
+				'config' => $userprofile->config(),
 				'user' => [
 					'id' => $user->id,
 					'username' => $user->username,
@@ -52,8 +50,7 @@ class ProfileController {
 				'name' => 'bixie/userprofile/registration.php'
 			],
 			'$data' => [
-				'config' => $userprofile->config('default'),
-				'fields' => array_values(Field::getProfileFields()),
+				'config' => $userprofile->config(),
 				'user' => [
 					'id' => null,
 					'username' => '',

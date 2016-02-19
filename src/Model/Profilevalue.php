@@ -1,11 +1,13 @@
 <?php
 
 namespace Bixie\Userprofile\Model;
+use Bixie\Framework\FieldValue\FieldValueBase;
+use Pagekit\System\Model\DataModelTrait;
 
 /**
  * @Entity(tableClass="@userprofile_value")
  */
-class Profilevalue implements \JsonSerializable {
+class Profilevalue extends FieldValueBase implements \JsonSerializable {
 
 	use ProfilevalueModelTrait;
 
@@ -22,44 +24,13 @@ class Profilevalue implements \JsonSerializable {
 	public $multiple = 0;
 
 	/** @Column(type="simple_array") */
-	public $value = '';
-
-	/**
-	 * {@inheritdoc}
-	 * @return mixed
-	 */
-	public function getValue () {
-		if ($this->multiple) {
-			return $this->value;
-		} else {
-			return $this->value ? $this->value[0] : '';
-		}
-	}
-
-	/**
-	 * weekend quiz.... why is this tournary not the same as function above????
-	 */
-	public function getValueWrong () {
-		return $this->multiple ? $this->value : $this->value ? $this->value[0] : '';
-	}
-
-	/**
-	 * {@inheritdoc}
-	 * @param mixed $value
-	 */
-	public function setValue ($value) {
-		$this->value = $this->multiple ? $value : [$value];
-	}
+	public $value = [];
 
 	/**
 	 * {@inheritdoc}
 	 */
 	public function jsonSerialize () {
-		$field = $this->toArray();
-		//$val = $this->getValueWrong(); //only returns first el of array as str form multiple???
-		$field['value'] = $this->getValue();
-
-		return $field;
+		return $this->toArray();
 	}
 
 }

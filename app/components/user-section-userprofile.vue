@@ -19,10 +19,7 @@
         props: ['user', 'config', 'form'],
 
         data: function () {
-            return {
-                fields: [],
-                profilevalues: {}
-            }
+            return window.$userprofile;
         },
 
         section: {
@@ -30,23 +27,9 @@
             priority: 200
         },
 
-        created: function () {
-            this.Fields = this.$resource('api/userprofile/profile/{id}');
-            this.load();
-            this.$on('save', function (data) {
+        events: {
+            'save': function (data) {
                 data.profilevalues = this.profilevalues;
-            });
-        },
-
-        methods: {
-
-            load: function () {
-                return this.Fields.query({id: this.user.id}).then(function (res) {
-                    this.$set('fields', res.data.fields);
-                    this.$set('profilevalues', res.data.profilevalues);
-                }, function (res) {
-                    this.$notify('Userprofile: ' + res.data, 'danger');
-                });
             }
         }
 

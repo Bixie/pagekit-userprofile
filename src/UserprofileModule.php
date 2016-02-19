@@ -6,7 +6,6 @@ use Bixie\Framework\FieldValue\FieldValue;
 use Pagekit\Application as App;
 use Pagekit\Module\Module;
 use Bixie\Userprofile\Model\Profilevalue;
-//use Doctrine\DBAL\Schema\Comparator;
 use Bixie\Userprofile\Model\Field;
 use Pagekit\User\Model\User;
 
@@ -40,21 +39,17 @@ class UserprofileModule extends Module {
 	 * @return array|bool
 	 */
 	public function getProfile (User $user = null) {
+		$profile = [];
 		if ($user = $user ?: App::user()) {
 			$profileValues = Profilevalue::getUserProfilevalues($user);
-			$profile = [];
-			foreach (Field::getProfileFields() as $field) {
-				$value = isset($profileValues[$field->id]) ? $profileValues[$field->id]->value : [];
-				$id = isset($profileValues[$field->id]) ? $profileValues[$field->id]->id : 0;
-				//convert single value to string
-				if ($field->getFieldType()['multiple'] !== 1 && is_array($value)) {
-					$value = reset($value) ?: '';
-				}
-				$profile[$field->slug] = (new FieldValue($field, compact('id', 'value')))->toFormattedArray();
-			}
-			return $profile;
 		}
-		return false;
+		foreach (Field::getProfileFields() as $field) {
+			$fieldValue = isset($profileValues[$field->id]) ? $profileValues[$field->id] : Profilevalue::create([
+				'data' => $field->get('data')
+			])->setValue($field->get('value'));
+			$profile[$field->slug] = $fieldValue->setField($field)->toFormattedArray(['id' => $fieldValue->id]);
+		}
+		return $profile;
 	}
 
 	/**

@@ -2,6 +2,8 @@
 
 namespace Bixie\Userprofile\Controller;
 
+use Bixie\Framework\FieldValue\FieldValue;
+use Bixie\Userprofile\Model\Profilevalue;
 use Pagekit\Application as App;
 use Pagekit\User\Model\User;
 use Bixie\Userprofile\Model\Field;
@@ -37,6 +39,23 @@ class ProfileApiController {
 			]
 		];
 
+	}
+
+	/**
+	 * @Route("/ajax", methods="POST")
+	 * @Request({"field_id": "int", "action": "string"})
+	 */
+	public function ajaxAction ($field_id, $action) {
+
+		if (!$field = Field::find($field_id)) {
+			App::abort(400, __('Field not found.'));
+		}
+		$fieldValue = Profilevalue::create()->setField($field);
+		$fieldType = $fieldValue->getFieldType();
+		if (method_exists($fieldType, $action)) {
+			return call_user_func([$fieldType,$action], $fieldValue);
+		}
+		return 'No response';
 	}
 
 }

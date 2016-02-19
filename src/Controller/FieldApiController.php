@@ -7,6 +7,9 @@ use Pagekit\Application\Exception;
 use Bixie\Userprofile\Model\Field;
 use Bixie\Userprofile\Model\Profilevalue;
 
+/**
+ * @Access("userprofile: manage settings")
+ */
 class FieldApiController {
 
 	/**
