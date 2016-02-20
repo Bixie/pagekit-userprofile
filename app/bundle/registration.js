@@ -56,22 +56,10 @@ var Fields =
 	            profilevalues: {},
 	            user: {},
 	            form: {}
-	        }, window.$data);
+	        }, window.$data, window.$userprofile);
 	    },
 
 	    created: function () {
-	        //prepare values
-	        this.fields.forEach(function (field) {
-	            this.profilevalues[field.slug] = {
-	                field_id: field.id,
-	                slug: field.slug,
-	                type: field.type,
-	                label: field.label,
-	                value: null,
-	                field: field,
-	                data: {value: null, id: 0}
-	            };
-	        }.bind(this));
 	    },
 
 	    methods: {

@@ -54,7 +54,7 @@ var Fields =
 	            message: '',
 	            error: '',
 	            form: {}
-	        }, window.$data);
+	        }, window.$data, window.$userprofile);
 	    },
 
 	    methods: {
