@@ -26,6 +26,8 @@ class FieldController {
 		} else {
 			$field = Field::create();
 			$field->setFieldType($id);
+			$field->set('value', []);
+			$field->set('data', []);
 		}
 
 		if (!$field) {
@@ -35,7 +37,7 @@ class FieldController {
 		if (!$type = $userprofile->getFieldType($field->type)) {
 			throw new NotFoundException(__('Type not found.'));
 		}
-		$fixedFields = ['multiple', 'required'];
+		$fixedFields = ['multiple', 'required', 'controls', 'repeatable'];
 		if (!$field->id) {
 			foreach ($type->getConfig() as $key => $value) {
 				if (!in_array($key, $fixedFields)) $field->set($key, $value);
@@ -43,6 +45,7 @@ class FieldController {
 		}
 		//check fixed value
 		foreach ($fixedFields as $key) {
+			if (!isset($type[$key])) $type[$key] = 0;
 			if ($type[$key] != -1) {
 				$field->set($key, $type[$key]);
 			}
