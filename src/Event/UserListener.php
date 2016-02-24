@@ -2,6 +2,7 @@
 
 namespace Bixie\Userprofile\Event;
 
+use Bixie\Userprofile\Model\Field;
 use Pagekit\Application as App;
 use Pagekit\Event\EventSubscriberInterface;
 use Pagekit\User\Model\User;
@@ -22,6 +23,11 @@ class UserListener implements EventSubscriberInterface {
 				}
 
 				$profilevalue = Profilevalue::create();
+
+				if (!$field = Field::find($field_value['field']['id'])) {
+					App::abort(404, __('Userprofile field not found.'));
+				}
+				$profilevalue->setField($field);
 			}
 			$profilevalue->setValue($field_value['value']);
 
