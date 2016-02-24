@@ -36,18 +36,23 @@ class UserprofileModule extends Module {
 
 	/**
 	 * @param User|null $user
+	 * @param bool      $asArray
 	 * @return array|bool
 	 */
-	public function getProfile (User $user = null) {
+	public function getProfile (User $user = null, $asArray = true) {
 		$profile = [];
-		if ($user = $user ?: App::user()) {
+		if ($user = $user ?: App::user() and $user->id > 0) {
 			$profileValues = Profilevalue::getUserProfilevalues($user);
 		}
 		foreach (Field::getProfileFields() as $field) {
 			$fieldValue = isset($profileValues[$field->id]) ? $profileValues[$field->id] : Profilevalue::create([
 				'data' => $field->get('data')
 			])->setValue($field->get('value'));
-			$profile[$field->slug] = $fieldValue->setField($field)->toFormattedArray(['id' => $fieldValue->id]);
+			if ($asArray) {
+				$profile[$field->slug] = $fieldValue->setField($field)->toFormattedArray(['id' => $fieldValue->id]);
+			} else {
+				$profile[$field->slug] = $fieldValue->setField($field);
+			}
 		}
 		return $profile;
 	}
