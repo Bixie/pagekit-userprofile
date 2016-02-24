@@ -80,9 +80,9 @@ var Fields =
 	            this.Fields.save({id: field.id}, {field: field}).then(function () {
 	                this.load();
 	                this.$notify('Field saved.');
-	            }, function (message) {
+	            }, function (res) {
 	                this.load();
-	                this.$notify(message, 'danger');
+	                this.$notify(res.data, 'danger');
 	            });
 	        },
 
