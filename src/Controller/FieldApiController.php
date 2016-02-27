@@ -28,7 +28,13 @@ class FieldApiController {
 	public function saveAction ($data, $id = 0) {
 
 		if (!$field = Field::find($id)) {
-			$field = Field::create();
+			$field = Field::create(['data' => [
+				'value' => [],
+				'data' => [],
+				'classSfx' => '',
+				'help_text' => '',
+				'help_show' => ''
+			]]);
 			unset($data['id']);
 		}
 

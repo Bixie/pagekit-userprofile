@@ -5,10 +5,14 @@ module.exports = {
     data: function () {
         return _.merge({
             field: {
+                label: '',
+                type: '',
                 data: {
                     value: [],
                     data: {},
                     classSfx: '',
+                    help_text: '',
+                    help_show: ''
                 }
             },
             form: {}
