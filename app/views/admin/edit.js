@@ -6,8 +6,9 @@ module.exports = {
         return _.merge({
             field: {
                 data: {
+                    value: [],
+                    data: {},
                     classSfx: '',
-                    required: false
                 }
             },
             form: {}
