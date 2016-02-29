@@ -46,10 +46,12 @@ var Fields =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(20)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(14)
+	__vue_template__ = __webpack_require__(15)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(21)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -58,35 +60,31 @@ var Fields =
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
 
-/***/ 20:
+/***/ 14:
 /***/ function(module, exports) {
 
 	'use strict';
 
 	// <template>
-
 	//     <div>
-
+	//
 	//         <fieldtypes class="uk-margin" :fields="fields"
-
 	//                     :model.sync="profilevalues"
-
 	//                     :user="user"
-
 	//                     :form="form"></fieldtypes>
-
+	//
+	//
 	//         <p v-show="!fields" class="uk-text-center"><i class="uk-icon-spinner uk-icon-spin"></i></p>
-
+	//
 	//     </div>
-
 	// </template>
-
+	//
 	// <script>
 
 	module.exports = {
@@ -113,13 +111,14 @@ var Fields =
 	window.User.components['user-section-userprofile:profile'] = module.exports;
 
 	// </script>
+	//
 
 /***/ },
 
-/***/ 21:
+/***/ 15:
 /***/ function(module, exports) {
 
-	module.exports = "<div>\r\n\r\n        <fieldtypes class=\"uk-margin\" :fields=\"fields\"\r\n                    :model.sync=\"profilevalues\"\r\n                    :user=\"user\"\r\n                    :form=\"form\"></fieldtypes>\r\n\r\n\r\n        <p v-show=\"!fields\" class=\"uk-text-center\"><i class=\"uk-icon-spinner uk-icon-spin\"></i></p>\r\n\r\n    </div>";
+	module.exports = "\r\n    <div>\r\n\r\n        <fieldtypes class=\"uk-margin\" :fields=\"fields\"\r\n                    :model.sync=\"profilevalues\"\r\n                    :user=\"user\"\r\n                    :form=\"form\"></fieldtypes>\r\n\r\n\r\n        <p v-show=\"!fields\" class=\"uk-text-center\"><i class=\"uk-icon-spinner uk-icon-spin\"></i></p>\r\n\r\n    </div>\r\n";
 
 /***/ }
 

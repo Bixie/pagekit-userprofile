@@ -103,9 +103,9 @@ var Fields =
 
 	    components: {
 
-	        fieldbasic: __webpack_require__(7),
-	        fieldoptions: __webpack_require__(10),
-	        appearance: __webpack_require__(13)
+	        fieldbasic: __webpack_require__(1),
+	        fieldoptions: __webpack_require__(4),
+	        appearance: __webpack_require__(7)
 
 	    }
 
@@ -115,19 +115,15 @@ var Fields =
 
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */
+/* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(8)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(2)
+	__vue_template__ = __webpack_require__(3)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(9)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -136,60 +132,49 @@ var Fields =
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
-/* 8 */
+/* 2 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	// <template>
-
+	//
 	//     <div class="uk-margin">
-
+	//
 	//         <div class="uk-grid">
-
 	//             <div class="uk-width-medium-3-4 uk-form-horizontal">
-
+	//
 	//                 <partial name="fieldtype-basic"></partial>
-
+	//
 	//                 <fieldtypes class="uk-margin" v-show="!type.hasOptions || field.options.length"
-
 	//                             v-ref:fieldtypes
-
 	//                             :edit-type="field.type"
-
 	//                             :fields="[field]"
-
 	//                             :field.sync="field"
-
 	//                             :form="form"></fieldtypes>
-
+	//
 	//                 <div id="type-settings" class="uk-margin"
-
 	//                      :data-object.sync="field.data"
-
 	//                      :field.sync="field"
-
 	//                      :form="form"></div>
-
+	//
 	//             </div>
-
 	//             <div class="uk-width-medium-1-4 uk-form-stacked">
-
+	//
 	//                 <partial name="fieldtype-settings"></partial>
-
+	//
 	//             </div>
-
 	//         </div>
-
+	//
 	//     </div>
-
+	//
 	// </template>
-
+	//
 	// <script>
 
 	module.exports = {
@@ -219,21 +204,24 @@ var Fields =
 	};
 
 	// </script>
+	//
 
 /***/ },
-/* 9 */
+/* 3 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-margin\">\r\n\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4 uk-form-horizontal\">\r\n\r\n                <partial name=\"fieldtype-basic\"></partial>\r\n\r\n                <fieldtypes class=\"uk-margin\" v-show=\"!type.hasOptions || field.options.length\"\r\n                            v-ref:fieldtypes\r\n                            :edit-type=\"field.type\"\r\n                            :fields=\"[field]\"\r\n                            :field.sync=\"field\"\r\n                            :form=\"form\"></fieldtypes>\r\n\r\n                <div id=\"type-settings\" class=\"uk-margin\"\r\n                     :data-object.sync=\"field.data\"\r\n                     :field.sync=\"field\"\r\n                     :form=\"form\"></div>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4 uk-form-stacked\">\r\n\r\n                <partial name=\"fieldtype-settings\"></partial>\r\n\r\n            </div>\r\n        </div>\r\n\r\n    </div>";
+	module.exports = "\r\n\r\n    <div class=\"uk-margin\">\r\n\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4 uk-form-horizontal\">\r\n\r\n                <partial name=\"fieldtype-basic\"></partial>\r\n\r\n                <fieldtypes class=\"uk-margin\" v-show=\"!type.hasOptions || field.options.length\"\r\n                            v-ref:fieldtypes\r\n                            :edit-type=\"field.type\"\r\n                            :fields=\"[field]\"\r\n                            :field.sync=\"field\"\r\n                            :form=\"form\"></fieldtypes>\r\n\r\n                <div id=\"type-settings\" class=\"uk-margin\"\r\n                     :data-object.sync=\"field.data\"\r\n                     :field.sync=\"field\"\r\n                     :form=\"form\"></div>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4 uk-form-stacked\">\r\n\r\n                <partial name=\"fieldtype-settings\"></partial>\r\n\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n\r\n";
 
 /***/ },
-/* 10 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(11)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(5)
+	__vue_template__ = __webpack_require__(6)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(12)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -242,46 +230,36 @@ var Fields =
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
-/* 11 */
+/* 5 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	// <template>
-
+	//
 	//     <div class="uk-form-horizontal">
-
+	//
 	//         <div class="uk-form-row">
-
 	//             <span class="uk-form-label">{{ 'Manage options' | trans }}</span>
-
+	//
 	//             <div class="uk-form-controls uk-form-controls-text">
-
 	//                 <ul class="uk-nestable uk-margin-remove" v-el:options-nestable v-show="field.options.length">
-
 	//                     <selectoption v-for="selectoption in field.options" :selectoption="selectoption"></selectoption>
-
 	//                 </ul>
-
 	//                 <button type="button" class="uk-button uk-button-primary uk-button-small uk-margin"
-
 	//                         @click="addFieldoption">{{ 'Add option' | trans }}
-
 	//                 </button>
-
 	//             </div>
-
 	//         </div>
-
+	//
 	//     </div>
-
 	// </template>
-
+	//
 	// <script>
 
 	module.exports = {
@@ -372,21 +350,24 @@ var Fields =
 	};
 
 	// </script>
+	//
 
 /***/ },
-/* 12 */
+/* 6 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-horizontal\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Manage options' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <ul class=\"uk-nestable uk-margin-remove\" v-el:options-nestable v-show=\"field.options.length\">\r\n                    <selectoption v-for=\"selectoption in field.options\" :selectoption=\"selectoption\"></selectoption>\r\n                </ul>\r\n                <button type=\"button\" class=\"uk-button uk-button-primary uk-button-small uk-margin\"\r\n                        @click=\"addFieldoption\">{{ 'Add option' | trans }}\r\n                </button>\r\n            </div>\r\n        </div>\r\n\r\n    </div>";
+	module.exports = "\r\n\r\n    <div class=\"uk-form-horizontal\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Manage options' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <ul class=\"uk-nestable uk-margin-remove\" v-el:options-nestable v-show=\"field.options.length\">\r\n                    <selectoption v-for=\"selectoption in field.options\" :selectoption=\"selectoption\"></selectoption>\r\n                </ul>\r\n                <button type=\"button\" class=\"uk-button uk-button-primary uk-button-small uk-margin\"\r\n                        @click=\"addFieldoption\">{{ 'Add option' | trans }}\r\n                </button>\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n";
 
 /***/ },
-/* 13 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(14)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(8)
+	__vue_template__ = __webpack_require__(9)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(15)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -395,28 +376,28 @@ var Fields =
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
-/* 14 */
+/* 8 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	// <template>
-
+	//
 	//     <div class="uk-form-horizontal">
-
+	//
 	//         <partial name="fieldtype-appearance"></partial>
-
+	//
 	//         <fields :config="appearanceSettings" :model.sync="field.data" template="formrow"></fields>
-
+	//
 	//     </div>
-
+	//
 	// </template>
-
+	//
 	// <script>
 
 	module.exports = {
@@ -432,12 +413,13 @@ var Fields =
 	};
 
 	// </script>
+	//
 
 /***/ },
-/* 15 */
+/* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-horizontal\">\r\n\r\n        <partial name=\"fieldtype-appearance\"></partial>\r\n\r\n        <fields :config=\"appearanceSettings\" :model.sync=\"field.data\" template=\"formrow\"></fields>\r\n\r\n    </div>";
+	module.exports = "\r\n\r\n    <div class=\"uk-form-horizontal\">\r\n\r\n        <partial name=\"fieldtype-appearance\"></partial>\r\n\r\n        <fields :config=\"appearanceSettings\" :model.sync=\"field.data\" template=\"formrow\"></fields>\r\n\r\n    </div>\r\n\r\n";
 
 /***/ }
 /******/ ]);

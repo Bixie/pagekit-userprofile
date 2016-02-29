@@ -46,10 +46,12 @@ var Fields =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(16)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(10)
+	__vue_template__ = __webpack_require__(11)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(17)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -58,19 +60,19 @@ var Fields =
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
 
-/***/ 16:
+/***/ 10:
 /***/ function(module, exports) {
 
 	'use strict';
 
 	// <template>
-
+	//
 	//     <div class="uk-form-row">
 	//         <label for="form-link-userprofile" class="uk-form-label">{{ 'View' | trans }}</label>
 	//         <div class="uk-form-controls">
@@ -80,9 +82,9 @@ var Fields =
 	//             </select>
 	//         </div>
 	//     </div>
-
+	//
 	// </template>
-
+	//
 	// <script>
 
 	module.exports = {
@@ -102,13 +104,14 @@ var Fields =
 	window.Links.components['userprofile'] = module.exports;
 
 	// </script>
+	//
 
 /***/ },
 
-/***/ 17:
+/***/ 11:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-row\">\n        <label for=\"form-link-userprofile\" class=\"uk-form-label\">{{ 'View' | trans }}</label>\n        <div class=\"uk-form-controls\">\n            <select id=\"form-link-userprofile\" class=\"uk-width-1-1\" v-model=\"link\">\n                <option value=\"@userprofile\">{{ 'User Profile' | trans }}</option>\n                <option value=\"@userprofile/registration\">{{ 'User Registration' | trans }}</option>\n            </select>\n        </div>\n    </div>";
+	module.exports = "\n\n    <div class=\"uk-form-row\">\n        <label for=\"form-link-userprofile\" class=\"uk-form-label\">{{ 'View' | trans }}</label>\n        <div class=\"uk-form-controls\">\n            <select id=\"form-link-userprofile\" class=\"uk-width-1-1\" v-model=\"link\">\n                <option value=\"@userprofile\">{{ 'User Profile' | trans }}</option>\n                <option value=\"@userprofile/registration\">{{ 'User Registration' | trans }}</option>\n            </select>\n        </div>\n    </div>\n\n";
 
 /***/ }
 
