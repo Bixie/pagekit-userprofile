@@ -45,7 +45,9 @@
   'Options' => 'Options',
   'Appearance' => 'Appearance',
   'Fields' => 'Fields',
+  'Delete' => 'Delete',
   'Add Field' => 'Add Field',
   'No fields found.' => 'No fields found.',
+  'Username cannot be blank.' => 'Username cannot be blank.',
   'Register' => 'Register',
 );

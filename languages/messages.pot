@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Pagekit UNKNOWN (bixie/userprofile, messages)\n"
-"POT-Creation-Date: 2015-12-12 20:43+0000\n"
+"Project-Id-Version: Pagekit 0.10.3 (bixie/userprofile, messages)\n"
+"POT-Creation-Date: 2016-02-29 14:29+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9,37 +9,10 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Label"
-msgstr ""
-
-msgid "Please enter a label"
-msgstr ""
-
-msgid "Field required"
-msgstr ""
-
-msgid "Required"
-msgstr ""
-
-msgid "Multiple values"
-msgstr ""
-
-msgid "Multiple"
-msgstr ""
-
-msgid "Restrict Access"
-msgstr ""
-
 msgid "Manage options"
 msgstr ""
 
 msgid "Add option"
-msgstr ""
-
-msgid "Class suffix"
-msgstr ""
-
-msgid "Required error message"
 msgstr ""
 
 msgid "%type% saved."
@@ -57,6 +30,9 @@ msgstr ""
 msgid "Userprofile Settings"
 msgstr ""
 
+msgid "Close"
+msgstr ""
+
 msgid "Save"
 msgstr ""
 
@@ -66,79 +42,10 @@ msgstr ""
 msgid "Redirect Pagekit registration page"
 msgstr ""
 
-msgid "Month"
-msgstr ""
-
-msgid "January"
-msgstr ""
-
-msgid "February"
-msgstr ""
-
-msgid "March"
-msgstr ""
-
-msgid "April"
-msgstr ""
-
-msgid "May"
-msgstr ""
-
-msgid "June"
-msgstr ""
-
-msgid "July"
-msgstr ""
-
-msgid "August"
-msgstr ""
-
-msgid "September"
-msgstr ""
-
-msgid "October"
-msgstr ""
-
-msgid "November"
-msgstr ""
-
-msgid "December"
-msgstr ""
-
-msgid "Day"
-msgstr ""
-
-msgid "Year"
-msgstr ""
-
-msgid "Enable Markdown"
-msgstr ""
-
 msgid "Profile Updated"
 msgstr ""
 
-msgid "Hide Label"
-msgstr ""
-
-msgid "Checkboxes"
-msgstr ""
-
-msgid "Date of birth"
-msgstr ""
-
-msgid "Html code"
-msgstr ""
-
-msgid "Pulldown"
-msgstr ""
-
-msgid "Radio bullets"
-msgstr ""
-
-msgid "Textfield"
-msgstr ""
-
-msgid "Text area"
+msgid "Invalid slug."
 msgstr ""
 
 msgid "Field not found."
@@ -160,6 +67,9 @@ msgid "Userprofile"
 msgstr ""
 
 msgid "Userprofilevalue not found."
+msgstr ""
+
+msgid "Userprofile field not found."
 msgstr ""
 
 msgid "Field type not found."
@@ -184,6 +94,12 @@ msgid "Delete"
 msgstr ""
 
 msgid "Add Field"
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "Required"
 msgstr ""
 
 msgid "Type"
