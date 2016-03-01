@@ -18,6 +18,6 @@
     "scripts": "scripts.php"
   },
   "require": {
-    "bixie/framework": "~0.1.2"
+    "bixie/framework": "~0.1.3"
   }
 }
