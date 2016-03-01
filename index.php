@@ -58,7 +58,6 @@ return [
 			'label' => 'Userprofile',
 			'icon' => 'packages/bixie/userprofile/icon.svg',
 			'url' => '@userprofile/admin',
-			// 'access' => 'userprofile: manage hellos',
 			'active' => '@userprofile(/*)'
 		],
 
@@ -66,8 +65,7 @@ return [
 			'label' => 'Fields',
 			'parent' => 'userprofile',
 			'url' => '@userprofile/admin',
-			// 'access' => 'userprofile: manage hellos',
-			'active' => '@userprofile(/edit)?'
+			'active' => '@userprofile/admin(/edit)?'
 		]
 
 	],
