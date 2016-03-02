@@ -57,7 +57,8 @@ class ProfileUser implements \JsonSerializable
 	 */
 	public function getProfile () {
 		if (!isset($this->data)) {
-			$this->fieldValues = App::module('bixie/userprofile')->getProfile($this->user, false);
+			$this->data = [];
+			$this->fieldValues = App::module('bixie/userprofile')->getProfile($this->user, false, false);
 			foreach ($this->fieldValues as $slug => $fieldValue) {
 				$this->data[$slug] = $fieldValue->getValue(false);
 			}
@@ -105,7 +106,6 @@ class ProfileUser implements \JsonSerializable
 	 * @param array $data
 	 */
 	public function saveProfile ($data = []) {
-		$this->getProfile();
 		foreach ($data as $key => $value) {
 			$this->set($key, $value);
 		}
@@ -119,16 +119,17 @@ class ProfileUser implements \JsonSerializable
 	 * @param $permission
 	 * @return bool
 	 */
-	public function hasPermission ($permission) {
-		return $this->user->hasPermission($permission);
+	public function hasAccess ($permission) {
+		return $this->user->hasAccess($permission);
 	}
 
 	/**
+	 * @param array $data
 	 * @return array
 	 */
-	public function toArray () {
+	public function toArray ($data = []) {
 		$this->getProfile();
-		return array_merge($this->user->toArray([], ['password', 'activation']), $this->data);
+		return array_merge($this->user->toArray($data, ['password', 'activation']), $this->data);
 	}
 
 	/**

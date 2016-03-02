@@ -9,11 +9,11 @@ use Pagekit\Database\ORM\ModelTrait;
 trait FieldModelTrait {
 	use ModelTrait;
 
-	public static function getProfileFields () {
+	public static function getProfileFields ($checkAccess = true) {
 		$user = App::user();
 		$data = [];
 		foreach (self::query()->get() as $field) {
-			if ($field->hasAccess($user)) {
+			if ($checkAccess === false || $field->hasAccess($user)) {
 				$data[$field->id] = $field;
 			}
 		}

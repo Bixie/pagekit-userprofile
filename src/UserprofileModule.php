@@ -37,14 +37,15 @@ class UserprofileModule extends Module {
 	/**
 	 * @param User|null $user
 	 * @param bool      $asArray
+	 * @param bool      $checkAccess
 	 * @return array|bool
 	 */
-	public function getProfile (User $user = null, $asArray = true) {
+	public function getProfile (User $user = null, $asArray = true, $checkAccess = true) {
 		$profile = [];
-		if ($user = $user ?: App::user() and $user->id > 0) {
+		if (($user = $user ?: App::user()) and $user->id > 0) {
 			$profileValues = Profilevalue::getUserProfilevalues($user);
 		}
-		foreach (Field::getProfileFields() as $field) {
+		foreach (Field::getProfileFields($checkAccess) as $field) {
 			$fieldValue = isset($profileValues[$field->id]) ? $profileValues[$field->id] : Profilevalue::create([
 				'data' => $field->get('data')
 			])->setValue($field->get('value'));
