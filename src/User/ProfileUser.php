@@ -9,6 +9,9 @@ use Pagekit\Util\Arr;
 
 class ProfileUser implements \JsonSerializable
 {
+
+	use ProfileUserTrait;
+
 	/**
 	 * @var integer
 	 */
