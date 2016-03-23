@@ -114,7 +114,12 @@ return [
 			//load profile
 			if (in_array($route, ['@userprofile', '@userprofile/registration', '@user/edit'])) {
 				$self = $app->user();
-				$user = $route == '@user/edit' ? \Pagekit\User\Model\User::find($app->request()->get('id')) : $self;
+				$edit_id = $app->request()->get('id');
+				if ($route == '@user/edit') { //blank user when admin creates new user
+					$user = $edit_id ? \Pagekit\User\Model\User::find($edit_id) : \Pagekit\User\Model\User::create();
+				} else {
+					$user = $self;
+				}
 				if ($self->hasAccess('user: manage users') || $user->id == $self->id) {
 					$data->add('$userprofile', [
 						'fields' => array_values(\Bixie\Userprofile\Model\Field::getProfileFields()),
