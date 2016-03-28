@@ -47,8 +47,11 @@ class UserprofileModule extends Module {
 		}
 		foreach (Field::getProfileFields($checkAccess) as $field) {
 			$fieldValue = isset($profileValues[$field->id]) ? $profileValues[$field->id] : Profilevalue::create([
+				'field_id' => $field->id,
+				'user_id' => $user->id,
+				'multiple' => $field->get('multiple') == 1 ? 1 : 0,
 				'data' => $field->get('data')
-			])->setValue($field->get('value'));
+			])->setField($field)->setValue($field->get('value'));
 			if ($asArray) {
 				$profile[$field->slug] = $fieldValue->setField($field)->toFormattedArray(['id' => $fieldValue->id]);
 			} else {

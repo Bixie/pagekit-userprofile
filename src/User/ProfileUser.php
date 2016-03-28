@@ -40,7 +40,7 @@ class ProfileUser implements \JsonSerializable
 	public static function load (User $user = null) {
 		$user = $user ?: App::user();
 		$class = get_called_class();
-		if (!isset(self::$instances[$user->id])) {
+		if (!isset(self::$instances[$user->id]) || !(self::$instances[$user->id] instanceof $class)) {
 			self::$instances[$user->id] = new $class($user);
 		}
 		return self::$instances[$user->id];
@@ -69,6 +69,9 @@ class ProfileUser implements \JsonSerializable
 		return $this->data;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getProfileValues () {
 		$this->getProfile();
 		$data = [];
@@ -76,6 +79,19 @@ class ProfileUser implements \JsonSerializable
 			$data[$slug] = $fieldValue->toFormattedArray(['id' => $fieldValue->id]);
 		}
 		return $data;
+	}
+
+	/**
+	 * @param array $profilevalues FormattedArray of profilevalues
+	 */
+	public function setProfileValues ($profilevalues) {
+		$this->getProfile();
+		foreach ($profilevalues as $field_value) {
+			if (!isset($field_value['value']) || !isset($this->fieldValues[$field_value['slug']])) {
+				continue;
+			}
+			$this->fieldValues[$field_value['slug']]->setValue($field_value['value'], @$field_value['data']);
+		}
 	}
 
 	/**
@@ -96,24 +112,25 @@ class ProfileUser implements \JsonSerializable
 	 * Sets a data value.
 	 * @param string $key
 	 * @param mixed  $value
+	 * @param array  $valuedata
 	 */
-	public function set ($key, $value) {
+	public function set ($key, $value, $valuedata = []) {
 		$this->getProfile();
 		Arr::set($this->data, $key, $value);
 		if (isset($this->fieldValues[$key])) {
-			$this->fieldValues[$key]->setValue($value);
+			$this->fieldValues[$key]->setValue($value, $valuedata);
 		}
 	}
 
 	/**
-	 * @param array $data
+	 * @param array $data raw profile values (na data possible)
 	 */
 	public function saveProfile ($data = []) {
 		foreach ($data as $key => $value) {
 			$this->set($key, $value);
 		}
 		foreach ($this->fieldValues as $fieldValue) {
-			$fieldValue->save();
+			$fieldValue->save(['data' => $fieldValue->getValuedata()]);
 		}
 	}
 
