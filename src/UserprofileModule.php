@@ -2,7 +2,6 @@
 
 namespace Bixie\Userprofile;
 
-use Bixie\Framework\FieldValue\FieldValue;
 use Pagekit\Application as App;
 use Pagekit\Module\Module;
 use Bixie\Userprofile\Model\Profilevalue;
@@ -23,13 +22,9 @@ class UserprofileModule extends Module {
 	 * {@inheritdoc}
 	 */
 	public function main (App $app) {
-		if (!in_array('bixie/framework', App::system()->config('extensions'))) {
-			throw new \RuntimeException('Bixie Framework required for Userprofile');
-		}
-
 
 		$app->on('boot', function () use ($app) {
-			$this->framework = App::module('bixie/framework');
+			$this->framework = $app->module('bixie/framework');
 		});
 
 	}
