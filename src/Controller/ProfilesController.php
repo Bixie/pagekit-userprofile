@@ -42,7 +42,9 @@ class ProfilesController {
 		$count = $query->count();
 		$pages = ceil($count / $limit);
 		$page = max(0, min($pages - 1, $page));
-		$users = array_values($query->offset($page * $limit)->limit($limit)->orderBy($order[1], $order[2])->get());
+		$profileUsers = array_map(function ($user) {
+			return ProfileUser::load($user);
+		}, $query->offset($page * $limit)->limit($limit)->orderBy($order[1], $order[2])->get());
 
 		return [
 			'$view' => [
@@ -50,7 +52,7 @@ class ProfilesController {
 				'name' => 'bixie/userprofile/profiles.php'
 			],
 			'$data' => [],
-			'users' => $users
+			'profileUsers' => $profileUsers
 		];
 	}
 

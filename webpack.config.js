@@ -30,6 +30,8 @@ module.exports = [
             "link-userprofile": "./app/components/link-userprofile.vue",
             "user-section-userprofile": "./app/components/user-section-userprofile.vue",
             /*frontpage views*/
+            "userprofiles": "./app/views/profiles.js",
+            "userprofiles-view": "./app/views/profiles-view.js",
             "userprofile": "./app/views/profile.js",
             "registration": "./app/views/registration.js",
             /*admin views*/
