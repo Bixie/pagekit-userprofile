@@ -26,6 +26,15 @@
             </div>
         </div>
 
+        <div class="uk-form-row">
+            <label for="form-profiles_per_page" class="uk-form-label">{{ 'Number of profiles per page' | trans }}</label>
+
+            <div class="uk-form-controls">
+                <input type="number" v-model="package.config.profiles_per_page" name="profiles_per_page" id="form-profiles_per_page"
+                       class="uk-form-width-medium" number>
+            </div>
+        </div>
+
     </div>
 
 </template>
