@@ -26,6 +26,10 @@ return [
 			'name' => '@userprofile',
 			'controller' => 'Bixie\\Userprofile\\Controller\\ProfileController'
 		],
+		'/profiles' => [
+			'name' => '@userprofile/profiles',
+			'controller' => 'Bixie\\Userprofile\\Controller\\ProfilesController'
+		],
 		'/userprofile' => [
 			'name' => '@userprofile/admin',
 			'controller' => [
@@ -72,9 +76,8 @@ return [
 
 	'permissions' => [
 
-		'userprofile: manage settings' => [
-			'title' => 'Manage settings'
-		],
+		'userprofile: manage settings' => ['title' => 'Manage settings'],
+		'userprofile: view profiles' => ['title' => 'View user profiles'],
 
 	],
 
@@ -82,7 +85,8 @@ return [
 
 	'config' => [
 
-		'override_registration' => 1
+		'override_registration' => 1,
+		'profiles_per_page' => 15
 
 	],
 

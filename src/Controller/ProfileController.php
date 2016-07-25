@@ -3,9 +3,13 @@
 namespace Bixie\Userprofile\Controller;
 
 use Pagekit\Application as App;
-use Bixie\Userprofile\Model\Field;
 
 class ProfileController {
+
+	/**
+	 * main profile edit page
+	 * @Route("/", methods="GET")
+	 */
 	public function indexAction () {
 		$user = App::user();
 		$userprofile = App::module('bixie/userprofile');
@@ -17,7 +21,7 @@ class ProfileController {
 		return [
 			'$view' => [
 				'title' => __('Your Profile'),
-				'name' => 'bixie/userprofile/profile.php'
+				'name' => 'bixie/userprofile/profile-edit.php'
 			],
 			'$data' => [
 				'config' => $userprofile->config(),
@@ -33,6 +37,7 @@ class ProfileController {
 	}
 
 	/**
+	 * registration override page
 	 * @Route("/registration")
 	 */
 	public function registrationAction () {
