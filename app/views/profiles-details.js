@@ -1,6 +1,6 @@
 module.exports = {
 
-    el: '#userprofile-profile-view',
+    el: '#userprofile-profile-details',
 
     data: function () {
         return {};

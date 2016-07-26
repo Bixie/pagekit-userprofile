@@ -11,10 +11,11 @@ class ProfilesController {
 
 	/**
 	 * @Access("userprofile: view profiles")
-	 * @Route("/", methods="GET")
+	 * @Route("/")
+	 * @Route("/page/{page}", name="page", requirements={"page" = "\d+"})
 	 * @Request({"filter": "array", "page":"int", "limit":"int"})
 	 */
-	public function indexAction ($filter = [], $page = 0, $limit = 0) {
+	public function indexAction ($filter = [], $page = 1, $limit = 0) {
 		$userprofile = App::module('bixie/userprofile');
 		$query = User::query();
 		$filter = array_merge(array_fill_keys(['search', 'order', 'access'], ''), $filter);
@@ -37,14 +38,16 @@ class ProfilesController {
 			$order = [1 => 'username', 2 => 'asc'];
 		}
 
-		$default = $userprofile->config('profiles_per_page');
+		$default = $userprofile->config('list.profiles_per_page');
 		$limit = min(max(0, $limit), $default) ?: $default;
-		$count = $query->count();
-		$pages = ceil($count / $limit);
-		$page = max(0, min($pages - 1, $page));
+
+		$count = $query->count('id');
+		$total = ceil($count / $limit);
+		$page = max(1, min($total, $page));
+
 		$profileUsers = array_map(function ($user) {
 			return ProfileUser::load($user);
-		}, $query->offset($page * $limit)->limit($limit)->orderBy($order[1], $order[2])->get());
+		}, $query->offset(($page - 1) * $limit)->limit($limit)->orderBy($order[1], $order[2])->get());
 
 		return [
 			'$view' => [
@@ -52,7 +55,10 @@ class ProfilesController {
 				'name' => 'bixie/userprofile/profiles.php'
 			],
 			'$data' => [],
-			'profileUsers' => $profileUsers
+			'config' => $userprofile->config(),
+			'profileUsers' => $profileUsers,
+			'total' => $total,
+			'page' => $page
 		];
 	}
 
@@ -61,7 +67,7 @@ class ProfilesController {
 	 * @Route("/{id}", methods="GET", name="id")
 	 * @Request({"id": "int"})
 	 */
-	public function viewAction ($id) {
+	public function detailsAction ($id) {
 		if (!$user = App::auth()->getUserProvider()->find((int) $id) or !$profileUser = ProfileUser::load($user)) {
 
 			App::abort(404, __('User not found.'));
@@ -71,9 +77,10 @@ class ProfilesController {
 		return [
 			'$view' => [
 				'title' => __('User Profile'),
-				'name' => 'bixie/userprofile/profile-view.php'
+				'name' => 'bixie/userprofile/profile-details.php'
 			],
 			'$data' => [],
+			'config' => App::module('bixie/userprofile')->config(),
 			'profileUser' => $profileUser
 		];
 	}
