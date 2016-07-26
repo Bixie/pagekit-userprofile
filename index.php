@@ -70,6 +70,13 @@ return [
 			'parent' => 'userprofile',
 			'url' => '@userprofile/admin',
 			'active' => '@userprofile/admin(/edit)?'
+		],
+
+		'userprofile: settings' => [
+			'label' => 'Settings',
+			'parent' => 'userprofile',
+			'url' => '@userprofile/admin/settings',
+			'active' => '@userprofile/admin/settings'
 		]
 
 	],
@@ -86,7 +93,23 @@ return [
 	'config' => [
 
 		'override_registration' => 1,
-		'profiles_per_page' => 15
+		'list' => [
+			'profiles_per_page' => 16,
+			'columns' => 4,
+			'columns_small' => '',
+			'columns_medium' => '',
+			'columns_large' => '',
+			'columns_xlarge' => '',
+			'panel_style' => 'uk-panel-box',
+			'show_title' => 'name',
+			'title_size' => 'uk-module-title',
+			'title_color' => '',
+		],
+		'details' => [
+			'show_email' => true,
+			'show_image' => true,
+			'show_username' => true
+		]
 
 	],
 
@@ -103,7 +126,6 @@ return [
 		},
 
 		'view.scripts' => function ($event, $scripts) use ($app) {
-			$scripts->register('userprofile-settings', 'bixie/userprofile:app/bundle/settings.js', '~extensions');
 			$scripts->register('link-userprofile', 'bixie/userprofile:app/bundle/link-userprofile.js', '~panel-link');
 			$scripts->register('user-section-userprofile', 'bixie/userprofile:app/bundle/user-section-userprofile.js', ['~user-edit', 'bixie-fieldtypes']);
 		},

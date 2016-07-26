@@ -26,21 +26,20 @@ module.exports = [
     {
         entry: {
             /*pagekit addons*/
-            "settings": "./app/components/settings.vue",
             "link-userprofile": "./app/components/link-userprofile.vue",
             "user-section-userprofile": "./app/components/user-section-userprofile.vue",
             /*frontpage views*/
             "userprofiles": "./app/views/profiles.js",
-            "userprofiles-view": "./app/views/profiles-view.js",
+            "userprofiles-details": "./app/views/profiles-details.js",
             "userprofile": "./app/views/profile.js",
             "registration": "./app/views/registration.js",
             /*admin views*/
             "field-edit": "./app/views/admin/edit.js",
-            "fields": "./app/views/admin/fields.js"
+            "fields": "./app/views/admin/fields.js",
+            "userprofile-settings": "./app/views/admin/settings.js"
         },
         output: {
-            filename: "./app/bundle/[name].js",
-            library: "Fields"
+            filename: "./app/bundle/[name].js"
         },
         externals: {
             "lodash": "_",

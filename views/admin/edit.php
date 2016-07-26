@@ -1,4 +1,5 @@
-<?php $view->script('field-edit', 'bixie/userprofile:app/bundle/field-edit.js', ['bixie-fieldtypes', 'uikit-nestable']); ?>
+<?php
+$view->script('field-edit', 'bixie/userprofile:app/bundle/field-edit.js', ['bixie-fieldtypes', 'uikit-nestable']); ?>
 
 <form id="field-edit" class="uk-form" v-validator="form" @submit.prevent="save | valid" v-cloak>
 
