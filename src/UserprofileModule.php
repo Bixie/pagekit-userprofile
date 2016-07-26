@@ -2,6 +2,8 @@
 
 namespace Bixie\Userprofile;
 
+use Bixie\Userprofile\Event\RouteListener;
+use Bixie\Userprofile\Event\UserListener;
 use Pagekit\Application as App;
 use Pagekit\Module\Module;
 use Bixie\Userprofile\Model\Profilevalue;
@@ -25,6 +27,10 @@ class UserprofileModule extends Module {
 
 		$app->on('boot', function () use ($app) {
 			$this->framework = $app->module('bixie/framework');
+			$app->subscribe(
+				new RouteListener(),
+				new UserListener()
+			);
 		});
 
 	}

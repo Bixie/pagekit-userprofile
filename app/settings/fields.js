@@ -89,6 +89,16 @@ module.exports = {
             type: 'checkbox',
             label: 'Override registration',
             optionlabel: 'Redirect Pagekit registration page'
+        },
+        'slug_key': {
+            type: 'select',
+            label: 'Data in profile-url',
+            options: {
+                'ID': 'id', /*trans*/
+                'Username': 'username', /*trans*/
+                'Name': 'name' /*trans*/
+            },
+            attrs: {'class': 'uk-form-width-medium'}
         }
     }
 

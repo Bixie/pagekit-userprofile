@@ -1,7 +1,5 @@
 <?php
 
-use Bixie\Userprofile\Event\UserListener;
-
 return [
 
 	'name' => 'bixie/userprofile',
@@ -88,11 +86,12 @@ return [
 
 	],
 
-	'settings' => 'settings-userprofile',
+	'settings' => '@userprofile/settings',
 
 	'config' => [
 
 		'override_registration' => 1,
+		'slug_key' => 'username',
 		'list' => [
 			'profiles_per_page' => 16,
 			'columns' => 4,
@@ -114,10 +113,6 @@ return [
 	],
 
 	'events' => [
-
-		'boot' => function ($event, $app) {
-			$app->subscribe(new UserListener);
-		},
 
 		'request' => function ($event, $request) use ($app) {
 			if ($app->config('bixie/userprofile')->get('override_registration', true) && $request->attributes->get('_route') == '@user/registration') {
