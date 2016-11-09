@@ -2,9 +2,9 @@
   "name": "bixie/userprofile",
   "module": "bixie/userprofile",
   "type": "pagekit-extension",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "title": "Userprofile",
-  "description": "Userprofile for Pagekit",
+  "description": "Userprofile for Pagekit. Requires the Bixie Framework, available on the Pagekit Marketplace.",
   "license": "MIT",
   "authors": [
     {
@@ -16,8 +16,5 @@
   "extra": {
     "icon": "icon.svg",
     "scripts": "scripts.php"
-  },
-  "require": {
-    "bixie/framework": "^0.1"
   }
 }
