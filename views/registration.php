@@ -26,8 +26,8 @@
 					<input id="form-name" class="uk-form-width-large" type="text" name="name"
 						   v-model="user.name" v-validate:required>
 
-					<p class="uk-form-help-block uk-text-danger" v-show="form.name.invalid">{{ 'Name cannot be blank.' |
-						trans }}</p>
+					<p class="uk-form-help-block uk-text-danger"
+					   v-show="form.name.invalid">{{ 'Name cannot be blank.' | trans }}</p>
 				</div>
 			</div>
 
