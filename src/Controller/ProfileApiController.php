@@ -2,7 +2,6 @@
 
 namespace Bixie\Userprofile\Controller;
 
-use Bixie\Framework\FieldValue\FieldValue;
 use Bixie\Userprofile\Model\Profilevalue;
 use Pagekit\Application as App;
 use Pagekit\User\Model\User;

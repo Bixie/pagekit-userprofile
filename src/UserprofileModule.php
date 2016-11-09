@@ -9,8 +9,12 @@ use Bixie\Userprofile\Model\Field;
 use Pagekit\User\Model\User;
 
 class UserprofileModule extends Module {
+    /**
+     * Bixie Framework Module version
+     */
+    const REQUIRED_FRAMEWORK_VERSION = '0.1.6';
 	/**
-	 * @var \Bixie\Framework\FrameworkModule
+	 * @var \Bixie\PkFramework\FrameworkModule
 	 */
 	protected $framework;
 	/**
@@ -24,7 +28,7 @@ class UserprofileModule extends Module {
 	public function main (App $app) {
 
 		$app->on('boot', function () use ($app) {
-			$this->framework = $app->module('bixie/framework');
+			$this->framework = $app->module('bixie/pk-framework');
 		});
 
 	}
@@ -37,6 +41,9 @@ class UserprofileModule extends Module {
 	 */
 	public function getProfile (User $user = null, $asArray = true, $checkAccess = true) {
 		$profile = [];
+        if (!$this->framework) {
+            return $profile;
+        }
 		if (($user = $user ?: App::user()) and $user->id > 0) {
 			$profileValues = Profilevalue::getUserProfilevalues($user);
 		}
@@ -58,7 +65,7 @@ class UserprofileModule extends Module {
 
 	/**
 	 * @param  string $type
-	 * @return \Bixie\Framework\FieldType\FieldTypeBase
+	 * @return \Bixie\PkFramework\FieldType\FieldTypeBase
 	 */
 	public function getFieldType ($type) {
 		$fieldTypes = $this->getFieldTypes();
@@ -70,11 +77,30 @@ class UserprofileModule extends Module {
 	 * @return array
 	 */
 	public function getFieldTypes () {
+        if (!$this->framework) {
+            return [];
+        }
 		if (!$this->fieldTypes) {
 			$this->fieldTypes = $this->framework->getFieldTypes('bixie/userprofile');
 		}
 
 		return $this->fieldTypes;
 	}
+
+    /**
+     * @return bool|string
+     */
+    public function checkFramework () {
+        if (!$package = App::package('bixie/pk-framework')) {
+            return __('Please install the Bixie Framework.');
+        }
+        if (!$module = App::module('bixie/pk-framework')) {
+            return __('Please enable the Bixie Framework.');
+        }
+        if (version_compare(self::REQUIRED_FRAMEWORK_VERSION, $package->get('version')) == 1) {
+            return __('Please update the Bixie Framework to version %version%.', ['%version%' => self::REQUIRED_FRAMEWORK_VERSION]);
+        }
+        return true;
+    }
 
 }

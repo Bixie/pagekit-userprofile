@@ -19,7 +19,8 @@ class UserprofileController {
 			'$data' => [
 				'config' => App::module('bixie/userprofile')->config('default'),
 				'types' => $userprofile->getFieldTypes()
-			]
+			],
+            'frameworkValid' => $userprofile->checkFramework()
 		];
 	}
 

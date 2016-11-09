@@ -1,7 +1,7 @@
 <?php
 
 namespace Bixie\Userprofile\Model;
-use Bixie\Framework\FieldValue\FieldValueBase;
+use Bixie\PkFramework\FieldValue\FieldValueBase;
 use Pagekit\System\Model\DataModelTrait;
 
 /**

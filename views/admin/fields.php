@@ -1,5 +1,14 @@
 <?php $view->script('fields-userprofile', 'bixie/userprofile:app/bundle/fields.js', ['bixie-framework', 'uikit-nestable']) ?>
 
+<?php if ($frameworkValid !== true) : ?>
+	<div class="uk-alert uk-alert-warning">
+		<p><?=$frameworkValid?></p>
+		<p><a href="<?=$view->url('admin/system/marketplace/extensions')?>">
+				<?=__('Download and install the Bixie Framework via the Pagekit Marketplace.')?>
+			</a></p>
+	</div>
+<?php endif; ?>
+
 <div id="userprofile-fields" class="uk-form uk-form-horizontal" v-cloak>
 
 	<div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
