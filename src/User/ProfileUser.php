@@ -135,6 +135,14 @@ class ProfileUser implements \JsonSerializable
 	}
 
 	/**
+	 * Proxy isAuthenticated
+	 * @return bool
+	 */
+	public function isAuthenticated () {
+		return $this->user->isAuthenticated();
+	}
+
+	/**
 	 * Proxy permissioncheck
 	 * @param $permission
 	 * @return bool
