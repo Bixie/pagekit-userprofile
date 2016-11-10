@@ -1,5 +1,5 @@
 <?php
-$view->script('userprofile-settings', 'bixie/userprofile:app/bundle/userprofile-settings.js', ['bixie-framework']) ?>
+$view->script('userprofile-settings', 'bixie/userprofile:app/bundle/userprofile-settings.js', ['bixie-pkframework']) ?>
 
 <div id="userprofile-settings" class="uk-form">
 
@@ -22,18 +22,18 @@ $view->script('userprofile-settings', 'bixie/userprofile:app/bundle/userprofile-
 
 				<h3>{{ 'General' | trans }}</h3>
 
-				<fields :config="$options.fields.general" :model.sync="config" template="formrow"></fields>
+				<bixie-fields :config="$options.fields.general" :values.sync="config"></bixie-fields>
 
 				<h3>{{ 'List display options' | trans }}</h3>
 
-				<fields :config="$options.fields.list" :model.sync="config.list" template="formrow"></fields>
+				<bixie-fields :config="$options.fields.list" :values.sync="config.list"></bixie-fields>
 
 		    </div>
 		    <div>
 
 				<h3>{{ 'Details display options' | trans }}</h3>
 
-				<fields :config="$options.fields.details" :model.sync="config.details" template="formrow"></fields>
+				<bixie-fields :config="$options.fields.details" :values.sync="config.details"></bixie-fields>
 
 		    </div>
 		</div>
