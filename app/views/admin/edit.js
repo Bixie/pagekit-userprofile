@@ -20,8 +20,12 @@ module.exports = {
     },
 
     created: function () {
-        if (this.type.required !== -1) this.field.data.required = this.type.required;
-        if (this.type.multiple !== -1) this.field.data.multiple = this.type.multiple;
+        if (this.type.required !== -1) {
+            this.field.data.required = this.type.required;
+        }
+        if (this.type.multiple !== -1) {
+            this.field.data.multiple = this.type.multiple;
+        }
     },
 
     ready: function () {
