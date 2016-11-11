@@ -1,4 +1,4 @@
-<?php $view->script('fields-userprofile', 'bixie/userprofile:app/bundle/fields.js', ['bixie-framework', 'uikit-nestable']) ?>
+<?php $view->script('fields-userprofile', 'bixie/userprofile:app/bundle/fields.js', ['bixie-pkframework', 'uikit-nestable']) ?>
 
 <?php if ($frameworkValid !== true) : ?>
 	<div class="uk-alert uk-alert-warning">
