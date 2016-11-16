@@ -28,6 +28,7 @@ module.exports = [
             /*pagekit addons*/
             "link-userprofile": "./app/components/link-userprofile.vue",
             "user-section-userprofile": "./app/components/user-section-userprofile.vue",
+            "node-user_profiles": "./app/components/node-user_profiles.vue",
             /*frontpage views*/
             "userprofiles": "./app/views/profiles.js",
             "userprofiles-details": "./app/views/profiles-details.js",
@@ -50,7 +51,8 @@ module.exports = [
         module: {
             loaders: [
                 {test: /\.vue$/, loader: "vue"},
-                { test: /\.html$/, loader: "vue-html" }
+                { test: /\.html$/, loader: "vue-html" },
+                {test: /\.js/, loader: 'babel', query: {presets: ['es2015']}}
             ]
         }
     }
