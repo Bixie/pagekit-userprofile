@@ -2,6 +2,7 @@
 
 namespace Bixie\Userprofile\Controller;
 
+use Bixie\Userprofile\Model\Field;
 use Pagekit\Application as App;
 
 /**
@@ -35,6 +36,7 @@ class UserprofileController {
 				'name' => 'bixie/userprofile/admin/settings.php'
 			],
 			'$data' => [
+			    'fields' => array_values(Field::findAll()),
 				'config' => App::module('bixie/userprofile')->config()
 			]
 		];
@@ -47,6 +49,9 @@ class UserprofileController {
 	public function configAction($config = [])
 	{
 		App::config('bixie/userprofile')->merge($config, true);
+        App::config('bixie/userprofile')->merge($config, true)
+            ->set('list', $config['list'])
+            ->set('details', $config['details']);
 
 		return ['message' => 'success'];
 	}

@@ -2,7 +2,7 @@ module.exports = {
 
     el: '#userprofile-settings',
 
-    data: function () {
+    data() {
         return window.$data;
     },
 
@@ -11,7 +11,7 @@ module.exports = {
 
     methods: {
 
-        save: function () {
+        save() {
             this.$http.post('admin/userprofile/config', { config: this.config }).then(function () {
                 this.$notify('Settings saved.');
             }, function (res) {
@@ -19,6 +19,19 @@ module.exports = {
             });
         }
 
+    },
+
+    computed: {
+        fieldOptions() {
+            return this.fields.map(field => {
+                return {value: field.slug, text: field.label};
+            });
+        },
+        uploadFields() {
+            return this.fields.filter(field => {
+                return field.type === 'upload';
+            });
+        }
     }
 
 };

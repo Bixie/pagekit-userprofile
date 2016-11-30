@@ -33,7 +33,16 @@ class ProfileUser implements \JsonSerializable
 	protected $fieldValues;
 
 	protected static $instances = [];
-	/**
+
+    /**
+     * proxy load for emailsender module
+     * @return ProfileUser
+     */
+    public static function create () {
+        return self::load();
+    }
+
+    /**
 	 * @param User|null $user
 	 * @return ProfileUser
 	 */
@@ -47,7 +56,7 @@ class ProfileUser implements \JsonSerializable
 	}
 
 	/**
-	 * FreightheroUser constructor.
+	 * ProfileUser constructor.
 	 * @param $user
 	 */
 	public function __construct (User $user) {
@@ -142,6 +151,44 @@ class ProfileUser implements \JsonSerializable
 		return $this->user->isAuthenticated();
 	}
 
+    /**
+     * @param \Pagekit\Site\Model\Node $node
+     * @return string
+     */
+    public function getProfileUrl ($node = null) {
+        if ($node && $node->type == 'user_profiles') {
+            return App::url($node->link . '/id', ['id' => $this->id]);
+        }
+        return App::url('@userprofile/profiles/id', ['id' => $this->id]);
+	}
+
+    /**
+     * @param int  $width
+     * @param int  $height
+     * @return string
+     */
+    public function getAvatar ($width = 280, $height = 280) {
+        $config = App::module('bixie/userprofile')->config();
+        $this->getProfile();
+        if ($avatar_field = $config['avatar_field']
+                and $fieldValue = $this->fieldValues[$avatar_field]) {
+            $files = $fieldValue->getValuedata();
+            $file = reset($files);
+            if ($file['url']) {
+                return sprintf('<img height="%d" width="%d" alt="%s" src="%s">',
+                    $height, $width, $this->get('username'), $file['url']);
+            }
+        }
+        if ($config['use_gravatar']) {
+            return sprintf('<img height="%d" width="%d" alt="%s" v-gravatar.literal="%s">',
+                $height, $width, $this->get('username'), $this->get('email'));
+        }
+        $fallback = $config['fallback_image_src'] ?: 'packages/bixie/pk-framework/assets/noimage.jpg';
+        return sprintf('<img height="%d" width="%d" alt="%s" src="%s">',
+            $height, $width, $this->get('username'), App::url()->getStatic($fallback, [], 'base'));
+
+	}
+
 	/**
 	 * Proxy permissioncheck
 	 * @param $permission
@@ -157,6 +204,7 @@ class ProfileUser implements \JsonSerializable
 	 */
 	public function toArray ($data = []) {
 		$this->getProfile();
+        $data['avatar_image'] = $this->getAvatar();
 		return array_merge($this->user->toArray($data, ['password', 'activation']), $this->data);
 	}
 

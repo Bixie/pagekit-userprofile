@@ -1,5 +1,7 @@
 <?php
 
+use Bixie\Userprofile\User\ProfileUser;
+
 return [
 
 	'name' => 'bixie/userprofile',
@@ -14,19 +16,21 @@ return [
 
 	],
 
-	'nodes' => [
+    'nodes' => [
 
-	],
+        'user_profiles' => [
+            'name' => '@userprofile/profiles',
+            'label' => 'Profiles list',
+            'controller' => 'Bixie\\Userprofile\\Controller\\ProfilesController',
+        ]
 
-	'routes' => [
+    ],
+
+    'routes' => [
 
 		'/profile' => [
 			'name' => '@userprofile',
 			'controller' => 'Bixie\\Userprofile\\Controller\\ProfileController'
-		],
-		'/profiles' => [
-			'name' => '@userprofile/profiles',
-			'controller' => 'Bixie\\Userprofile\\Controller\\ProfilesController'
 		],
 		'/userprofile' => [
 			'name' => '@userprofile/admin',
@@ -92,6 +96,9 @@ return [
 
 		'override_registration' => 1,
 		'slug_key' => 'username',
+		'avatar_field' => '',
+		'use_gravatar' => true,
+		'fallback_image_src' => '',
 		'list' => [
 			'profiles_per_page' => 16,
 			'columns' => 4,
@@ -99,12 +106,20 @@ return [
 			'columns_medium' => '',
 			'columns_large' => '',
 			'columns_xlarge' => '',
+			'template' => 'vertical',
 			'panel_style' => 'uk-panel-box',
 			'show_title' => 'name',
+            'show_username' => true,
+            'show_name' => false,
+            'show_email' => true,
+            'show_image' => true,
+            'show_fields' => [],
 			'title_size' => 'uk-module-title',
 			'title_color' => '',
-		],
+			'link_profile' => 'panel',
+        ],
 		'details' => [
+			'show_fields' => [],
 			'show_email' => true,
 			'show_image' => true,
 			'show_username' => true
@@ -119,6 +134,10 @@ return [
 				$event->setResponse($app->redirect('@userprofile/registration'), [], 301);
 			}
 		},
+
+        'view.system/site/admin/edit' => function ($event, $view) {
+            $view->script('node-user_profiles', 'bixie/userprofile:app/bundle/node-user_profiles.js', 'site-edit');
+        },
 
 		'view.scripts' => function ($event, $scripts) use ($app) {
 			$scripts->register('link-userprofile', 'bixie/userprofile:app/bundle/link-userprofile.js', '~panel-link');
@@ -142,9 +161,11 @@ return [
 					$user = $self;
 				}
 				if ($self->hasAccess('user: manage users') || $user->id == $self->id) {
-					$data->add('$userprofile', [
+                    $profileUser = ProfileUser::load($user);
+                    $data->add('$userprofile', [
 						'fields' => array_values(\Bixie\Userprofile\Model\Field::getProfileFields()),
-						'profilevalues' => $app->module('bixie/userprofile')->getProfile($user),
+                        'profilevalues' => $app->module('bixie/userprofile')->getProfile($user),
+						'profile_user' => $profileUser,
 					]);
 				}
 			}

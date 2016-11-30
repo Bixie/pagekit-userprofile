@@ -16,7 +16,10 @@ class ProfilesController {
 	 * @Request({"filter": "array", "page":"int", "limit":"int"})
 	 */
 	public function indexAction ($filter = [], $page = 1, $limit = 0) {
+
 		$userprofile = App::module('bixie/userprofile');
+        $node = App::node();
+
 		$query = User::query();
 		$filter = array_merge(array_fill_keys(['search', 'order', 'access'], ''), $filter);
 		extract($filter, EXTR_SKIP);
@@ -32,7 +35,11 @@ class ProfilesController {
 			});
 		}
 
-		if (preg_match('/^(username|name|email|registered|login)\s(asc|desc)$/i', $order, $match)) {
+        if ($roles = $node->get('show_roles')) {
+            $query->whereInSet('roles', $roles);
+        }
+
+        if (preg_match('/^(username|name|email|registered|login)\s(asc|desc)$/i', $order, $match)) {
 			$order = $match;
 		} else {
 			$order = [1 => 'username', 2 => 'asc'];
@@ -49,16 +56,20 @@ class ProfilesController {
 			return ProfileUser::load($user);
 		}, $query->offset(($page - 1) * $limit)->limit($limit)->orderBy($order[1], $order[2])->get());
 
-		return [
+        $title = $node->get('page_title') ?: __('User Profiles');
+
+        return [
 			'$view' => [
-				'title' => __('User Profiles'),
+				'title' => $title,
 				'name' => 'bixie/userprofile/profiles.php'
 			],
 			'$data' => [],
 			'config' => $userprofile->config(),
 			'profileUsers' => $profileUsers,
 			'total' => $total,
-			'page' => $page
+			'page' => $page,
+			'title' => $title,
+            'node' => $node
 		];
 	}
 
@@ -74,14 +85,22 @@ class ProfilesController {
 
 		}
 
-		return [
+        if ($breadcrumbs = App::module('bixie/breadcrumbs')) {
+            $breadcrumbs->addUrl([
+                'title' => $user->name,
+                'url' => '',
+            ]);
+        }
+
+        return [
 			'$view' => [
 				'title' => __('User Profile'),
 				'name' => 'bixie/userprofile/profile-details.php'
 			],
 			'$data' => [],
 			'config' => App::module('bixie/userprofile')->config(),
-			'profileUser' => $profileUser
+			'profileUser' => $profileUser,
+            'node' => App::node()
 		];
 	}
 

@@ -1,10 +1,12 @@
 <?php
 /**
- * @var $view \Pagekit\View\View
- * @var $config array
- * @var $total int
- * @var $page int
- * @var $profileUsers \Bixie\Userprofile\User\ProfileUser[]
+ * @var \Pagekit\View\View $view
+ * @var array $config
+ * @var int $total
+ * @var int $page
+ * @var string $title
+ * @var \Pagekit\Site\Model\Node $node
+ * @var \Bixie\Userprofile\User\ProfileUser[] $profileUsers
  */
 
 $view->script('userprofiles', 'bixie/userprofile:app/bundle/userprofiles.js', ['vue']);
@@ -18,25 +20,13 @@ $grid .= $config['list']['columns_xlarge'] ? ' uk-grid-width-xlarge-1-'.$config[
 ?>
 <div id="userprofile-profiles">
 
-	<h1 class="uk-article-title"><?= __('Profiles list') ?></h1>
+	<h1 class="uk-article-title"><?= $title ?></h1>
 
 	<div class="uk-grid uk-grid-match <?= $grid ?>" data-uk-grid-match="{target: '>.uk-panel'}" data-uk-grid-margin>
 		<?php foreach ($profileUsers as $profileUser) : ?>
 			<div>
-				<div class="uk-panel <?= $config['list']['panel_style'] ?>">
-					<div class="uk-panel-teaser">
-						<img height="280" width="280" alt="<?= $profileUser->get('username') ?>" v-gravatar.literal="<?= $profileUser->get('email') ?>">
-					</div>
-
-					<?php if ($config['list']['show_title'] != 'none') : ?>
-						<h3 class="<?= $config['list']['title_size'] ?> <?= $config['list']['title_color'] ?>">
-							<?= $profileUser->get($config['list']['show_title']) ?>
-						</h3>
-					<?php endif; ?>
-
-					<a class="uk-position-cover" href="<?= $view->url('@userprofile/profiles/id', ['id' => $profileUser->id]) ?>"></a>
-
-				</div>
+				<?= $view->render(sprintf('bixie/userprofile/templates/%s.php', $config['list']['template']),
+					['config' => $config, 'profileUser' => $profileUser, 'node' => $node]) ?>
 			</div>
 		<?php endforeach; ?>
 	</div>
@@ -58,14 +48,14 @@ $grid .= $config['list']['columns_xlarge'] ? ' uk-grid-width-xlarge-1-'.$config[
 						<li class="uk-active"><span><?=$i?></span></li>
 					<?php else: ?>
 						<li>
-							<a href="<?= $view->url('@userprofile/profiles/page', ['page' => $i]) ?>"><?=$i?></a>
+							<a href="<?= $view->url($node->link . '/page', ['page' => $i]) ?>"><?=$i?></a>
 						<li>
 					<?php endif; ?>
 
 				<?php elseif($i==1): ?>
 
 					<li>
-						<a href="<?= $view->url('@userprofile/profiles/page', ['page' => 1]) ?>">1</a>
+						<a href="<?= $view->url($node->link . '/page', ['page' => 1]) ?>">1</a>
 					</li>
 					<li><span>...</span></li>
 
@@ -73,7 +63,7 @@ $grid .= $config['list']['columns_xlarge'] ? ' uk-grid-width-xlarge-1-'.$config[
 
 					<li><span>...</span></li>
 					<li>
-						<a href="<?= $view->url('@userprofile/profiles/page', ['page' => $total]) ?>"><?=$total?></a>
+						<a href="<?= $view->url($node->link . '/page', ['page' => $total]) ?>"><?=$total?></a>
 					</li>
 
 				<?php endif; ?>

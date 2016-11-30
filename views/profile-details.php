@@ -3,6 +3,7 @@
  * @var $view \Pagekit\View\View
  * @var $config array
  * @var $profileUser \Bixie\Userprofile\User\ProfileUser
+ * @var \Pagekit\Site\Model\Node $node
  */
 
 $view->script('userprofiles-details', 'bixie/userprofile:app/bundle/userprofiles-details.js', ['vue']);
@@ -21,7 +22,9 @@ $view->script('userprofiles-details', 'bixie/userprofile:app/bundle/userprofiles
 					<dt><?= __('Email') ?></dt>
 					<dd><?= $profileUser->get('email') ?></dd>
 				<?php endif; ?>
-				<?php foreach ($profileUser->getProfileValues() as $profileValue) : ?>
+				<?php foreach ($profileUser->getProfileValues() as $profileValue) :
+						if (!in_array($profileValue['slug'], $config['details']['show_fields'])) continue;
+					?>
 					<dt><?= $profileValue['label'] ?></dt>
 					<?php foreach ($profileValue['formatted'] as $value) : ?>
 						<dd><?= $value ?></dd>
@@ -36,8 +39,7 @@ $view->script('userprofiles-details', 'bixie/userprofile:app/bundle/userprofiles
 
 				<?php if ($config['details']['show_image']) : ?>
 					<div class="uk-panel-teaser">
-						<img height="280" width="280" alt="<?= $profileUser->get('username') ?>"
-							 v-gravatar.literal="<?= $profileUser->get('email') ?>">
+						<?= $profileUser->getAvatar() ?>
 					</div>
 				<?php endif; ?>
 
@@ -48,7 +50,7 @@ $view->script('userprofiles-details', 'bixie/userprofile:app/bundle/userprofiles
 			</div>
 			<?php endif; ?>
 		</div>
-
-		<p><a href="<?= $view->url('@userprofile/profiles') ?>"><?= __('Back to Profiles list') ?></a></p>
 	</div>
+
+	<p><a href="<?= $view->url($node->link) ?>"><?= __('Back to Profiles list') ?></a></p>
 </div>

@@ -44,15 +44,44 @@ module.exports = {
             options: options.panel_style,
             attrs: {'class': 'uk-form-width-medium'}
         },
+        'template': {
+            type: 'select',
+            label: 'Template style',
+            options: {
+                'Vertical': 'vertical', /*trans*/
+                'Horizontal': 'horizontal' /*trans*/
+            },
+            attrs: {'class': 'uk-form-width-medium'}
+        },
+        'show_image': {
+            type: 'checkbox',
+            label: 'Image',
+            optionlabel: 'Show avatar image'
+        },
         'show_title': {
             type: 'select',
-            label: 'Show title',
+            label: 'Title field',
             options: {
                 'Hide': 'none', /*trans*/
                 'Username': 'username', /*trans*/
                 'Name': 'name' /*trans*/
             },
             attrs: {'class': 'uk-form-width-medium'}
+        },
+        'show_username': {
+            type: 'checkbox',
+            label: 'Username',
+            optionlabel: 'Show username'
+        },
+        'show_name': {
+            type: 'checkbox',
+            label: 'Name',
+            optionlabel: 'Show name'
+        },
+        'show_email': {
+            type: 'checkbox',
+            label: 'Email',
+            optionlabel: 'Show email address'
         },
         'title_size': {
             type: 'select',
@@ -65,6 +94,16 @@ module.exports = {
             label: 'Title color',
             options: options.text_color,
             attrs: {'class': 'uk-form-width-medium'}
+        },
+        'link_profile': {
+            type: 'select',
+            label: 'Link to detail page',
+            options: {
+                'Link panel': 'panel', /*trans*/
+                'Link title': 'title', /*trans*/
+                'Do not link': 'none' /*trans*/
+            },
+            attrs: {'class': 'uk-form-width-medium'}
         }
     },
     details: {
@@ -76,7 +115,7 @@ module.exports = {
         'show_image': {
             type: 'checkbox',
             label: 'Image',
-            optionlabel: 'Show gravatar image'
+            optionlabel: 'Show avatar image'
         },
         'show_username': {
             type: 'checkbox',
