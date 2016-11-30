@@ -4,6 +4,7 @@
  * @var array $config
  * @var int $total
  * @var int $page
+ * @var string $search
  * @var string $title
  * @var \Pagekit\Site\Model\Node $node
  * @var \Bixie\Userprofile\User\ProfileUser[] $profileUsers
@@ -20,7 +21,22 @@ $grid .= $config['list']['columns_xlarge'] ? ' uk-grid-width-xlarge-1-'.$config[
 ?>
 <div id="userprofile-profiles">
 
-	<h1 class="uk-article-title"><?= $title ?></h1>
+
+    <?php if ($node->get('show_search')) : ?>
+        <div class="uk-margin-bottom uk-flex">
+            <h1 class="uk-article-title uk-margin-remove uk-flex-item-1"><?= $title ?></h1>
+            <form class="uk-form" action="<?= $view->url($node->link) ?>" method="get">
+                <div class="uk-form-icon">
+                    <i class="uk-icon-search"></i>
+                    <input type="search" name="filter[search]" value="<?= $search ?>">
+                </div>
+                <button type="submit" class="uk-button"><?= __('Search') ?></button>
+            </form>
+
+        </div>
+    <?php else : ?>
+        <h1 class="uk-article-title"><?= $title ?></h1>
+    <?php endif; ?>
 
 	<div class="uk-grid uk-grid-match <?= $grid ?>" data-uk-grid-match="{target: '>.uk-panel'}" data-uk-grid-margin>
 		<?php foreach ($profileUsers as $profileUser) : ?>

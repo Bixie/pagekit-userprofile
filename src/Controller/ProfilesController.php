@@ -69,6 +69,7 @@ class ProfilesController {
 			'total' => $total,
 			'page' => $page,
 			'title' => $title,
+			'search' => $search,
             'node' => $node
 		];
 	}
