@@ -32,6 +32,10 @@ return [
 			'name' => '@userprofile',
 			'controller' => 'Bixie\\Userprofile\\Controller\\ProfileController'
 		],
+		'/profiles' => [
+			'name' => '@userprofile/profiles',
+			'controller' => 'Bixie\\Userprofile\\Controller\\ProfilesController'
+		],
 		'/userprofile' => [
 			'name' => '@userprofile/admin',
 			'controller' => [
