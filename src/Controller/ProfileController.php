@@ -2,6 +2,7 @@
 
 namespace Bixie\Userprofile\Controller;
 
+use Bixie\Userprofile\User\ProfileUser;
 use Pagekit\Application as App;
 
 class ProfileController {
@@ -18,6 +19,8 @@ class ProfileController {
 			return App::redirect('@user/login', ['redirect' => App::url()->current()]);
 		}
 
+        $profileUser = ProfileUser::load($user);
+
 		return [
 			'$view' => [
 				'title' => __('Your Profile'),
@@ -31,7 +34,8 @@ class ProfileController {
 					'name' => $user->name,
 					'email' => $user->email
 				]
-			]
+			],
+            'profileUser' => $profileUser
 		];
 
 	}

@@ -83,7 +83,7 @@ $view->script('userprofile', 'bixie/userprofile:app/bundle/userprofile.js', ['bi
 			<div class="uk-panel uk-panel-box uk-text-center" v-show="user.username">
 
 				<div class="uk-panel-teaser">
-					{{{ profile_user.avatar_image }}}
+                    <?= $profileUser->getAvatar() ?>
 				</div>
 
 				<h3 class="uk-panel-title uk-margin-bottom-remove">{{ user.username }}</h3>
