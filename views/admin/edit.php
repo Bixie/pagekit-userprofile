@@ -28,13 +28,13 @@ $view->script('field-edit', 'bixie/userprofile:app/bundle/field-edit.js', ['bixi
 
 	<div class="uk-switcher uk-margin" v-el:content>
 		<div>
-			<fieldbasic :field.sync="field" :type="type" :form="form" :roles="roles"></fieldbasic>
+			<field-basic :field.sync="field" :type="type" :form="form" :roles="roles"></field-basic>
 		</div>
 		<div v-if="type.hasOptions">
-			<fieldoptions v-show="type.hasOptions" :field.sync="field" :form="form"></fieldoptions>
+			<field-options v-show="type.hasOptions" :field.sync="field" :form="form"></field-options>
 		</div>
 		<div>
-			<appearance :field.sync="field" :form="form"></appearance>
+			<field-appearance :field.sync="field" :form="form"></field-appearance>
 		</div>
 	</div>
 

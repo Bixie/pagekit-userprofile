@@ -60,9 +60,9 @@ module.exports = {
 
     components: {
 
-        fieldbasic: require('../../components/field-basic.vue'),
-        fieldoptions: require('../../components/field-options.vue'),
-        appearance: require('../../components/appearance.vue')
+        'field-basic': require('../../components/field-basic.vue'),
+        'field-options': require('../../components/field-options.vue'),
+        'field-appearance': require('../../components/appearance.vue')
 
     }
 
