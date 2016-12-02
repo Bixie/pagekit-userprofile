@@ -45,6 +45,7 @@
                     new Vue(_.merge({
                         'el': '#type-settings',
                         'name': 'type-settings',
+                        'replace': false,
                         'parent': parent,
                         'data': _.merge({
                             'field': parent.field,
@@ -53,7 +54,7 @@
                     }, settings));
                     return false;
                 }
-                return settings;
+                return _.size(settings) ? settings : false;
             }
         }
 
