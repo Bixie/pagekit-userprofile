@@ -1,4 +1,5 @@
-<?php $view->script('userprofile-registration', 'bixie/userprofile:app/bundle/registration.js', ['bixie-fieldtypes', 'uikit-form-password']) ?>
+<?php $view->script('userprofile-registration', 'bixie/userprofile:app/bundle/registration.js', ['bixie-fieldtypes', 'uikit-form-password'],
+    ['version' => $app->module('bixie/pk-framework')->getVersionKey($app->package('bixie/userprofile')->get('version'))]) ?>
 
 <form id="userprofile-registration" class="uk-article uk-form uk-form-stacked" name="form" v-validator="form" @submit.prevent="save | valid" v-cloak>
 	<div class="uk-grid">

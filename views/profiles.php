@@ -10,7 +10,8 @@
  * @var \Bixie\Userprofile\User\ProfileUser[] $profileUsers
  */
 
-$view->script('userprofiles', 'bixie/userprofile:app/bundle/userprofiles.js', ['vue']);
+$view->script('userprofiles', 'bixie/userprofile:app/bundle/userprofiles.js', ['vue'],
+    ['version' => $app->module('bixie/pk-framework')->getVersionKey($app->package('bixie/userprofile')->get('version'))]);
 // Grid
 $grid  = 'uk-grid-width-1-'.$config['list']['columns'];
 $grid .= $config['list']['columns_small'] ? ' uk-grid-width-small-1-'.$config['list']['columns_small'] : '';

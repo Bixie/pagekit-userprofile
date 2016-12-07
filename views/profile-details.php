@@ -6,7 +6,8 @@
  * @var \Pagekit\Site\Model\Node $node
  */
 
-$view->script('userprofiles-details', 'bixie/userprofile:app/bundle/userprofiles-details.js', ['vue']);
+$view->script('userprofiles-details', 'bixie/userprofile:app/bundle/userprofiles-details.js', ['vue'],
+    ['version' => $app->module('bixie/pk-framework')->getVersionKey($app->package('bixie/userprofile')->get('version'))]);
 
 ?>
 

@@ -1,4 +1,5 @@
-<?php $view->script('fields-userprofile', 'bixie/userprofile:app/bundle/fields.js', ['bixie-pkframework', 'uikit-nestable']) ?>
+<?php $view->script('fields-userprofile', 'bixie/userprofile:app/bundle/fields.js', ['bixie-pkframework', 'uikit-nestable'],
+    ['version' => $app->module('bixie/pk-framework')->getVersionKey($app->package('bixie/userprofile')->get('version'))]) ?>
 
 <?php if ($frameworkValid !== true) : ?>
 	<div class="uk-alert uk-alert-warning">

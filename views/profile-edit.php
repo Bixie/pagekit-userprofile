@@ -1,5 +1,6 @@
 <?php
-$view->script('userprofile', 'bixie/userprofile:app/bundle/userprofile.js', ['bixie-fieldtypes', 'uikit-form-password']);
+$view->script('userprofile', 'bixie/userprofile:app/bundle/userprofile.js', ['bixie-fieldtypes', 'uikit-form-password'],
+    ['version' => $app->module('bixie/pk-framework')->getVersionKey($app->package('bixie/userprofile')->get('version'))]);
 ?>
 
 <form id="userprofile-profile" class="uk-article uk-form uk-form-stacked"

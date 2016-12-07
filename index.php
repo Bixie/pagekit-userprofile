@@ -144,8 +144,11 @@ return [
         },
 
 		'view.scripts' => function ($event, $scripts) use ($app) {
-			$scripts->register('link-userprofile', 'bixie/userprofile:app/bundle/link-userprofile.js', '~panel-link');
-			$scripts->register('user-section-userprofile', 'bixie/userprofile:app/bundle/user-section-userprofile.js', ['~user-edit', 'bixie-fieldtypes']);
+            $version = $app->module('bixie/pk-framework')->getVersionKey($app->package('bixie/userprofile')->get('version'));
+            $scripts->register('link-userprofile', 'bixie/userprofile:app/bundle/link-userprofile.js',
+                '~panel-link', ['version' => $version]);
+			$scripts->register('user-section-userprofile', 'bixie/userprofile:app/bundle/user-section-userprofile.js',
+                ['~user-edit', 'bixie-fieldtypes'], ['version' => $version]);
 		},
 
 		'view.data' => function ($event, $data) use ($app) {

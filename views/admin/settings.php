@@ -1,5 +1,6 @@
 <?php
-$view->script('userprofile-settings', 'bixie/userprofile:app/bundle/userprofile-settings.js', ['bixie-pkframework']) ?>
+$view->script('userprofile-settings', 'bixie/userprofile:app/bundle/userprofile-settings.js', ['bixie-pkframework'],
+    ['version' => $app->module('bixie/pk-framework')->getVersionKey($app->package('bixie/userprofile')->get('version'))]) ?>
 
 <div id="userprofile-settings" class="uk-form">
 
