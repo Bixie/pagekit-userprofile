@@ -40,7 +40,7 @@ if ($show_values && !$config['list']['show_image']) {
                     <?php if ($config['list']['link_profile'] == 'title') : ?>
                     <a href="<?= $profileUser->getProfileUrl($node) ?>">
                         <?php endif; ?>
-                        <?= $profileUser->get($config['list']['show_title']) ?>
+                        <?= htmlspecialchars($profileUser->get($config['list']['show_title'])) ?>
                         <?php if ($config['list']['link_profile']) : ?>
                     </a>
                 <?php endif; ?>

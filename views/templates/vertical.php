@@ -18,7 +18,7 @@
             <?php if ($config['list']['link_profile'] == 'title') : ?>
                 <a href="<?= $view->url('@userprofile/profiles/id', ['id' => $profileUser->id]) ?>">
             <?php endif; ?>
-            <?= $profileUser->get($config['list']['show_title']) ?>
+            <?= htmlspecialchars($profileUser->get($config['list']['show_title'])) ?>
             <?php if ($config['list']['link_profile']) : ?>
                 </a>
             <?php endif; ?>

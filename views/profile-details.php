@@ -16,12 +16,12 @@ $view->script('userprofiles-details', 'bixie/userprofile:app/bundle/userprofiles
 	<div class="uk-grid">
 		<div class="uk-width-medium-3-4">
 
-			<h1 class="uk-article-title"><?= $profileUser->get('name') ?></h1>
+			<h1 class="uk-article-title"><?= htmlspecialchars($profileUser->get('name')) ?></h1>
 
 			<dl class="uk-description-list-horizontal">
 				<?php if ($config['details']['show_email']) : ?>
 					<dt><?= __('Email') ?></dt>
-					<dd><?= $profileUser->get('email') ?></dd>
+					<dd><?= htmlspecialchars($profileUser->get('email')) ?></dd>
 				<?php endif; ?>
 				<?php foreach ($profileUser->getProfileValues() as $profileValue) :
 						if (!in_array($profileValue['slug'], $config['details']['show_fields'])) continue;
@@ -45,7 +45,7 @@ $view->script('userprofiles-details', 'bixie/userprofile:app/bundle/userprofiles
 				<?php endif; ?>
 
 				<?php if ($config['details']['show_username']) : ?>
-					<h3 class="uk-panel-title uk-margin-bottom-remove"><?= $profileUser->get('username') ?></h3>
+					<h3 class="uk-panel-title uk-margin-bottom-remove"><?= htmlspecialchars($profileUser->get('username')) ?></h3>
 				<?php endif; ?>
 
 			</div>
