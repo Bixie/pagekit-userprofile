@@ -49,15 +49,15 @@ if ($show_values && !$config['list']['show_image']) {
             <dl class="uk-description-list-horizontal">
                 <?php if ($config['list']['show_username']) : ?>
                     <dt><?= __('Username') ?></dt>
-                    <dd><?= $profileUser->get('username') ?></dd>
+                    <dd><?= htmlspecialchars($profileUser->get('username')) ?></dd>
                 <?php endif; ?>
                 <?php if ($config['list']['show_name']) : ?>
                     <dt><?= __('Name') ?></dt>
-                    <dd><?= $profileUser->get('name') ?></dd>
+                    <dd><?= htmlspecialchars($profileUser->get('name')) ?></dd>
                 <?php endif; ?>
                 <?php if ($config['list']['show_email']) : ?>
                     <dt><?= __('Email') ?></dt>
-                    <dd><?= $profileUser->get('email') ?></dd>
+                    <dd><?= htmlspecialchars($profileUser->get('email')) ?></dd>
                 <?php endif; ?>
             </dl>
         </div>
