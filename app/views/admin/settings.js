@@ -12,6 +12,10 @@ module.exports = {
     methods: {
 
         save() {
+            if (!this.uploadFields.length) {
+                //clear value when field is removed
+                this.config.avatar_field = '';
+            }
             this.$http.post('admin/userprofile/config', { config: this.config }).then(function () {
                 this.$notify('Settings saved.');
             }, function (res) {
