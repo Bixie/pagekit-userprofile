@@ -21,7 +21,7 @@
 				<ul class="uk-subnav pk-subnav-icon">
 					<li><a class="pk-icon-delete pk-icon-hover" title="{{ 'Delete' | trans }}"
 						   data-uk-tooltip="{delay: 500}" @click.prevent="removeFields"
-						   v-confirm="'Delete field? All values will be deleted from the userprofiles.' | trans"></a>
+                           v-if="true" v-confirm="'Delete field? All values will be deleted from the userprofiles.' | trans"></a>
 					</li>
 				</ul>
 			</div>
