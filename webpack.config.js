@@ -7,9 +7,7 @@ glob.sync(path.join(__dirname, 'fieldtypes/*/*.vue')).forEach(file => {
     fieldtypes['userprofile-' + type] = './fieldtypes/' + type + '/' + type + '.vue';
 });
 
-
-
-module.exports = [
+export default [
 
     {
         entry: fieldtypes,
