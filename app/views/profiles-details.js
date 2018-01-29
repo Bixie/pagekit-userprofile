@@ -1,16 +1,11 @@
-module.exports = {
+/*globals Vue */
+const UserprofileProfileDetails = {
 
     el: '#userprofile-profile-details',
 
-    data: function () {
-        return {};
-    },
-
-    methods: {
-
-
-    }
+    name: 'UserprofileProfileDetails',
 
 };
 
-Vue.ready(module.exports);
+Vue.ready(UserprofileProfileDetails);
+export default UserprofileProfileDetails;

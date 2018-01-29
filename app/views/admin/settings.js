@@ -1,13 +1,15 @@
-module.exports = {
+/*globals _, Vue */
+import fields from '../../settings/fields';
+
+const UserprofileSettings = {
 
     el: '#userprofile-settings',
 
-    data() {
-        return window.$data;
-    },
+    name: 'UserprofileSettings',
 
-    fields: require('../../settings/fields'),
+    data: () => _.merge({}, window.$data),
 
+    fields,
 
     methods: {
 
@@ -16,28 +18,24 @@ module.exports = {
                 //clear value when field is removed
                 this.config.avatar_field = '';
             }
-            this.$http.post('admin/userprofile/config', { config: this.config }).then(function () {
-                this.$notify('Settings saved.');
-            }, function (res) {
-                this.$notify(res.data, 'danger');
-            });
-        }
+            this.$http.post('admin/userprofile/config', { config: this.config,})
+                .then(() => this.$notify('Settings saved.'), res => this.$notify(res.data, 'danger'));
+        },
 
     },
 
     computed: {
         fieldOptions() {
             return this.fields.map(field => {
-                return {value: field.slug, text: field.label};
+                return {value: field.slug, text: field.label,};
             });
         },
         uploadFields() {
-            return this.fields.filter(field => {
-                return field.type === 'upload';
-            });
-        }
-    }
+            return this.fields.filter(field => field.type === 'upload');
+        },
+    },
 
 };
 
-Vue.ready(module.exports);
+Vue.ready(UserprofileSettings);
+export default UserprofileSettings;

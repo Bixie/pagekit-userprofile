@@ -32,20 +32,20 @@
 
 <script>
 
-    module.exports = {
+    const UserprofileListConfig = {
+
+        name: 'UserprofileListConfig',
 
         section: {
             label: 'List config',
-            priority: 50
+            priority: 50,
         },
 
         props: ['node'],
 
-        data() {
-            return {
-                roles: _.filter(window.$data.roles, role => !role.anonymous)
-            };
-        },
+        data: () => ({
+            roles: _.filter(window.$data.roles, role => !role.anonymous),
+        }),
 
         created() {
             this.node.data.show_roles = this.node.data.show_roles || [];
@@ -53,13 +53,14 @@
         },
 
         watch: {
-            'node.slug': function (slug) {
+            'node.slug'(slug) {
                 this.node.link = `@userprofile/profiles/${slug}`;
-            }
-        }
+            },
+        },
 
     };
 
-    window.Site.components['user-profiles:config'] = module.exports;
+    window.Site.components['user-profiles:config'] = UserprofileListConfig;
+    export default UserprofileListConfig;
 
 </script>

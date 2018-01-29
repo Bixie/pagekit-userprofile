@@ -15,20 +15,23 @@
 
 <script>
 
-    module.exports = {
+    const LinkUserprofile = {
+
+        name: 'LinkUserprofile',
 
         link: {
-            label: 'Userprofile'
+            label: 'Userprofile',
         },
 
-        props: ['link'],
+        props: {'link': String,},
 
-        ready: function () {
-            this.$set('link', '@userprofile');
-        }
+        ready() {
+            this.link  = '@userprofile';
+        },
 
     };
 
-    window.Links.components['userprofile'] = module.exports;
+    window.Links.components['userprofile'] = LinkUserprofile;
+    export default LinkUserprofile;
 
 </script>

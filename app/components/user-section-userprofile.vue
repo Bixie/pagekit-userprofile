@@ -14,27 +14,28 @@
 
 <script>
 
-    module.exports = {
+    const UserUserprofile = {
 
-        props: ['user', 'config', 'form'],
-
-        data: function () {
-            return window.$userprofile;
-        },
+        name: 'UserUserprofile',
 
         section: {
             label: 'Userprofile',
-            priority: 200
+            priority: 200,
         },
 
+        props: {'user': Object, 'config': Object, 'form': Object,},
+
+        data: () => _.merge({}, window.$userprofile),
+
         events: {
-            'save': function (data) {
+            'save'(data) {
                 data.profilevalues = this.profilevalues;
-            }
-        }
+            },
+        },
 
     };
 
-    window.User.components['user-section-userprofile:profile'] = module.exports;
+    window.User.components['user-section-userprofile:profile'] = UserUserprofile;
+    export default UserUserprofile;
 
 </script>

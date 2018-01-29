@@ -1,32 +1,32 @@
-module.exports = {
+/*globals _, Vue */
+const UserprofileProfile = {
 
     el: '#userprofile-profile',
 
-    data: function () {
-        return _.merge({
-            message: '',
-            error: '',
-            form: {}
-        }, window.$data, window.$userprofile);
-    },
+    name: 'UserprofileProfile',
+
+    data: () => _.merge({
+        message: '',
+        error: '',
+        form: {},
+    }, window.$data, window.$userprofile),
 
     methods: {
 
-        save: function () {
+        save() {
 
             this.$set('message', '');
             this.$set('error', '');
 
-            this.$http.post('user/profile/save', {user: this.user, profilevalues: this.profilevalues}).then(function () {
+            this.$http.post('user/profile/save', {user: this.user, profilevalues: this.profilevalues}).then(() => {
                 //todo return new profilevalues ids
                 this.message = this.$trans('Profile Updated');
-            }, function (res) {
-                this.error = res.data;
-            });
-        }
+            }, res => this.error = res.data);
+        },
 
-    }
+    },
 
 };
 
-Vue.ready(module.exports);
+Vue.ready(UserprofileProfile);
+export default UserprofileProfile;

@@ -1,25 +1,36 @@
-module.exports = {
+/*globals _, Vue, UIkit */
+import FieldBasic from '../../components/field-basic.vue';
+import FieldOptions from '../../components/field-options.vue';
+import FieldAppearance from '../../components/appearance.vue';
+
+const FieldEdit = {
 
     el: '#field-edit',
 
-    data: function () {
-        return _.merge({
-            field: {
-                label: '',
-                type: '',
-                data: {
-                    value: [],
-                    data: {},
-                    classSfx: '',
-                    help_text: '',
-                    help_show: ''
-                }
-            },
-            form: {}
-        }, window.$data, window.$userprofile);
+    name: 'FieldEdit',
+
+    components: {
+        'field-basic': FieldBasic,
+        'field-options': FieldOptions,
+        'field-appearance': FieldAppearance,
     },
 
-    created: function () {
+    data: () => _.merge({
+        field: {
+            label: '',
+            type: '',
+            data: {
+                value: [],
+                data: {},
+                classSfx: '',
+                help_text: '',
+                help_show: '',
+            },
+        },
+        form: {},
+    }, window.$data, window.$userprofile),
+
+    created() {
         if (this.type.required !== -1) {
             this.field.data.required = this.type.required;
         }
@@ -28,44 +39,35 @@ module.exports = {
         }
     },
 
-    ready: function () {
+    ready() {
         this.Fields = this.$resource('api/userprofile/field/{id}');
-        this.tab = UIkit.tab(this.$els.tab, {connect: this.$els.content});
+        this.tab = UIkit.tab(this.$els.tab, {connect: this.$els.content,});
     },
 
     methods: {
 
-        save: function () {
+        save() {
 
-            var data = {field: this.field};
-
+            const data = {field: this.field,};
             this.$broadcast('save', data);
 
-            this.Fields.save({id: this.field.id || 0}, data).then(function (res) {
+            this.Fields.save({id: (this.field.id || 0),}, data).then(res => {
 
                 if (!this.field.id) {
-                    window.history.replaceState({}, '', this.$url.route('admin/userprofile/edit', {id: res.data.field.id}))
+                    window.history.replaceState({}, '', this.$url.route('admin/userprofile/edit', {id: res.data.field.id,}))
                 }
 
                 this.$set('field', res.data.field);
 
-                this.$notify(this.$trans('%type% saved.', {type: this.type.label}));
+                this.$notify(this.$trans('%type% saved.', {type: this.type.label,}));
 
-            }, function (res) {
-                this.$notify(res.data, 'danger');
-            });
-        }
+            }, res => this.$notify(res.data, 'danger'));
+
+        },
 
     },
 
-    components: {
-
-        'field-basic': require('../../components/field-basic.vue'),
-        'field-options': require('../../components/field-options.vue'),
-        'field-appearance': require('../../components/appearance.vue')
-
-    }
-
 };
 
-Vue.ready(module.exports);
+Vue.ready(FieldEdit);
+export default FieldEdit;

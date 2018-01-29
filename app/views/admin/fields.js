@@ -1,121 +1,55 @@
-module.exports = {
+/*globals _, Vue, UIkit */
+
+const UserprofileFields = {
 
     el: '#userprofile-fields',
 
-    data: function () {
-        return _.merge({
-            users: false,
-            pages: 0,
-            count: '',
-            fields: [],
-            types: [],
-            selected: []
-        }, window.$data);
-    },
-
-    created: function () {
-        this.Fields = this.$resource('api/userprofile/field{/id}');
-        this.load();
-    },
-
-    methods: {
-
-        load: function () {
-            return this.Fields.query().then(function (res) {
-                this.$set('fields', res.data);
-            });
-        },
-
-        toggleRequired: function (field) {
-
-            field.data.required = field.data.required ? 0 : 1;
-
-            this.Fields.save({id: field.id}, {field: field}).then(function () {
-                this.load();
-                this.$notify('Field saved.');
-            }, function (res) {
-                this.load();
-                this.$notify(res.data, 'danger');
-            });
-        },
-
-        getSelected: function () {
-            return this.fields.filter(function (field) {
-                return this.isSelected(field);
-            }, this);
-        },
-
-        isSelected: function (field, children) {
-
-            if (_.isArray(field)) {
-                return _.every(field, function (field) {
-                    return this.isSelected(field, children);
-                }, this);
-            }
-
-            return this.selected.indexOf(field.id.toString()) !== -1 && (!children || !this.tree[field.id] || this.isSelected(this.tree[field.id], true));
-        },
-
-        toggleSelect: function (field) {
-
-            var index = this.selected.indexOf(field.id.toString());
-
-            if (index == -1) {
-                this.selected.push(field.id.toString());
-            } else {
-                this.selected.splice(index, 1);
-            }
-        },
-
-        getType: function (field) {
-            return _.find(this.types, 'id', field.type);
-        },
-
-        removeFields: function () {
-
-            this.Fields.delete({id: 'bulk'}, {ids: this.selected}).then(function () {
-                this.load();
-                this.$notify('Fields(s) deleted.');
-            });
-        }
-
-    },
+    name: 'UserprofileFields',
 
     components: {
 
         field: {
-
-            props: ['field'],
-            template: '#field',
+            name: 'ProfileField',
+            props: {'field': Object,},
             computed: {
-                type: function () {
+                type() {
                     return this.$root.getType(this.field);
-                }
+                },
             },
             methods: {
-                isSelected: function (field) {
+                isSelected(field) {
                     return this.$root.isSelected(field);
-                }
-            }
-        }
+                },
+            },
+            template: '#field',
+        },
 
     },
 
+    data: () => _.merge({
+        users: false,
+        pages: 0,
+        count: '',
+        fields: [],
+        types: [],
+        selected: [],
+    }, window.$data),
+
     watch: {
 
-        fields: function () {
+        fields() {
 
-            var vm = this;
+            const vm = this;
 
             // TODO this is still buggy
             UIkit.nestable(this.$els.nestable, {
                 maxDepth: 1,
-                group: 'userprofile.fields'
-            }).off('change.uk.nestable').on('change.uk.nestable', function (e, nestable, el, type) {
+                group: 'userprofile.fields',
+            }).off('change.uk.nestable').on('change.uk.nestable', (e, nestable, el, type) => {
 
                 if (type && type !== 'removed') {
 
-                    vm.Fields.save({id: 'updateOrder'}, {fields: nestable.list()}).then(function () {
+                    vm.Fields.save({id: 'updateOrder',}, {fields: nestable.list(),}).then(() => {
 
                         // @TODO reload everything on reorder really needed?
                         vm.load().success(function () {
@@ -128,16 +62,82 @@ module.exports = {
                             }
                         });
 
-                    }, function () {
-                        this.$notify('Reorder failed.', 'danger');
-                    });
+                    },() => this.$notify('Reorder failed.', 'danger'));
                 }
             });
-        }
-    }
+        },
+    },
+
+    created() {
+        this.Fields = this.$resource('api/userprofile/field{/id}');
+        this.load();
+    },
+
+    methods: {
+
+        load() {
+            return this.Fields.query().then(res => {
+                this.$set('fields', res.data);
+            });
+        },
+
+        toggleRequired(field) {
+
+            field.data.required = field.data.required ? 0 : 1;
+
+            this.Fields.save({id: field.id,}, {field,}).then(function () {
+                this.load();
+                this.$notify('Field saved.');
+            }, function (res) {
+                this.load();
+                this.$notify(res.data, 'danger');
+            });
+        },
+
+        getSelected() {
+            return this.fields.filter(function (field) {
+                return this.isSelected(field);
+            }, this);
+        },
+
+        isSelected(field, children) {
+
+            if (_.isArray(field)) {
+                return _.every(field, function (field) {
+                    return this.isSelected(field, children);
+                }, this);
+            }
+
+            return this.selected.indexOf(field.id.toString()) !== -1 && (!children || !this.tree[field.id] || this.isSelected(this.tree[field.id], true));
+        },
+
+        toggleSelect(field) {
+
+            const index = this.selected.indexOf(field.id.toString());
+
+            if (index === -1) {
+                this.selected.push(field.id.toString());
+            } else {
+                this.selected.splice(index, 1);
+            }
+        },
+
+        getType(field) {
+            return _.find(this.types, 'id', field.type);
+        },
+
+        removeFields() {
+
+            this.Fields.delete({id: 'bulk',}, {ids: this.selected,}).then(function () {
+                this.load();
+                this.$notify('Fields(s) deleted.');
+            });
+        },
+
+    },
 
 };
 
 
-Vue.ready(module.exports);
-
+Vue.ready(UserprofileFields);
+export default UserprofileFields;

@@ -1,38 +1,35 @@
-module.exports = {
+/*globals Vue, _ */
+const UserprofileRegistration = {
 
     el: '#userprofile-registration',
 
-    data: function () {
-        return _.merge({
-            error: '',
-            fields: [],
-            profilevalues: {},
-            user: {},
-            form: {}
-        }, window.$data, window.$userprofile);
-    },
+    name: 'UserprofileRegistration',
 
-    created: function () {
-    },
+    data: () => _.merge({
+        error: '',
+        fields: [],
+        profilevalues: {},
+        user: {},
+        form: {},
+    }, window.$data, window.$userprofile),
 
     methods: {
 
-        save: function () {
-
+        save() {
             this.$set('error', '');
-
             this.$http.post('user/registration/register', {
                 user: this.user,
-                profilevalues: this.profilevalues
-            }).then(function (res) {
+                profilevalues: this.profilevalues,
+            }).then(res => {
                 window.location.replace(res.data.redirect);
-            }, function (res) {
+            }, res => {
                 this.error = res.data;
             });
-        }
+        },
 
-    }
+    },
 
 };
 
-Vue.ready(module.exports);
+Vue.ready(UserprofileRegistration);
+export default UserprofileRegistration;

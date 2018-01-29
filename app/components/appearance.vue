@@ -12,15 +12,18 @@
 
 <script>
 
-    module.exports = {
+    export default  {
 
-        props: ['field'],
+        name: 'FieldAppearance',
+
+        props: {'field': Object,},
 
         computed: {
-            appearanceSettings: function () {
-                return this.field.type ? BixieFieldtypes.components[this.field.type].appearance || BixieFieldtypes.components[this.field.type].options.appearance : {};
-            }
-        }
+            appearanceSettings() {
+                return this.field.type ? BixieFieldtypes.components[this.field.type].appearance ||
+                    BixieFieldtypes.components[this.field.type].options.appearance : {};
+            },
+        },
 
     };
 
