@@ -6,36 +6,36 @@
                     :user="user"
                     :form="form"></fieldtypes>
 
-
         <p v-show="!fields" class="uk-text-center"><i class="uk-icon-spinner uk-icon-spin"></i></p>
 
     </div>
 </template>
 
 <script>
+/*global _ */
+const UserUserprofile = {
 
-    const UserUserprofile = {
+    name: 'UserUserprofile',
 
-        name: 'UserUserprofile',
+    section: {
+        label: 'Userprofile',
+        priority: 200,
+    },
 
-        section: {
-            label: 'Userprofile',
-            priority: 200,
+    props: {'user': Object, 'config': Object, 'form': Object,},
+
+    data: () => _.merge({}, window.$userprofile),
+
+    events: {
+        'save'(data) {
+            data.profilevalues = this.profilevalues;
         },
+    },
 
-        props: {'user': Object, 'config': Object, 'form': Object,},
+};
 
-        data: () => _.merge({}, window.$userprofile),
-
-        events: {
-            'save'(data) {
-                data.profilevalues = this.profilevalues;
-            },
-        },
-
-    };
-
-    window.User.components['user-section-userprofile:profile'] = UserUserprofile;
-    export default UserUserprofile;
+window.User.components['user-section-userprofile:profile'] = UserUserprofile;
+//needs to be exported to compile template
+export default UserUserprofile;
 
 </script>

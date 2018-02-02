@@ -1,4 +1,5 @@
 /*globals _, Vue */
+// @vue/component
 const UserprofileProfile = {
 
     el: '#userprofile-profile',
@@ -29,4 +30,3 @@ const UserprofileProfile = {
 };
 
 Vue.ready(UserprofileProfile);
-export default UserprofileProfile;

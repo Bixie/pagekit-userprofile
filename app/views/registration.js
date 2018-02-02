@@ -1,4 +1,5 @@
 /*globals Vue, _ */
+// @vue/component
 const UserprofileRegistration = {
 
     el: '#userprofile-registration',
@@ -32,4 +33,3 @@ const UserprofileRegistration = {
 };
 
 Vue.ready(UserprofileRegistration);
-export default UserprofileRegistration;

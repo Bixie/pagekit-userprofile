@@ -3,6 +3,7 @@ import FieldBasic from '../../components/field-basic.vue';
 import FieldOptions from '../../components/field-options.vue';
 import FieldAppearance from '../../components/appearance.vue';
 
+// @vue/component
 const FieldEdit = {
 
     el: '#field-edit',
@@ -70,4 +71,3 @@ const FieldEdit = {
 };
 
 Vue.ready(FieldEdit);
-export default FieldEdit;

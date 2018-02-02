@@ -1,5 +1,6 @@
 /*globals _, Vue, UIkit */
 
+// @vue/component
 const UserprofileFields = {
 
     el: '#userprofile-fields',
@@ -140,4 +141,3 @@ const UserprofileFields = {
 
 
 Vue.ready(UserprofileFields);
-export default UserprofileFields;

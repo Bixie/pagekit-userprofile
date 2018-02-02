@@ -31,36 +31,37 @@
 </template>
 
 <script>
+/*global _ */
 
-    const UserprofileListConfig = {
+const UserprofileListConfig = {
 
-        name: 'UserprofileListConfig',
+    name: 'UserprofileListConfig',
 
-        section: {
-            label: 'List config',
-            priority: 50,
+    section: {
+        label: 'List config',
+        priority: 50,
+    },
+
+    props: ['node',],
+
+    data: () => ({
+        roles: _.filter(window.$data.roles, role => !role.anonymous),
+    }),
+
+    created() {
+        this.node.data.show_roles = this.node.data.show_roles || [];
+        this.node.link = `@userprofile/profiles/${this.node.slug}`;
+    },
+
+    watch: {
+        'node.slug'(slug) {
+            this.node.link = `@userprofile/profiles/${slug}`;
         },
+    },
 
-        props: ['node'],
+};
 
-        data: () => ({
-            roles: _.filter(window.$data.roles, role => !role.anonymous),
-        }),
-
-        created() {
-            this.node.data.show_roles = this.node.data.show_roles || [];
-            this.node.link = `@userprofile/profiles/${this.node.slug}`;
-        },
-
-        watch: {
-            'node.slug'(slug) {
-                this.node.link = `@userprofile/profiles/${slug}`;
-            },
-        },
-
-    };
-
-    window.Site.components['user-profiles:config'] = UserprofileListConfig;
-    export default UserprofileListConfig;
+window.Site.components['user-profiles:config'] = UserprofileListConfig;
+export default UserprofileListConfig;
 
 </script>

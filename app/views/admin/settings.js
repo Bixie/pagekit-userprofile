@@ -1,15 +1,27 @@
 /*globals _, Vue */
 import fields from '../../settings/fields';
 
+// @vue/component
 const UserprofileSettings = {
 
     el: '#userprofile-settings',
 
     name: 'UserprofileSettings',
 
+    fields,
+
     data: () => _.merge({}, window.$data),
 
-    fields,
+    computed: {
+        fieldOptions() {
+            return this.fields.map(field => {
+                return {value: field.slug, text: field.label,};
+            });
+        },
+        uploadFields() {
+            return this.fields.filter(field => field.type === 'upload');
+        },
+    },
 
     methods: {
 
@@ -24,18 +36,6 @@ const UserprofileSettings = {
 
     },
 
-    computed: {
-        fieldOptions() {
-            return this.fields.map(field => {
-                return {value: field.slug, text: field.label,};
-            });
-        },
-        uploadFields() {
-            return this.fields.filter(field => field.type === 'upload');
-        },
-    },
-
 };
 
 Vue.ready(UserprofileSettings);
-export default UserprofileSettings;
