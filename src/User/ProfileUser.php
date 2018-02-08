@@ -103,6 +103,13 @@ class ProfileUser implements \JsonSerializable
 		}
 	}
 
+    /**
+     * @return User
+     */
+    public function getUser () {
+        return $this->user;
+    }
+
 	/**
 	 * Gets a data value.
 	 * @param  string $key
