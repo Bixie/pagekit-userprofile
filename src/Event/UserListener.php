@@ -22,8 +22,6 @@ class UserListener implements EventSubscriberInterface {
 			$profileUser = ProfileUser::load($user);
 			$profileUser->setProfileValues($profilevalues);
 			$profileUser->saveProfile();
-            //only save once
-            App::request()->request->set('profilevalues', []);
 		}
 	}
 
@@ -43,7 +41,6 @@ class UserListener implements EventSubscriberInterface {
 	 */
 	public function subscribe () {
 		return [
-			'model.user.created' => 'onUserChange',
 			'model.user.saved' => 'onUserChange',
 			'model.user.deleted' => 'onUserDeleted'
 		];
