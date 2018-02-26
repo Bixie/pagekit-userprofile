@@ -148,6 +148,8 @@ class ProfileUser implements \JsonSerializable
 		foreach ($this->fieldValues as $fieldValue) {
 			$fieldValue->save(['data' => $fieldValue->getValuedata()]);
 		}
+		//reset cached data
+        $this->data = null;
 	}
 
 	/**

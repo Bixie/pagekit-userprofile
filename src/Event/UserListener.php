@@ -16,7 +16,7 @@ class UserListener implements EventSubscriberInterface {
 	 * @param      $event
 	 * @param User $user
 	 */
-	public function onUserChange ($event, User $user) {
+	public function onUserChanged ($event, User $user) {
 		$profilevalues = App::request()->request->get('profilevalues', []);
 		if (count($profilevalues)) {
 			$profileUser = ProfileUser::load($user);
@@ -41,7 +41,8 @@ class UserListener implements EventSubscriberInterface {
 	 */
 	public function subscribe () {
 		return [
-			'model.user.saved' => 'onUserChange',
+			'model.user.updated' => 'onUserChanged',
+			'model.user.created' => 'onUserChanged',
 			'model.user.deleted' => 'onUserDeleted'
 		];
 	}
