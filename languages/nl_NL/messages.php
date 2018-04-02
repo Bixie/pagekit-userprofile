@@ -1,4 +1,5 @@
 <?php return array (
+  'My Profile' => 'Mijn profiel',
   'Manage options' => 'Beheer opties',
   'Delete' => 'Delete',
   'User registration' => 'Gebruikers registratie',
