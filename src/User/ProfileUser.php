@@ -36,7 +36,7 @@ class ProfileUser implements \JsonSerializable
 
     /**
      * proxy load for emailsender module
-     * @return ProfileUser
+     * @return static
      */
     public static function create () {
         return self::load();
@@ -44,7 +44,7 @@ class ProfileUser implements \JsonSerializable
 
     /**
 	 * @param User|null $user
-	 * @return ProfileUser
+	 * @return static
 	 */
 	public static function load (User $user = null) {
 		$user = $user ?: App::user();
