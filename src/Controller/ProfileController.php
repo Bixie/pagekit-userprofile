@@ -43,6 +43,7 @@ class ProfileController {
 	/**
 	 * registration override page
 	 * @Route("/registration")
+     * @Captcha(route="@user/registration/register")
 	 */
 	public function registrationAction () {
 
